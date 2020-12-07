@@ -1,0 +1,18 @@
+---
+title: "About this blog"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE,message=FALSE)
+```
+
+
+My name is Richard Vogg.
+
+Using R makes me happy. Sometimes I learn interesting things that might be interesting for others. I created this blog to share them.
+
+Contact:
+
+[`r icon::fa("envelope")` richard.vogg@web.de](https://twitter.com/richard_vogg)    
+[`r icon::fa("github")` richardvogg](https://github.com/richardvogg)    
+[`r icon::fa("twitter")` richard_vogg](https://twitter.com/richard_vogg)

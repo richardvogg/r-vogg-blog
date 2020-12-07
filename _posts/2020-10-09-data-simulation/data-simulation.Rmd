@@ -1,0 +1,166 @@
+---
+title: "Data Simulation"
+description: |
+  The purpose of this post is to enable readers to create data from scratch which they can use for their analyses or visualizations.
+author:
+  - name: Richard Vogg
+    url: https://github.com/richardvogg
+date: 10-09-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo=TRUE) 
+```
+
+
+### Packages
+
+Most of the functions that we are using here are actually part of base R.
+
+We will need some functions from the dplyr package and the ggplot2 package for quick visualizations, but these are optional.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+Important to make your data creation reproducible (i.e. if you run it again, it gives the same result) is the `set.seed()` function. As we are creating instances of random variables we assure with this function that every time the same sequence of random variables is generated.
+You can use any number you like inside this function.
+
+```{r}
+set.seed(64)
+```
+
+
+### Manual values
+
+Let's start with the most simple but most time-consuming way. Type everything manually and save it in a vector:
+
+```{r}
+client_gen <- c("Millenial","Gen X","Millenial",
+                "Baby Boomer","Gen X","Millenial","Gen X")
+
+data.frame(id=1:7,client_gen)
+```
+
+
+### Categorical variables with `sample()`
+
+For categorical variables, we can save some time using the `sample` function. You specify first the possible values and then how many of these values you would like to pick. If you want to allow values to be picked more than once, make sure to set `replace=TRUE`.
+
+```{r}
+client_gen <- sample(c("Millenial","Gen X","Baby Boomer"),7,replace=TRUE)
+
+data.frame(id=1:7,client_gen)
+```
+
+The `sample` function is quite flexible and we can tweak the `prob` parameter, for example to say that we want (approximately) half of the population to be Baby Boomers. The effect will be visible if we produce larger amounts of data.
+
+```{r}
+client_gen <- sample(c("Millenial","Gen X","Baby Boomer"),1000,replace=TRUE,prob=c(0.25,0.25,0.5))
+
+qplot(client_gen)
+```
+
+
+### Numerical variables
+
+The same `sample()` function works with numbers.
+
+```{r}
+client_age <- sample(1:100,size=7,replace=TRUE)
+
+data.frame(id=1:7,client_age)
+```
+
+In both cases above, each number had the same probability of being selected. If we would like some numbers to be more likely to be selected, we can specify this with `prob`.
+
+The probability values will be automatically scaled to 1. If I would like to have 50% of the population to have the age of 27, I can specify the weight. (Note: `rep(1,5)` is equivalent to c(1,1,1,1,1), replicating the number 1 five times.)
+
+```{r}
+client_age <- sample(1:100,size=1000,replace=TRUE,prob=c(rep(1,26),99,rep(1,73)))
+
+qplot(client_age==27)
+```
+
+
+### Distributions
+
+If you would like to work with probability distributions to create numerical variable, this is also very easy with the base functions of type r+(starting letters of the distribution).
+
+Let's try the uniform distribution:
+
+```{r}
+client_age <- runif(7,min=1,max=100)
+
+data.frame(id=1:7,client_age)
+```
+
+We can use the `round()` function to round each value to their next integer.
+
+```{r}
+runif(10000,1,100) %>% round() %>% qplot(binwidth=10)
+```
+
+But uniformly distributed variables are not always what we want. In the example above we simulated 10,000 clients and distributes their ages uniformly. Then there are as many 99 year old clients as there are 50 year old clients.
+
+But we can easily access a whole list of other distribution functions, like the famous Normal distribution (with mean and standard deviation as parameters).
+
+```{r}
+rnorm(10000,mean=50,sd=20) %>% qplot()
+```
+
+If we want to limit the values to not be smaller than 0 or larger than 100, we can use pmin and pmax.
+
+```{r}
+rnorm(10000,mean=50,sd=20) %>% pmax(0) %>% pmin(100) %>% qplot()
+```
+
+For many applications (like balance distribution or any data that contains outliers) I like to use the Exponential distribution (with parameter `rate` and expectation 1/rate).
+
+```{r}
+rexp(10000,rate=0.01) %>% qplot()
+```
+
+If you want to explore further probability distributions check out this [link](https://www.stat.umn.edu/geyer/old/5101/rlook.html).
+
+### Combining variables in a dataframe
+
+To create our first simulated dataframe, we can start by simulating the variables separately and then putting them together.
+
+```{r}
+set.seed(61)
+
+k <- 7
+
+id <- 1:k
+name <- c("Frank","Dorian","Eva","Elena","Andy","Barbara","Yvonne")
+age <- rnorm(k,mean=30,sd=10) %>% pmax(18) %>% round()
+ocupation <- sample(c("analyst","manager","sr analyst"),k,replace=T,prob=c(10,2,3))
+balance <- rexp(k,rate=0.001) %>% round(2)
+married <- sample(c("Yes","No"),k,replace=T,prob=c(0.6,0.4))
+
+data <- data.frame(client_id=id,name,age,ocupation,balance,married_flg=married)
+data
+```
+
+Great! We just simulated a dataset which we can use now for visualization or modeling purposes. 
+
+### Exporting 
+
+When we are happy with our created dataset and want to use it somewhere else we can export it using the base R function.
+
+```{r,eval=FALSE}
+write.csv(raw,"data.csv")
+```
+
+Alternatively, if this is not fast enough, we can also use the `fwrite` function from the data.table package which is much faster.
+
+```{r,eval=FALSE}
+library(data.table)
+fwrite(raw,"data.csv")
+```

@@ -1,0 +1,128 @@
+---
+title: "Fuzzy merging"
+description: |
+  Imagine that you have a list of hand-typed names/words and a list of reference. Fuzzy merging helps   to map Fantasy company & co. / FANTASY COMP / Fnatasy Company to the same entity "Fantasy Company"   from the reference list. 
+author:
+  - name: Richard Vogg
+    url: https://github.com/richardvogg
+date: 10-09-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning=FALSE,message=FALSE)
+```
+
+### Packages
+
+The only packages you need are `dplyr` and `stringdist`. I used `tictoc` to measure the runtime.
+
+```{r}
+library(dplyr)
+library(stringdist)
+library(tictoc)
+```
+
+### The data
+
+This method requires as input two lists. To distinguish them, we will call the one that contains different spellings as the "dirty list". The reference list will be called the "clean list". In this blogpost I will create the dirty list by hand.
+
+```{r}
+names <- c("Haliburton", "ExxonMobile","ABBOTT LABORATORIES","Marrriott","Self","Activision Blizzard",
+           "Quest dianotstics","Unemployed","other company","burger king",
+           "MARRIOT","wall mart", "Illumin", "3M","NORTHROP TRUMMON","MCCormicks","MARSH MCLEANNON",
+           "FLO SERVE", "Kansas City Southern Fed.","MCDONALD'S","F5 Networks",
+           "McDonalds","MacKindsey","Oracle","Self-employed","None","Retired",
+           "f5 networks","Harley Davidson","Harly Davidson","HARLEY DAVIDSEN","DRHorton","D.R. Horten",
+           "cincinati fin","cincinnatti financials","cincinnati financial","CINCINATTI FINANCE",
+           "Mohaws Industry","Mowahk Industries","Mohawk Ind")
+
+set.seed(64)
+dirty_list <- sample(names,50000,replace=T)
+```
+
+```{r,echo=FALSE}
+knitr::kable(data.frame(dirty_list=names) %>% head(10))
+```
+
+As a clean list we will use the list of S&P500 companies. This can be downloaded or scraped from the internet.
+
+```{r,echo=FALSE}
+clean_list <- read.csv2("data/S&P500.csv",stringsAsFactors = F) %>% .$Security
+knitr::kable(data.frame(clean_list) %>% head(10))
+```
+
+Before we start, we will pre-process both lists, remove some common words and transform everything to lower case.
+
+```{r}
+
+cleaner <- function(vec) {
+  wordremove <- c(" and "," comp "," company","companies"," corp ","corporation"," inc ","[.]com")
+  output <- vec %>% tolower() %>% 
+    {gsub(paste(wordremove,collapse='|'),"",.)} %>%
+    {gsub("[[:punct:]]","",.)} %>%
+    {gsub("[[:blank:]]","",.)}
+  return(output)
+}
+
+control <- data.frame(original=dirty_list)
+
+clean_list_cl <- cleaner(clean_list)
+dirty_list_cl <- cleaner(dirty_list)
+```
+
+### Main process
+
+We calculate a matrix of string distances. The `stringdist` package has a lot of different methods implemented which can be checked [here](https://www.rdocumentation.org/packages/stringdist/versions/0.9.6/topics/stringdist). After comparing some of the methods I decided to go with the Jaro-Winkler distance as it yields higher similarity for words which start with the same letters.
+
+#### Example 
+
+```{r}
+stringdistmatrix(c("other","words","otherexample","exapmle"),
+                 c("example","other example","word"),
+                 method='jw',p=0.1,useNames="strings")
+```
+
+
+Each row of the matrix of string distances is one string from the dirty list. We find the minimum in each row, which is equivalent to the best fit from the clean list.
+
+```{r}
+
+tic("a")
+distmatrix <- stringdist::stringdistmatrix(dirty_list_cl,clean_list_cl,method='jw',p=0.1)
+best_fit <- apply(distmatrix,1,which.min) %>% as.integer()
+similarity <- apply(distmatrix,1,min)
+
+control$best_fit <- clean_list[best_fit]
+control$distance <- round(similarity,3)
+toc()
+```
+
+```{r,echo=F}
+knitr::kable(control[1:10,])
+```
+
+
+### Results
+
+When we order the control dataframe by similarity we can find a suitable cutoff value (in this example 0.12) to separate real matches from false positives. This cutoff value depends on the application.
+
+```{r}
+control$result <- ifelse(control$distance<=0.12,control$best_fit,NA)
+```
+
+
+```{r,echo=FALSE}
+knitr::kable(distinct(control) %>% slice(1:15))
+```
+
+
+### Next Steps and other resources
+
+* Improve performance for large datasets. On [Github](https://github.com/richardvogg/LatinR-2019-Fuzzy-merging/blob/master/Fuzzy.R), I have an implementation of this method with the parallel package which improves performance slightly. But there is definitely more room for improvement.
+* There is an interesting video about performance improvement by not calculating the full matrix by Seth Verrinder and Kyle Putnam [here](https://www.youtube.com/watch?v=s0YSKiFdj8Q).
+* Andrés Cruz created an Add-in which helps to fine-tune the final result, his slide from LatinR 2019 can be found [here](https://arcruz0.github.io/extra/latinr2019/inexact_slides.html#1).
+* Check out David Robinson's fuzzyjoin package [here](https://github.com/dgrtwo/fuzzyjoin).

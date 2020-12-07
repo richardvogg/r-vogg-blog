@@ -1,0 +1,19 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this blog",
+      "author": [],
+      "contents": "\r\nMy name is Richard Vogg.\r\nUsing R makes me happy. Sometimes I learn interesting things that might be interesting for others. I created this blog to share them.\r\nContact:\r\n richard.vogg@web.de richardvogg richard_vogg\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-04T11:51:34+01:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Rvoggblog",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-04T11:51:35+01:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
