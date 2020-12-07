@@ -88,7 +88,6 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_meta_tags-->
   <title>Welcome to R-Vogg-Blog</title>
   
-  <meta property="description" itemprop="description" content="This blog is still in early stages. I hope to upload&#10;some interesting articles in the next time."/>
   
   
   <!--  https://schema.org/Article -->
@@ -99,19 +98,17 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Welcome to R-Vogg-Blog"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="This blog is still in early stages. I hope to upload&#10;some interesting articles in the next time."/>
   <meta property="og:locale" content="en_US"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Welcome to R-Vogg-Blog"/>
-  <meta property="twitter:description" content="This blog is still in early stages. I hope to upload&#10;some interesting articles in the next time."/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Welcome to R-Vogg-Blog"]},{"type":"character","attributes":{},"value":["This blog is still in early stages. I hope to upload\nsome interesting articles in the next time.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]},{"type":"character","attributes":{},"value":["independent"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["10-09-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Welcome to R-Vogg-Blog"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]},{"type":"character","attributes":{},"value":["independent"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["10-09-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1420,7 +1417,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Welcome to R-Vogg-Blog","description":"This blog is still in early stages. I hope to upload\nsome interesting articles in the next time.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"independent","affiliationURL":"https://github.com/richardvogg","orcidID":""}],"publishedDate":"2020-10-09T00:00:00.000-03:00","citationText":"Vogg, 2020"}
+{"title":"Welcome to R-Vogg-Blog","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"independent","affiliationURL":"https://github.com/richardvogg","orcidID":""}],"publishedDate":"2020-10-09T00:00:00.000+02:00","citationText":"Vogg, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1433,7 +1430,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <h1>Welcome to R-Vogg-Blog</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>This blog is still in early stages. I hope to upload some interesting articles in the next time.</p></p>
+
 </div>
 
 <div class="d-byline">
@@ -1443,6 +1440,17 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 <div class="d-article">
+<p>I am using R almost every day for the analysis of data.</p>
+<p>After reading <a href="https://medium.com/@racheltho/why-you-yes-you-should-blog-7d2544ac1045">this</a> great blogpost by Rachel Thomas, called “Why you (yes, you) should blog” I started playing around with the idea of writing down some of the things I learn.</p>
+<p>Especially this point resonated a lot in me:</p>
+<blockquote>
+You are best positioned to help people one step behind you. The material is still fresh in your mind. Many experts have forgotten what it was like to be a beginner (or an intermediate) and have forgotten why the topic is hard to understand when you first hear it. The context of your particular background, your particular style, and your knowledge level will give a different twist to what you’re writing about.
+<footer>
+— Rachel Thomas
+</footer>
+</blockquote>
+<p>The next event that brought me closer to this blog was a tutorial by Maëlle Salmon during Latin-R 2020. The material can be found <a href="https://bloguearrr.netlify.app/intro/starters/">here</a>. She showed how easy it is to get started with {distill} and how to setup a blog.</p>
+<p>The last ingredient I needed were topics to write about. As I will be speaking about Data Composition during rstudio::global(2021), I thought this was a great opportunity to summarize some methods and ideas around this topic.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

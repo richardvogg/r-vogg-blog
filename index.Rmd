@@ -1,5 +1,5 @@
 ---
-title: "Rvoggblog"
+title: "R-Vogg-blog"
 site: distill::distill_website
 listing: posts
 ---

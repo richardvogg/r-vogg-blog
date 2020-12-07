@@ -30,12 +30,13 @@ library(ggplot2)
 
 ## Simulating dependent variables
 
-If we want to have a dataset that "makes sense" from a real world perspective, it would be great if managers in general had higher balances than analysts? Or if 18 years old clients are less likely to be married than 30 years olds?
+If we want to have a dataset that "makes sense" from a real world perspective, wouldn't it be great if managers in general had higher balances than analysts? Or if 18 years old clients are less likely to be married than 30 years olds?
+This does not mean that no 18 years old can be married in our dataset, but if we look at the average, we would expect a difference between both groups.
 In this section we are going to have a look at techniques to create dependence between variables.
 
 ### Rule based
 
-We can use `ifelse()` and `case_when()` to create new variables that depend on others.
+We can use `ifelse()` and `case_when()` from the {dplyr} package to create new variables that depend on others.
 
 ```{r}
 k <- 7

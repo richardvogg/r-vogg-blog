@@ -87,7 +87,7 @@
   {
     "path": "posts/welcome/",
     "title": "Welcome to R-Vogg-Blog",
-    "description": "This blog is still in early stages. I hope to upload\nsome interesting articles in the next time.",
+    "description": {},
     "author": [
       {
         "name": "Richard Vogg",
@@ -96,9 +96,9 @@
     ],
     "date": "2020-10-09",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\n",
+    "contents": "\r\nI am using R almost every day for the analysis of data.\r\nAfter reading this great blogpost by Rachel Thomas, called “Why you (yes, you) should blog” I started playing around with the idea of writing down some of the things I learn.\r\nEspecially this point resonated a lot in me:\r\n\r\nYou are best positioned to help people one step behind you. The material is still fresh in your mind. Many experts have forgotten what it was like to be a beginner (or an intermediate) and have forgotten why the topic is hard to understand when you first hear it. The context of your particular background, your particular style, and your knowledge level will give a different twist to what you’re writing about.\r\n\r\n— Rachel Thomas\r\n\r\nThe next event that brought me closer to this blog was a tutorial by Maëlle Salmon during Latin-R 2020. The material can be found here. She showed how easy it is to get started with {distill} and how to setup a blog.\r\nThe last ingredient I needed were topics to write about. As I will be speaking about Data Composition during rstudio::global(2021), I thought this was a great opportunity to summarize some methods and ideas around this topic.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2020-10-10T00:34:10+02:00",
-    "input_file": {}
+    "last_modified": "2020-12-07T10:47:40+01:00",
+    "input_file": "welcome.utf8.md"
   }
 ]
