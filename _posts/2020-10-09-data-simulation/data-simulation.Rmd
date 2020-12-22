@@ -1,5 +1,5 @@
 ---
-title: "Data Simulation"
+title: "Simulate variables and data"
 description: |
   The purpose of this post is to enable readers to create data from scratch which they can use for their analyses or visualizations.
 author:
@@ -19,9 +19,9 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo=TRUE)
 
 ### Packages
 
-Most of the functions that we are using here are actually part of base R.
+Most of the functions that we are using here are part of base R.
 
-We will need some functions from the dplyr package and the ggplot2 package for quick visualizations, but these are optional.
+We will need some functions from the {dplyr} and {ggplot2} packages for quick visualizations, but these are optional.
 
 ```{r}
 library(dplyr)
@@ -61,7 +61,7 @@ data.frame(id=1:7,client_gen)
 The `sample` function is quite flexible and we can tweak the `prob` parameter, for example to say that we want (approximately) half of the population to be Baby Boomers. The effect will be visible if we produce larger amounts of data.
 
 ```{r}
-client_gen <- sample(c("Millenial","Gen X","Baby Boomer"),1000,replace=TRUE,prob=c(0.25,0.25,0.5))
+client_gen <- sample(c("Millenial","Gen X","Baby Boomer"), 1000, replace=TRUE, prob=c(0.25,0.25,0.5))
 
 qplot(client_gen)
 ```

@@ -4,15 +4,15 @@
       "path": "about.html",
       "title": "About this blog",
       "author": [],
-      "contents": "\r\nMy name is Richard Vogg.\r\nUsing R makes me happy. Sometimes I learn interesting things that might be interesting for others. I created this blog to share them.\r\nContact:\r\n richard.vogg@web.de richardvogg richard_vogg\r\n\r\n\r\n\r\n",
-      "last_modified": "2020-12-07T10:41:39+01:00"
+      "contents": "\r\nMy name is Richard Vogg. I am a mathematician from TU Kaiserslautern in German, where I focused on statistics and obtained a Master’s degree.\r\nUsing R makes me happy. Sometimes I learn interesting things that might be interesting for others. I created this blog to share them.\r\nContact:\r\n richard.vogg@web.de richardvogg richard_vogg\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-22T17:21:48+01:00"
     },
     {
       "path": "index.html",
       "title": "R-Vogg-blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2020-12-07T10:41:40+01:00"
+      "last_modified": "2020-12-22T17:21:50+01:00"
     }
   ],
   "collections": ["posts/posts.json"]

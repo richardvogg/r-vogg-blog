@@ -1,7 +1,7 @@
 ---
 title: "Simulate dependent variables"
 description: |
-  When you simulate a dataset it is often not enough to have correctly distributed independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this.
+  When you simulate a dataset it is often not enough to have independent variables, but you  want to have some dependency between the variables. In this post we explore ways of creating this dependency.
 author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 Most of the functions that we are using here are actually part of base R.
 
-We will need some functions from the dplyr package and the ggplot2 package for quick visualizations, but these are optional.
+We will need some functions from the {dplyr} and {ggplot2} packages for quick visualizations, but these are optional.
 
 ```{r}
 library(dplyr)
@@ -30,43 +30,42 @@ library(ggplot2)
 
 ## Simulating dependent variables
 
-If we want to have a dataset that "makes sense" from a real world perspective, wouldn't it be great if managers in general had higher balances than analysts? Or if 18 years old clients are less likely to be married than 30 years olds?
+If we want to have a dataset that "makes sense" from a real world perspective, wouldn't it be great if managers in general had higher balances than junior analysts? Or if 18 years old clients are less likely to be married than 30 years olds?
 This does not mean that no 18 years old can be married in our dataset, but if we look at the average, we would expect a difference between both groups.
 In this section we are going to have a look at techniques to create dependence between variables.
 
 ### Rule based
 
-We can use `ifelse()` and `case_when()` from the {dplyr} package to create new variables that depend on others.
+We can use `ifelse()` and `case_when()` from the {dplyr} package to create new variables that depend on others. Let's make a small example with two columns which depend on each other: married, which indicates if the person is married, and age.
 
-```{r}
-k <- 7
-married <- sample(c("Y","N"),k,replace=T)
 
-data <- data.frame(id=1:k,married)
-
-data %>% mutate(
-  age=ifelse(married=="Y",rnorm(k,45,10),rnorm(k,30,10)) %>% pmax(18) %>% round()
-)
-
-```
-
-In this small example we will not see the effect, but when we simulate 1000 clients and take a look at their average age, we can see that there is a difference between the two groups.
+We will simulate 1000 clients, around 50% of which are married.
 
 ```{r}
 k <- 1000
 married <- sample(c("Y","N"),k,replace=T)
-
-data <- data.frame(id=1:k,married)
-
-data %>% mutate(
-  age=ifelse(married=="Y",rnorm(k,45,5),rnorm(k,30,10)) %>% 
-    pmax(18) %>% 
-    round()
-    ) %>% 
-  ggplot(aes(x=married,y=age))+geom_boxplot()
 ```
 
-If you have more than two options, `case_when()` can help.
+Next, we want that our married clients are slightly older than our non-married clients. Without doing further research, we just assume that the average age of the married clients is 45, and the average age of the non-married clients is 30.
+
+```{r}
+data <- data.frame(id=1:k,married) %>% 
+  mutate(
+    age=ifelse(married=="Y",rnorm(k,45,5),rnorm(k,30,10)) %>% 
+      pmax(18) %>% #every client should be at least 18
+      round()
+    )
+
+head(data)
+```
+
+We can take a quick look if the difference is visible in a boxplot.
+
+```{r,echo=FALSE}
+  ggplot(data,aes(x=married,y=age))+geom_boxplot()
+```
+
+If you have more than two options, `case_when()` can help. We want to see the balance of clients which are either managers, analysts or senior analysts. 
 
 ```{r}
 k <- 1000
@@ -78,7 +77,7 @@ data <- data.frame(id=1:k,ocupation)
 data <- data %>% mutate(balance=case_when(
   ocupation=="analyst" ~ 100+rexp(k,0.01),
   ocupation=="sr analyst" ~ 200+rexp(k,0.005),
-  TRUE ~ 500+rexp(k,0.001) #this is the else case
+  TRUE ~ 400+rexp(k,0.001) #this is the else case
 ))
 
 #Check the average balance per group
@@ -89,9 +88,11 @@ data %>%
 
 ### Correlation based
 
-If we just deal with numeric variables and want to have a slightly more complex connection between the different variables, we can also try this approach, for which we specify a correlation matrix beforehand and reorder our variables afterwards so that they match the desired correlation.
+If we just deal with numeric variables and want to have a slightly more complex connection between the variables, we can also try another approach, for which we specify a correlation matrix beforehand and reorder our variables afterwards so that they match the desired correlation.
 
-Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated).
+Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated). This might require some research.
+
+First, we simulate the data independently. Ideas about how to do this can be found in [this](https://r-vogg-blog.netlify.app/posts/2020-10-09-data-simulation/) blogpost.
 
 ```{r}
 set.seed(64)
@@ -108,9 +109,9 @@ data <- data.frame(age,balance,kids_cnt,tenure)
 data %>% head(7)
 ```
 
-We directly see that there are things that don't make sense, like the 22-years-old with a tenure of 22 years.
+We directly see that there are things that don't make too much sense, like the 22-years-old with a tenure of 22 years. Further, there is no dependence between the variables.
 
-To improve this, we want to reshuffle the rows and get a distribution close to a desired one. First we simulate a helping dataset of same size, where every entry is random normal distributed.
+To improve this, we want to reshuffle the rows and get a correlation close to a desired one. First we simulate a helping dataset of same size, where every entry is random normal distributed.
 
 ```{r}
 nvars <- ncol(data)
@@ -118,7 +119,6 @@ numobs <- nrow(data)
 
 set.seed(3)
 rnorm_helper <- matrix(rnorm(nvars*numobs,0,1),nrow=nvars)
-
 ```
 
 The correlation of this matrix should be close to the identity matrix.
@@ -127,7 +127,7 @@ The correlation of this matrix should be close to the identity matrix.
 cor(t(rnorm_helper))
 ```
 
-Next, we specify our desired correlation matrix:
+Next, we specify our desired correlation matrix. Just to put this in words, we want to correlate the four variables age, balance, kids_cnt and tenure. Each variable with itself has a correlation of 1. We want age and balance to have a positive correlation of 0.3, age and kids_cnt of 0.4 and age and tenure of 0.2. Likewise, we specify all desired correlations between pairs of variables.
 
 ```{r}
 Q <- matrix(c(1,0.3,0.4,0.2,  0.3,1,0,0.3,  0.4,0,1,-0.3,  0.2,0.3,-0.3,1),ncol=nvars)
@@ -146,16 +146,22 @@ L <- t(chol(Q))
 Z <- L %*% rnorm_helper
 ```
 
-Good, now we convert this new data to a data frame and give it the name of our original data. The correlation of this dataset is close to our desired outcome.
+Good, now we convert this new data to a data frame and name it like our original data. 
 
 ```{r}
 raw <- as.data.frame(t(Z),row.names=NULL,optional=FALSE)
 names(raw) <- names(data)
+
 head(raw,7,addrownums=FALSE)
+```
+
+The correlation of this dataset is close to our desired outcome.
+
+```{r}
 cor(raw)
 ```
 
-However, this dataset `raw` does not have anything to do with our original data. It is still our transformed random normal data. But as we know that this dataset has the correct correlation, we can use this to reorder the rows of our other dataset.
+However, this dataset `raw` does not have anything to do with our original data. It is still only transformed random normal data. But as we know that this dataset has the correct correlation, we can use this to reorder the rows of our other dataset.
 
 And then we just replace the largest value of the random normal dataset with the largest value in our dataset, the second largest with the second largest etc. We go column by column and repeat this procedure.
 
@@ -168,16 +174,25 @@ for(name in names(raw)) {
 
 ```
 
-Let's check the correlation of this new dataset. It is not exactly what we wished, but close enough. The reason for this is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 5).
+Let's check the correlation of this new dataset. It is close to our desired correlation matrix. The main reason for the small difference is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 5).
 
 ```{r}
 cor(raw)
+Q
 ```
 
-
-We can also take a look at the reshuffled dataset.
+Our final reshuffled and correctly correlated dataset is now stored in `raw`.
 
 ```{r}
 head(raw,7,addrownums=FALSE)
+```
+
+### Closing comments
+
+* If you like the correlation method please take a look at the GenOrd package which is a little more professional, when working with ordinal categorical variables.
+* The Cholesky decomposition is only possible for positive definite matrices. If this is not the case and you accept a slightly stronger deviation from your desired correlation matrix, the easiest way is to add 0.1, 0.2 etc. to the diagonals until you obtain a positive definite matrix. Note that this lowers the correlation between all variables.
+
+```{r}
+diag(nvars) * 0.1 + Q
 ```
 

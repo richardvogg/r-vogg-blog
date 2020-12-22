@@ -1,7 +1,7 @@
 ---
-title: "Fuzzy merging"
+title: "Fuzzy matching"
 description: |
-  Imagine that you have a list of hand-typed names/words and a list of reference. Fuzzy merging helps   to map Fantasy company & co. / FANTASY COMP / Fnatasy Company to the same entity "Fantasy Company"   from the reference list. 
+  Whenever you have text data that was input manually by a human, there is a chance that there are errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald's Company.
 author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
@@ -16,19 +16,20 @@ output:
 knitr::opts_chunk$set(echo = TRUE,warning=FALSE,message=FALSE)
 ```
 
+
 ### Packages
 
-The only packages you need are `dplyr` and `stringdist`. I used `tictoc` to measure the runtime.
+The only packages you need are `dplyr` and `stringdist`. 
 
 ```{r}
 library(dplyr)
 library(stringdist)
-library(tictoc)
 ```
+
 
 ### The data
 
-This method requires as input two lists. To distinguish them, we will call the one that contains different spellings as the "dirty list". The reference list will be called the "clean list". In this blogpost I will create the dirty list by hand.
+This method requires as input two lists. To distinguish them, we will call the one that contains the handtyped input as the "dirty list". The reference list will be called the "clean list". In this blogpost I will create the dirty list by hand with a few made-up examples of alternative company names.
 
 ```{r}
 names <- c("Haliburton", "ExxonMobile","ABBOTT LABORATORIES","Marrriott","Self","Activision Blizzard",
@@ -55,10 +56,10 @@ clean_list <- read.csv2("data/S&P500.csv",stringsAsFactors = F) %>% .$Security
 knitr::kable(data.frame(clean_list) %>% head(10))
 ```
 
-Before we start, we will pre-process both lists, remove some common words and transform everything to lower case.
+Before we start, we will pre-process both lists, remove some common words and transform everything to lower case. If you prefer, you can also use the {stringr} package for this.
+One comment from my experience: Usually, the construction of the common words to remove is an iterative approach: You would check your final result and see which words are still causing problems. Then you add them to the cleaner function and run the process again until you are satisfied with the results.
 
 ```{r}
-
 cleaner <- function(vec) {
   wordremove <- c(" and "," comp "," company","companies"," corp ","corporation"," inc ","[.]com")
   output <- vec %>% tolower() %>% 
@@ -76,7 +77,7 @@ dirty_list_cl <- cleaner(dirty_list)
 
 ### Main process
 
-We calculate a matrix of string distances. The `stringdist` package has a lot of different methods implemented which can be checked [here](https://www.rdocumentation.org/packages/stringdist/versions/0.9.6/topics/stringdist). After comparing some of the methods I decided to go with the Jaro-Winkler distance as it yields higher similarity for words which start with the same letters.
+We calculate a matrix of string distances. The {stringdist} package has a lot of different methods implemented which can be checked [here](https://www.rdocumentation.org/packages/stringdist/versions/0.9.6/topics/stringdist). After comparing some of the methods I decided to go with the Jaro-Winkler distance as it yields higher similarity for words which start with the same letters.
 
 #### Example 
 
@@ -86,19 +87,15 @@ stringdistmatrix(c("other","words","otherexample","exapmle"),
                  method='jw',p=0.1,useNames="strings")
 ```
 
-
 Each row of the matrix of string distances is one string from the dirty list. We find the minimum in each row, which is equivalent to the best fit from the clean list.
 
 ```{r}
-
-tic("a")
 distmatrix <- stringdist::stringdistmatrix(dirty_list_cl,clean_list_cl,method='jw',p=0.1)
 best_fit <- apply(distmatrix,1,which.min) %>% as.integer()
 similarity <- apply(distmatrix,1,min)
 
 control$best_fit <- clean_list[best_fit]
 control$distance <- round(similarity,3)
-toc()
 ```
 
 ```{r,echo=F}

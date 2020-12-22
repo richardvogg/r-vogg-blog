@@ -88,7 +88,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_meta_tags-->
 <title>R-Vogg-Blog: Simulate dependent variables</title>
 
-<meta property="description" itemprop="description" content="When you simulate a dataset it is often not enough to have correctly distributed independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this."/>
+<meta property="description" itemprop="description" content="When you simulate a dataset it is often not enough to have independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this."/>
 
 
 <!--  https://schema.org/Article -->
@@ -99,25 +99,25 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="R-Vogg-Blog: Simulate dependent variables"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="When you simulate a dataset it is often not enough to have correctly distributed independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this."/>
+<meta property="og:description" content="When you simulate a dataset it is often not enough to have independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="R-Vogg-Blog"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
 <meta property="twitter:title" content="R-Vogg-Blog: Simulate dependent variables"/>
-<meta property="twitter:description" content="When you simulate a dataset it is often not enough to have correctly distributed independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this."/>
+<meta property="twitter:description" content="When you simulate a dataset it is often not enough to have independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Simulate dependent variables"]},{"type":"character","attributes":{},"value":["When you simulate a dataset it is often not enough to have correctly distributed independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["12-03-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Simulate dependent variables"]},{"type":"character","attributes":{},"value":["When you simulate a dataset it is often not enough to have independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["12-03-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["simulate-dependent-variables_files/anchor-4.2.2/anchor.min.js","simulate-dependent-variables_files/bowser-1.9.3/bowser.min.js","simulate-dependent-variables_files/distill-2.2.21/template.v2.js","simulate-dependent-variables_files/figure-html5/unnamed-chunk-3-1.png","simulate-dependent-variables_files/figure-html5/unnamed-chunk-4-1.png","simulate-dependent-variables_files/jquery-1.11.3/jquery.min.js","simulate-dependent-variables_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["img/Cholesky.png","simulate-dependent-variables_files/anchor-4.2.2/anchor.min.js","simulate-dependent-variables_files/bowser-1.9.3/bowser.min.js","simulate-dependent-variables_files/distill-2.2.21/template.v2.js","simulate-dependent-variables_files/figure-html5/unnamed-chunk-3-1.png","simulate-dependent-variables_files/figure-html5/unnamed-chunk-4-1.png","simulate-dependent-variables_files/figure-html5/unnamed-chunk-5-1.png","simulate-dependent-variables_files/figure-html5/unnamed-chunk-7-1.png","simulate-dependent-variables_files/jquery-1.11.3/jquery.min.js","simulate-dependent-variables_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2321,7 +2321,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Simulate dependent variables","description":"When you simulate a dataset it is often not enough to have correctly distributed independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-03T00:00:00.000+01:00","citationText":"Vogg, 2020"}
+{"title":"Simulate dependent variables","description":"When you simulate a dataset it is often not enough to have independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-03T00:00:00.000+01:00","citationText":"Vogg, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2333,8 +2333,9 @@ d-appendix d-footnote-list a.footnote-backlink {
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
-<a href="../../index.html">Home</a>
+<a href="../../index.html">Texts</a>
 <a href="../../about.html">About</a>
+<span class="nav-dropdown-header"> </span>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2347,7 +2348,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1>Simulate dependent variables</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>When you simulate a dataset it is often not enough to have correctly distributed independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this.</p></p>
+<p><p>When you simulate a dataset it is often not enough to have independent variables, but you also want to have some dependency between the variables. In this post we explore ways of doing this.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2359,7 +2360,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="d-article">
 <h3 id="packages">Packages</h3>
 <p>Most of the functions that we are using here are actually part of base R.</p>
-<p>We will need some functions from the dplyr package and the ggplot2 package for quick visualizations, but these are optional.</p>
+<p>We will need some functions from the {dplyr} and {ggplot2} packages for quick visualizations, but these are optional.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
@@ -2368,49 +2369,43 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 </div>
 <h2 id="simulating-dependent-variables">Simulating dependent variables</h2>
-<p>If we want to have a dataset that “makes sense” from a real world perspective, it would be great if managers in general had higher balances than analysts? Or if 18 years old clients are less likely to be married than 30 years olds? In this section we are going to have a look at techniques to create dependence between variables.</p>
+<p>If we want to have a dataset that “makes sense” from a real world perspective, wouldn’t it be great if managers in general had higher balances than junior analysts? Or if 18 years old clients are less likely to be married than 30 years olds? This does not mean that no 18 years old can be married in our dataset, but if we look at the average, we would expect a difference between both groups. In this section we are going to have a look at techniques to create dependence between variables.</p>
 <h3 id="rule-based">Rule based</h3>
-<p>We can use <code>ifelse()</code> and <code>case_when()</code> to create new variables that depend on others.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fl'>7</span>
-<span class='va'>married</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Y"</span>,<span class='st'>"N"</span><span class='op'>)</span>,<span class='va'>k</span>,replace<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span>
-
-<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>id<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span>,<span class='va'>married</span><span class='op'>)</span>
-
-<span class='va'>data</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
-  age<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>married</span><span class='op'>==</span><span class='st'>"Y"</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>45</span>,<span class='fl'>10</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>30</span>,<span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='fl'>18</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>  id married age
-1  1       Y  57
-2  2       N  33
-3  3       N  32
-4  4       N  28
-5  5       N  31
-6  6       N  38
-7  7       Y  39</code></pre>
-</div>
-<p>In this small example we will not see the effect, but when we simulate 1000 clients and take a look at their average age, we can see that there is a difference between the two groups.</p>
+<p>We can use <code>ifelse()</code> and <code>case_when()</code> from the {dplyr} package to create new variables that depend on others. Let’s make a small example with two columns which depend on each other: married, which indicates if the person is married, and age.</p>
+<p>We will simulate 1000 clients, around 50% of which are married.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
 <span class='va'>married</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Y"</span>,<span class='st'>"N"</span><span class='op'>)</span>,<span class='va'>k</span>,replace<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span>
-
-<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>id<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span>,<span class='va'>married</span><span class='op'>)</span>
-
-<span class='va'>data</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
-  age<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>married</span><span class='op'>==</span><span class='st'>"Y"</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>45</span>,<span class='fl'>5</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>30</span>,<span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-    <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='fl'>18</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-    <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='op'>)</span>
-    <span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>married</span>,y<span class='op'>=</span><span class='va'>age</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="simulate-dependent-variables_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
-<p>If you have more than two options, <code>case_when()</code> can help.</p>
+<p>Next, we want that our married clients are slightly older than our non-married clients. Without doing further research, we just assume that the average age of the married clients is 45, and the average age of the non-married clients is 30.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>id<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span>,<span class='va'>married</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+    age<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>married</span><span class='op'>==</span><span class='st'>"Y"</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>45</span>,<span class='fl'>5</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>30</span>,<span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='fl'>18</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'>#every client should be at least 18</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='op'>)</span>
+    <span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  id married age
+1  1       Y  39
+2  2       N  36
+3  3       N  26
+4  4       Y  44
+5  5       Y  49
+6  6       Y  55</code></pre>
+</div>
+<p>We can take a quick look if the difference is visible in a boxplot.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="simulate-dependent-variables_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<p>If you have more than two options, <code>case_when()</code> can help. We want to see the balance of clients which are either managers, analysts or senior analysts.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
@@ -2422,7 +2417,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>balance<span class='op'>=</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span>
   <span class='va'>ocupation</span><span class='op'>==</span><span class='st'>"analyst"</span> <span class='op'>~</span> <span class='fl'>100</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>0.01</span><span class='op'>)</span>,
   <span class='va'>ocupation</span><span class='op'>==</span><span class='st'>"sr analyst"</span> <span class='op'>~</span> <span class='fl'>200</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>0.005</span><span class='op'>)</span>,
-  <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='fl'>500</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>0.001</span><span class='op'>)</span> <span class='co'>#this is the else case</span>
+  <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='fl'>400</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>0.001</span><span class='op'>)</span> <span class='co'>#this is the else case</span>
 <span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>#Check the average balance per group</span>
@@ -2430,11 +2425,12 @@ d-appendix d-footnote-list a.footnote-backlink {
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>ocupation</span>,y<span class='op'>=</span><span class='va'>balance</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_violin.html'>geom_violin</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="simulate-dependent-variables_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+<p><img src="simulate-dependent-variables_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <h3 id="correlation-based">Correlation based</h3>
-<p>If we just deal with numeric variables and want to have a slightly more complex connection between the different variables, we can also try this approach, for which we specify a correlation matrix beforehand and reorder our variables afterwards so that they match the desired correlation.</p>
-<p>Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated).</p>
+<p>If we just deal with numeric variables and want to have a slightly more complex connection between the variables, we can also try another approach, for which we specify a correlation matrix beforehand and reorder our variables afterwards so that they match the desired correlation.</p>
+<p>Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated). This might require some research.</p>
+<p>First, we simulate the data independently. Ideas about how to do this can be found in <a href="https://r-vogg-blog.netlify.app/posts/2020-10-09-data-simulation/">this</a> blogpost.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>64</span><span class='op'>)</span>
@@ -2460,8 +2456,8 @@ d-appendix d-footnote-list a.footnote-backlink {
 6  32   58.58        0      5
 7  45  945.11        0     21</code></pre>
 </div>
-<p>We directly see that there are things that don’t make sense, like the 22-years-old with a tenure of 22 years.</p>
-<p>To improve this, we want to reshuffle the rows and get a distribution close to a desired one. First we simulate a helping dataset of same size, where every entry is random normal distributed.</p>
+<p>We directly see that there are things that don’t make too much sense, like the 22-years-old with a tenure of 22 years. Further, there is no dependence between the variables.</p>
+<p>To improve this, we want to reshuffle the rows and get a correlation close to a desired one. First we simulate a helping dataset of same size, where every entry is random normal distributed.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='va'>nvars</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
@@ -2484,7 +2480,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 [3,]  0.009783835  0.04950098 1.000000000  0.005859748
 [4,] -0.023569599  0.01034767 0.005859748  1.000000000</code></pre>
 </div>
-<p>Next, we specify our desired correlation matrix:</p>
+<p>Next, we specify our desired correlation matrix. Just to put this in words, we want to correlate the four variables age, balance, kids_cnt and tenure. Each variable with itself has a correlation of 1. We want age and balance to have a positive correlation of 0.3, age and kids_cnt of 0.4 and age and tenure of 0.2. Likewise, we specify all desired correlations between pairs of variables.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>0.3</span>,<span class='fl'>0.4</span>,<span class='fl'>0.2</span>,  <span class='fl'>0.3</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0.3</span>,  <span class='fl'>0.4</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>0.3</span>,  <span class='fl'>0.2</span>,<span class='fl'>0.3</span>,<span class='op'>-</span><span class='fl'>0.3</span>,<span class='fl'>1</span><span class='op'>)</span>,ncol<span class='op'>=</span><span class='va'>nvars</span><span class='op'>)</span>
@@ -2508,11 +2504,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 </code></pre>
 </div>
 </div>
-<p>Good, now we convert this new data to a data frame and give it the name of our original data. The correlation of this dataset is close to our desired outcome.</p>
+<p>Good, now we convert this new data to a data frame and name it like our original data.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='va'>raw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>Z</span><span class='op'>)</span>,row.names<span class='op'>=</span><span class='cn'>NULL</span>,optional<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>raw</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw</span>,<span class='fl'>7</span>,addrownums<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2524,6 +2521,9 @@ d-appendix d-footnote-list a.footnote-backlink {
 5 -0.9530173 -0.90428943  0.8118207 -0.6505000
 6 -0.5784837 -1.07244273 -0.2978104 -1.7172915
 7 -0.4844551 -0.85227479  0.9530955  0.1474831</code></pre>
+</div>
+<p>The correlation of this dataset is close to our desired outcome.</p>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>raw</span><span class='op'>)</span>
 </code></pre>
@@ -2534,7 +2534,7 @@ balance  0.2937627 1.00000000  0.04302845  0.2777607
 kids_cnt 0.3974119 0.04302845  1.00000000 -0.3046079
 tenure   0.1708577 0.27776070 -0.30460794  1.0000000</code></pre>
 </div>
-<p>However, this dataset <code>raw</code> does not have anything to do with our original data. It is still our transformed random normal data. But as we know that this dataset has the correct correlation, we can use this to reorder the rows of our other dataset.</p>
+<p>However, this dataset <code>raw</code> does not have anything to do with our original data. It is still only transformed random normal data. But as we know that this dataset has the correct correlation, we can use this to reorder the rows of our other dataset.</p>
 <p>And then we just replace the largest value of the random normal dataset with the largest value in our dataset, the second largest with the second largest etc. We go column by column and repeat this procedure.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2546,7 +2546,7 @@ tenure   0.1708577 0.27776070 -0.30460794  1.0000000</code></pre>
 </code></pre>
 </div>
 </div>
-<p>Let’s check the correlation of this new dataset. It is not exactly what we wished, but close enough. The reason for this is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 5).</p>
+<p>Let’s check the correlation of this new dataset. It is close to our desired correlation matrix. The main reason for the small difference is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 5).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>raw</span><span class='op'>)</span>
@@ -2557,8 +2557,17 @@ age      1.0000000 0.24231169  0.36996781  0.1734406
 balance  0.2423117 1.00000000  0.01880674  0.2358795
 kids_cnt 0.3699678 0.01880674  1.00000000 -0.3038222
 tenure   0.1734406 0.23587953 -0.30382217  1.0000000</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>Q</span>
+</code></pre>
 </div>
-<p>We can also take a look at the reshuffled dataset.</p>
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]  1.0  0.3  0.4  0.2
+[2,]  0.3  1.0  0.0  0.3
+[3,]  0.4  0.0  1.0 -0.3
+[4,]  0.2  0.3 -0.3  1.0</code></pre>
+</div>
+<p>Our final reshuffled and correctly correlated dataset is now stored in <code>raw</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw</span>,<span class='fl'>7</span>,addrownums<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
@@ -2573,7 +2582,23 @@ tenure   0.1734406 0.23587953 -0.30382217  1.0000000</code></pre>
 448   43   26.54        4      1
 1804  35  911.63        2      2</code></pre>
 </div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="closing-comments">Closing comments</h3>
+<ul>
+<li>If you like the correlation method please take a look at the GenOrd package which is a little more professional, when working with ordinal categorical variables.</li>
+<li>The Cholesky decomposition is only possible for positive definite matrices. If this is not the case and you accept a slightly stronger deviation from your desired correlation matrix, the easiest way is to add 0.1, 0.2 etc. to the diagonals until you obtain a positive definite matrix. Note that this lowers the correlation between all variables.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span><span class='op'>(</span><span class='va'>nvars</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>0.1</span> <span class='op'>+</span> <span class='va'>Q</span>
+</code></pre>
+</div>
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]  1.1  0.3  0.4  0.2
+[2,]  0.3  1.1  0.0  0.3
+[3,]  0.4  0.0  1.1 -0.3
+[4,]  0.2  0.3 -0.3  1.1</code></pre>
+</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

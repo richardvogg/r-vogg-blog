@@ -7,7 +7,7 @@ knitr::opts_chunk$set(warning=FALSE,message=FALSE)
 ```
 
 
-My name is Richard Vogg.
+My name is Richard Vogg. I am a mathematician from TU Kaiserslautern in German, where I focused on statistics and obtained a Master's degree.
 
 Using R makes me happy. Sometimes I learn interesting things that might be interesting for others. I created this blog to share them.
 
