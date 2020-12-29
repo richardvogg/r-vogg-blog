@@ -4,15 +4,15 @@
       "path": "about.html",
       "title": "About this blog",
       "author": [],
-      "contents": "\r\nMy name is Richard Vogg. I am a mathematician from TU Kaiserslautern in German, where I focused on statistics and obtained a Master’s degree.\r\nUsing R makes me happy. Sometimes I learn interesting things that might be interesting for others. I created this blog to share them.\r\nContact:\r\n richard.vogg@web.de richardvogg richard_vogg\r\n\r\n\r\n\r\n",
-      "last_modified": "2020-12-22T17:21:48+01:00"
+      "contents": "\r\nMy name is Richard Vogg. I am a mathematician from TU Kaiserslautern in Germany, where I focused on statistics and obtained a Master’s degree.\r\nUsing R makes me happy. Sometimes I learn interesting things that might be interesting for others. I created this blog to share them.\r\nContact and Codes\r\n richard.vogg@web.de richardvogg richard_vogg\r\nWhy I created this blog\r\nI am using R almost every day for the analysis of data.\r\nAfter reading this great blogpost by Rachel Thomas, called “Why you (yes, you) should blog” I started playing around with the idea of writing down some of the things I learn.\r\nEspecially this point resonated a lot in me:\r\n\r\nYou are best positioned to help people one step behind you. The material is still fresh in your mind. Many experts have forgotten what it was like to be a beginner (or an intermediate) and have forgotten why the topic is hard to understand when you first hear it. The context of your particular background, your particular style, and your knowledge level will give a different twist to what you’re writing about.\r\n\r\n— Rachel Thomas\r\n\r\nI would like to add to this point that you are a much stronger influence to people close to you (e.g. colleagues). They will feel encouraged to ask questions because they know you. With this point I want to explicitely encourage everyone who has questions while reading this blog to reach out to me, even if you don’t know me.\r\nThe next event that brought me closer to this blog was a tutorial by Maëlle Salmon during Latin-R 2020. The material can be found here. She showed how easy it is to get started with {distill} and how to setup a blog. Alison Hill’s blogposts and tweets were also very helpful on my journey to start blogging.\r\nThe last ingredient I needed were topics to write about. As I will be speaking about Data Composition during rstudio::global(2021), I thought this was a great opportunity to summarize some methods and ideas around this topic.\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-29T12:45:58+01:00"
     },
     {
       "path": "index.html",
       "title": "R-Vogg-blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2020-12-22T17:21:50+01:00"
+      "last_modified": "2020-12-29T12:45:59+01:00"
     }
   ],
   "collections": ["posts/posts.json"]

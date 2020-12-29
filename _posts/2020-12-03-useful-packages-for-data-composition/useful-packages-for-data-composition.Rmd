@@ -1,7 +1,7 @@
 ---
-title: "Useful packages for data composition"
+title: "Useful packages for data simulation"
 description: |
-  We will explore the packages wakefield, rcorpora, charlatan, fabricatr, GenOrd.
+  We will explore the packages wakefield, rcorpora, charlatan, fabricatr, and GenOrd which can be helpful for data simulation.
 author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
@@ -18,6 +18,7 @@ output:
 knitr::opts_chunk$set(warning=FALSE, message=FALSE,echo=TRUE)
 ```
 
+When we simulate data we can rely on the distribution functions like `rnorm`, `rexp` and `sample` from base R. However, we can also leverage the great work from authors of packages which were written to make the simulation process easier. In this blogpost I will explore some of them.
 
 ## Additional packages
 
@@ -31,7 +32,7 @@ library(ggplot2)
 
 ## wakefield
 
-Looking for interesting packages around data composition I stumbled across the {wakefield} package by Tyler Rinker. 
+Looking for interesting packages around data simulation I stumbled across the {wakefield} package by [Tyler Rinker](https://twitter.com/tylerrinker). 
 
 ```{r}
 library(wakefield)
@@ -44,25 +45,23 @@ r_data_frame(
     n = 500,
     id,
     age,
-    hour,
     iq,
     height,
     died,
     animal,
-    dice,
     internet_browser,
     political
 )
 
 ```
 
-There are a lot of predefined variables that you can use.
+There are a lot of predefined variables that you can use. (Call `variables(type="matrix",ncols=5)` to see them.)
 
 ```{r, echo=FALSE}
 variables(type="matrix",ncols=5)
 ```
 
-Additionally, you can also access the distribution functions easily and tweak parameters of the predefined functions.
+Additionally, you can access the distribution functions easily and tweak parameters of the predefined functions.
 
 ```{r}
 test <- r_data_frame(
@@ -72,26 +71,32 @@ test <- r_data_frame(
     `Reading(mins)` = rpois(lambda=20),
     income(digits=0)
 )
-
-test
-
 ```
+
+```{r,echo=FALSE}
+knitr::kable(test)
+```
+
 
 Looks too perfect? Include random missing values:
 
 ```{r}
-test %>% r_na(cols=c(2,4),prob=0.3)
+test <- test %>% r_na(cols=c(2,4),prob=0.3)
+```
+
+```{r,echo=FALSE}
+knitr::kable(test)
 ```
 
 ### Series
 
-Sequences of answers:
+{wakefield} allows us to create several variables which can be seen as a sequence, for example survey results.
 
 ```{r}
 r_series(likert,j = 5,n=10,name="Question")
 ```
 
-These can also be packaged inside a data frame:
+These can also be packaged inside a data frame, for example when simulating test results for students.
 
 ```{r}
 r_data_frame(
@@ -103,13 +108,15 @@ r_data_frame(
 ```
 
 That is great but not very real, because the test results are completely independent from each other.
-The `relate` parameter helps to connect the results, and the format is `fM_sd`.
+The `relate` parameter inside the `r_series` function helps to connect the results, and the format is `fM_sd`.
 
 * f is one of (+,-,*,/)
 * M is the mean value
 * sd is the standard deviation of the mean value
 
-Example `+3_1`: The test results get better on average 3 points with a standard deviation of 1.
+Examples:
+* `+3_1`: The test results get better on average 3 points with a standard deviation of 1.
+* `*1.05_0.2`: The results get better on average 5% with a standard deviation of 0.2.
 
 ```{r}
 r_data_frame(
@@ -131,8 +138,7 @@ balances <- r_data_frame(
 )
 ```
 
-We can see that there are customers who had very positive balance development and others whose balances were fluctuating more or declining.
-However, when we simulate a sufficiently large number of customers, we 
+This result is worth to be visualized. 
 
 ```{r}
 balances %>%
@@ -142,25 +148,8 @@ balances %>%
 
 ```
 
-### Visualization
-
-This is a great feature to quickly get a glimpse of data types and missing values (+ missing value distribution).
-
-```{r}
-r_data_frame(n=500,
-    id,
-    dob,
-    animal,
-    grade, grade,
-    death,
-    dummy,
-    grade_letter,
-    gender,
-    sentence
-) %>%
-   r_na(cols=c("DOB","Animal","Gender")) %>% 
-   table_heat(palette = "Set1")
-```
+We can see that there are customers who had very positive balance development and others whose balances were fluctuating more or declining.
+However, when we simulate a sufficiently large number of customers, we will observe that on average the increase each month will be the desired 3% with a standard deviation of 0.1.
 
 
 

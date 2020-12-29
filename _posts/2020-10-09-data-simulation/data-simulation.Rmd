@@ -9,6 +9,8 @@ date: 10-09-2020
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc-float: false
 ---
 
 

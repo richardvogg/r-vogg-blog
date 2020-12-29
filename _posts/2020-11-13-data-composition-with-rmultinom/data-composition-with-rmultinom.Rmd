@@ -1,5 +1,5 @@
 ---
-title: "Data composition with rmultinom"
+title: "Data simulation with rmultinom"
 description: |
   When creating several datasets that depend on each other, the rmultinom function from the stats package can be a useful helper. In this example we will see how to create customer transactions from a customer table.
 author:
@@ -9,6 +9,8 @@ date: 11-13-2020
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc-float: false
 ---
 
 ```{r setup, include=FALSE}

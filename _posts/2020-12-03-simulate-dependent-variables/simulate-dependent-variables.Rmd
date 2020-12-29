@@ -9,6 +9,8 @@ date: 12-03-2020
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc-float: false
 ---
 
 
@@ -17,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
 
-### Packages
+## Packages
 
 Most of the functions that we are using here are actually part of base R.
 
@@ -51,7 +53,7 @@ Next, we want that our married clients are slightly older than our non-married c
 ```{r}
 data <- data.frame(id=1:k,married) %>% 
   mutate(
-    age=ifelse(married=="Y",rnorm(k,45,5),rnorm(k,30,10)) %>% 
+    age=ifelse(married=="Y",rnorm(k,40,8),rnorm(k,30,12)) %>% 
       pmax(18) %>% #every client should be at least 18
       round()
     )
@@ -187,7 +189,7 @@ Our final reshuffled and correctly correlated dataset is now stored in `raw`.
 head(raw,7,addrownums=FALSE)
 ```
 
-### Closing comments
+## Closing comments
 
 * If you like the correlation method please take a look at the GenOrd package which is a little more professional, when working with ordinal categorical variables.
 * The Cholesky decomposition is only possible for positive definite matrices. If this is not the case and you accept a slightly stronger deviation from your desired correlation matrix, the easiest way is to add 0.1, 0.2 etc. to the diagonals until you obtain a positive definite matrix. Note that this lowers the correlation between all variables.

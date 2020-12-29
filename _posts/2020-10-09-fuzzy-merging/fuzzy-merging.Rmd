@@ -1,7 +1,7 @@
 ---
 title: "Fuzzy matching"
 description: |
-  Whenever you have text data that was input manually by a human, there is a chance that there are errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald's Company.
+  Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald's Company.
 author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
@@ -9,6 +9,8 @@ date: 10-09-2020
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc-float: false
 ---
 
 
