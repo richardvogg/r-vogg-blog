@@ -74,18 +74,18 @@ test <- r_data_frame(
 ```
 
 ```{r,echo=FALSE}
-knitr::kable(test)
+test
 ```
 
 
-Looks too perfect? Include random missing values:
+Looks too perfect? Include random missing values in columns 2 and 4:
 
 ```{r}
 test <- test %>% r_na(cols=c(2,4),prob=0.3)
 ```
 
 ```{r,echo=FALSE}
-knitr::kable(test)
+test
 ```
 
 ### Series
@@ -188,32 +188,41 @@ tibble(
 
 ## charlatan
 
+Similar to wakefield, charlatan has some out-of-the-box variables that can be used in your simulated data.
+
 ```{r}
 
 library(charlatan)
 
 ch_job(n=10)
-ch_name(n=10,locale="de_DE")
-ch_color_name(n=10)
-ch_phone_number(locale="de_DE",n=10)
-
-
 ```
 
-A nice small application with fake locations.
+You can even use get typical names or jobs for a given country. To see the available languages and countries type `charlatan::PersonProvider$new()$allowed_locales()`.
 
 ```{r}
-locations <- data.frame(lon=ch_lon(n=10),lat=ch_lat(n=10))
+ch_name(n=10,locale="de_DE")
+```
+
+
+```{r}
+ch_phone_number(locale="de_DE",n=10)
+```
+
+A nice small application with fake locations and random R colors.
+
+
+```{r}
+locations <- data.frame(lon=ch_lon(n=10),lat=ch_lat(n=10),col=ch_color_name(n=10))
 
 ggplot(locations)+
   borders("world")+
-  geom_point(aes(x=lon,y=lat))+
+  geom_point(aes(x=lon,y=lat,col=col),size=3)+
   coord_quickmap()
 ```
 
 ## fabricatr
 
-Easy creation of hierarchical data.
+Easy creation of hierarchical data is possible with {fabricatr}.
 In this example there are five families, each one has between 1 and 12 members. Each family member has between 1 and 5 accounts. With `add_level()` we can automatically produce a table that shows all accounts of all members in all families.
 
 ```{r}
@@ -244,11 +253,22 @@ df %>% select(client,birth_year,join_year)
 
 ```
 
+
 ### Ordered data
 
-`fabricatr` has an amazing function to create ordered data.
+`fabricatr` has an amazing function to create ordered categorical data.
 
-Let's take a look at an example where we have two types of clients, gold clients that receive a yearly gift from the bank and standard clients that do not. How could we simulate their responses to a satisfaction survey?
+The function we need is `draw_ordered`. It internally simulates a numeric variable (`x`) and breaks them into predefined categories.
+
+```{r}
+draw_ordered(
+  x = rnorm(10),
+  breaks = c(-2,-1,0.8,2),
+  break_labels = c("Very boring","Boring","OK","Interesting","Very Interesting")
+)
+```
+
+Let's take a look at another example where we have two types of clients, gold clients that receive a yearly gift from the bank and standard clients that do not. How could we simulate their responses to a satisfaction survey?
 
 ```{r}
 df <- fabricate(
@@ -262,26 +282,27 @@ df <- fabricate(
   )
 )
 
+```
+
+```{r,echo=FALSE}
+head(df)
+```
+
+
+We can summarize the results and see the differences between the two groups. Ideal data for teaching hypothesis testing.
+
+```{r}
 df %>% count(gold_client_flag,satisfaction) %>%
   tidyr::pivot_wider(id_cols=satisfaction,names_from="gold_client_flag",values_from="n")
 ```
 
-To draw counts from a distribution we can use `draw_count()`.
-
-```{r}
-rtlme_model <- fabricate(
-  N = 1000,
-  radio_coverage = rlnorm(N, meanlog=0, sdlog=1),
-  violent_incident_count = draw_count(mean = 1.5 * radio_coverage, N = N)
-)
-```
 
 
 ### Time series
 
 Example from [this article](https://declaredesign.org/r/fabricatr/articles/time_series.html).
 
-This example contains the gdp of five countries over the course of five years.
+This example contains the GDP of five countries over the course of five years.
 
 ```{r}
 panel_units <- fabricate(
@@ -312,7 +333,7 @@ panel_global_data <- fabricate(
   years = add_level(
     N = 5,
     ts_year = 0:4,
-    year_shock = rnorm(N, 0, 0.3) #each year has a global trend
+    year_shock = rnorm(N, 0, 0.5) #each year has a global trend
   ),
   countries = add_level(
     N = 5,
@@ -346,9 +367,9 @@ marginal <- list(0.6, c(1/3,2/3), c(1/4,2/4,3/4), c(1/5,2/5,3/5,4/5))
 
 ```
 
-Read this as follows:
+Read the list as follows:
 * We will create 4 random variables.
-* The first variable will have two values 60% of the data will be 1, 40% will be 2.
+* The first variable will have two values: 60% of the data will be 1, 40% will be 2.
 * The second variable will have three values, 1,2 and 3 with a probability of 33% each.
 * etc...
 * Each vector in this list refers to one variable, and we will see the cumulative probability for each value.
@@ -368,6 +389,11 @@ Sigma <- matrix(c(1,0.5,0.4,0.3,
                   0.3,0.4,0.5,1),
                 k, k, byrow=TRUE)
 
+```
+
+We will create 1000 observations, with the given correlation matrix. Each variable will have the marginal distribution described above.
+
+```{r}
 
 n <- 1000 # sample size
 m <- ordsample(n, marginal, Sigma)
@@ -376,7 +402,7 @@ df <- data.frame(m)
 head(df)
 ```
 
-Let's verify that the data is actually what we expected.
+Let's verify that the data is actually what we expected. We check the correlation and the marginal distribution for two of the variables.
 
 ```{r}
 cor(df)
@@ -385,8 +411,8 @@ df %>% count(X4)
 df %>% count(X1)
 ```
 
-Later, we can rename the columns and values, but will have assured that they have the desired correlations.
+Later we can rename the columns and values, but will have assured that they have the desired correlations.
 
 ## More packages
 
-In this [blogpost](https://rviews.rstudio.com/2020/09/09/fake-data-with-r/) by Joseph Rickert on R Views. 
+In this [blogpost](https://rviews.rstudio.com/2020/09/09/fake-data-with-r/) by Joseph Rickert on R Views.

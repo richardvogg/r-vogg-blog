@@ -60,9 +60,9 @@ d-appendix {
 /* These properties only apply to Distill sites and blogs  */
 
 .distill-site-header {
-  --title-size:       18px;
+  --title-size:       20px;
   --text-color:       rgba(0, 0, 0, 0.8);
-  --text-size:        15px;
+  --text-size:        18px;
   --hover-color:      black;
   --bkgd-color:       #FF8C00;
 }
@@ -74,6 +74,7 @@ d-appendix {
 .posts-list .description h2 {
   font-family: 'Libre Baskerville';
 }
+
 
 d-article h1 {
   font-size: 28px;

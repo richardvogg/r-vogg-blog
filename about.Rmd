@@ -1,5 +1,5 @@
 ---
-title: "About this blog"
+title: "Welcome"
 ---
 
 ```{r setup, include=FALSE}
@@ -7,7 +7,11 @@ knitr::opts_chunk$set(warning=FALSE,message=FALSE)
 ```
 
 
-My name is Richard Vogg. I am a mathematician from TU Kaiserslautern in Germany, where I focused on statistics and obtained a Master's degree.
+My name is Richard Vogg. I studied mathematics at TU Kaiserslautern in Germany, where I focused on statistics and obtained a Master's degree.
+
+Afterwards I moved to Valparaíso, Chile for three years and worked as a Senior Business Analyst for an international data analytics company. In late 2020 I moved back to Germany, looking for new interesting data projects.
+
+![](rvogg.JPG){width=50%}
 
 Using R makes me happy. Sometimes I learn interesting things that might be interesting for others. I created this blog to share them.
 

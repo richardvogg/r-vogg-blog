@@ -1478,12 +1478,12 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </code></pre>
 </div>
 </div>
-<p>Next, we want that our married clients are slightly older than our non-married clients. Without doing further research, we just assume that the average age of the married clients is 45, and the average age of the non-married clients is 30.</p>
+<p>Next, we want that our married clients are slightly older than our non-married clients. For this example we just assume that the average age of the married clients is 40, and the average age of the non-married clients is 30.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>id<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span>,<span class='va'>married</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
-    age<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>married</span><span class='op'>==</span><span class='st'>"Y"</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>40</span>,<span class='fl'>8</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>30</span>,<span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    age<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>married</span><span class='op'>==</span><span class='st'>"Y"</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>, <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>, <span class='fl'>30</span>, sd<span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
       <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='fl'>18</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'>#every client should be at least 18</span>
       <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='op'>)</span>
     <span class='op'>)</span>
@@ -1492,12 +1492,12 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </code></pre>
 </div>
 <pre><code>  id married age
-1  1       Y  46
-2  2       Y  42
-3  3       N  32
-4  4       Y  50
-5  5       N  34
-6  6       N  44</code></pre>
+1  1       Y  31
+2  2       Y  54
+3  3       N  18
+4  4       N  30
+5  5       Y  37
+6  6       Y  61</code></pre>
 </div>
 <p>We can take a quick look if the difference is visible in a boxplot.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1515,7 +1515,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>balance<span class='op'>=</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span>
   <span class='va'>ocupation</span><span class='op'>==</span><span class='st'>"analyst"</span> <span class='op'>~</span> <span class='fl'>100</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>0.01</span><span class='op'>)</span>,
   <span class='va'>ocupation</span><span class='op'>==</span><span class='st'>"sr analyst"</span> <span class='op'>~</span> <span class='fl'>200</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>0.005</span><span class='op'>)</span>,
-  <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='fl'>400</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>0.001</span><span class='op'>)</span> <span class='co'>#this is the else case</span>
+  <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='fl'>200</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,<span class='fl'>0.001</span><span class='op'>)</span> <span class='co'>#this is the else case</span>
 <span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>#Check the average balance per group</span>
@@ -1527,7 +1527,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <h3 id="correlation-based">Correlation based</h3>
 <p>If we just deal with numeric variables and want to have a slightly more complex connection between the variables, we can also try another approach, for which we specify a correlation matrix beforehand and reorder our variables afterwards so that they match the desired correlation.</p>
-<p>Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated). This might require some research.</p>
+<p>Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated). This requires some research.</p>
 <p>First, we simulate the data independently. Ideas about how to do this can be found in <a href="https://r-vogg-blog.netlify.app/posts/2020-10-09-data-simulation/">this</a> blogpost.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">

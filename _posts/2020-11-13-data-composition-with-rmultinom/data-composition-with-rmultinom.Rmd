@@ -22,7 +22,7 @@ library(dplyr)
 
 
 
-In this short article I want to show how the `rmultinom()` function can help to simulate data.
+In this article I want to show how the `rmultinom()` function can help to simulate data.
 We will simulate client data, and for each client we will create transactions.
 
 The `rmultinom()` function simulates the multinomial distribution ([Link](https://en.wikipedia.org/wiki/Multinomial_distribution)).
@@ -39,6 +39,8 @@ test1 <- rmultinom(n=1,size=1000,c(2,1,1,1,1))
 
 qplot(1:5,test1,geom="col")
 ```
+
+Note: The `rmultinom()` function with n=1 is similar to the `sample()` function. You would obtain an equivalent result with `table(sample(1:5,1000,replace=TRUE,prob=c(2,1,1,1,1)))` but I believe that `rmultinom()` is more elegant.
 
 How can we use this function to create transactions for a given number of customers? The key is to simulate all important values on client level and use `rmultinom` to decompose the values into smaller portions. First, let's get some clients.
 
@@ -66,7 +68,7 @@ cl_secret_info$total_spend <- (cl_secret_info$income * rnorm(10,0.7,sd=0.1)) %>%
 cl_secret_info
 ```
 
-The next ingredient is the number of transactions. We will make a very simple formula depending on age. 
+The next ingredient is the number of transactions. For this example, we create a formula depending on age: Clients which are younger than 50 have (on average) a higher number of transactions per month.
 
 ```{r}
 cl_secret_info$n_trans <- ifelse(cl_secret_info$age < 50, rbinom(10,60,0.5),rbinom(10,60,0.3))
@@ -74,9 +76,9 @@ cl_secret_info$n_trans <- ifelse(cl_secret_info$age < 50, rbinom(10,60,0.5),rbin
 cl_secret_info
 ```
 
-Now we already know that our transaction table will have `r sum(cl_secret_info$n_trans)` rows.
+Now we already know that our transaction table will have `r sum(cl_secret_info$n_trans)` rows, the sum of all our 10 clients' transactions.
 
-With this we can already make the split, but we will create a last parameter which is an indicator of how similar the transactions are. You could split \$100 into one large transaction of \$80 and a four small transactions of \$5 each or you could have five transactions of around \$20 each.
+We will create a last parameter which is an indicator of how similar the transactions are. You could split \$100 into one large transaction of \$80 and four small transactions of \$5 each or you could have five transactions of around \$20 each. The higher the value of `diff_trans` the higher the variability within the transactions of a client.
 
 ```{r}
 cl_secret_info$diff_trans <- rexp(10,100/cl_secret_info$total_spend) %>% ceiling()
@@ -84,9 +86,9 @@ cl_secret_info$diff_trans <- rexp(10,100/cl_secret_info$total_spend) %>% ceiling
 cl_secret_info
 ```
 
-Now we have all the necessary ingredients to split the total into n_trans transactions for each customer. And this is the moment where the `rmultinom` function is extremely helpful. Let's take a look at the first client, who spends \$20755.16 in 27 transactions. The high diff_trans value indicates that there will likely be some very high transaction values and some very low.
+Now we have all the necessary ingredients to split `total_spend` into `n_trans` transactions for each client. And this is the moment where the `rmultinom` function is extremely helpful. Let's take a look at the first client, who spends \$20755.16 in 27 transactions. The high `diff_trans` value indicates that there will likely be some very high transaction values and some very low.
 
-Before doing the rmultinom magic, we will create the vector with the bins first.
+Before doing the `rmultinom` magic, we will create the vector with the bins first. Remember that this vector determines how "large" each bin is or how likely it is to 
 
 ```{r}
 bins <- runif(cl_secret_info$n_trans[1],min=1,max=cl_secret_info$diff_trans[1])
@@ -94,15 +96,16 @@ bins <- runif(cl_secret_info$n_trans[1],min=1,max=cl_secret_info$diff_trans[1])
 transactions1 <- rmultinom(1,cl_secret_info$total_spend[1],bins)
 
 df <- data.frame(client_id=1, trans_id=1:cl_secret_info$n_trans[1],value=transactions1)
+```
 
+```{r, echo=FALSE}
 DT::datatable(df)
 ```
 
+
 ### Automate this for all customers
 
-In order to efficiently do this for all customers we will put what we just did in a function and call this via lapply.
-
-Then we can bind all the transactions from all customers together in our final dataframe.
+In order to efficiently do this for all customers we will put what we just did in a function.
 
 ```{r}
 create_transactions <- function(i) {
@@ -114,12 +117,27 @@ create_transactions <- function(i) {
   
   return(df)
 }
-
-trans_list <- lapply(seq_along(client$id),create_transactions)
-
-trans_df <- do.call(rbind,trans_list)
-
-DT::datatable(trans_df)
-
 ```
 
+We call this function repeatedly with `lapply`.
+
+```{r}
+trans_list <- lapply(seq_along(client$id),create_transactions)
+```
+
+Finally, we bind all the transactions from all clients together in our final dataframe.
+
+```{r}
+trans_df <- do.call(rbind,trans_list)
+```
+
+```{r,echo=FALSE}
+DT::datatable(trans_df)
+```
+
+
+## Other possible applications
+
+* Students and grades (it is easier if the grades are points and you have a total number of points to reach). You might want to check the package {wakefield} to create sequences of grades / tests etc.
+* Products and sales numbers in supermarkets.
+* Animals and tracked kilometers.

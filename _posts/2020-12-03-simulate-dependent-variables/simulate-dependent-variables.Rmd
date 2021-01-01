@@ -48,12 +48,12 @@ k <- 1000
 married <- sample(c("Y","N"),k,replace=T)
 ```
 
-Next, we want that our married clients are slightly older than our non-married clients. Without doing further research, we just assume that the average age of the married clients is 45, and the average age of the non-married clients is 30.
+Next, we want that our married clients are slightly older than our non-married clients. For this example we just assume that the average age of the married clients is 40, and the average age of the non-married clients is 30.
 
 ```{r}
 data <- data.frame(id=1:k,married) %>% 
   mutate(
-    age=ifelse(married=="Y",rnorm(k,40,8),rnorm(k,30,12)) %>% 
+    age=ifelse(married=="Y", rnorm(k, 40, sd = 10), rnorm(k, 30, sd= 12)) %>% 
       pmax(18) %>% #every client should be at least 18
       round()
     )
@@ -64,10 +64,10 @@ head(data)
 We can take a quick look if the difference is visible in a boxplot.
 
 ```{r,echo=FALSE}
-  ggplot(data,aes(x=married,y=age))+geom_boxplot()
+  ggplot(data, aes(x=married, y=age))+geom_boxplot()
 ```
 
-If you have more than two options, `case_when()` can help. We want to see the balance of clients which are either managers, analysts or senior analysts. 
+If you have more than two options, `case_when()` can help. We want to see the balance of clients which are either managers, analysts or senior analysts.
 
 ```{r}
 k <- 1000
@@ -79,7 +79,7 @@ data <- data.frame(id=1:k,ocupation)
 data <- data %>% mutate(balance=case_when(
   ocupation=="analyst" ~ 100+rexp(k,0.01),
   ocupation=="sr analyst" ~ 200+rexp(k,0.005),
-  TRUE ~ 400+rexp(k,0.001) #this is the else case
+  TRUE ~ 200+rexp(k,0.001) #this is the else case
 ))
 
 #Check the average balance per group
@@ -92,7 +92,7 @@ data %>%
 
 If we just deal with numeric variables and want to have a slightly more complex connection between the variables, we can also try another approach, for which we specify a correlation matrix beforehand and reorder our variables afterwards so that they match the desired correlation.
 
-Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated). This might require some research.
+Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated). This requires some research.
 
 First, we simulate the data independently. Ideas about how to do this can be found in [this](https://r-vogg-blog.netlify.app/posts/2020-10-09-data-simulation/) blogpost.
 
