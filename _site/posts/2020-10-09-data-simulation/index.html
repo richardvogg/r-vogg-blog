@@ -112,7 +112,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Simulate variables and data"]},{"type":"character","attributes":{},"value":["The purpose of this post is to enable readers to create data from scratch which they can use for their analyses or visualizations."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["10-09-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Simulate variables and data"]},{"type":"character","attributes":{},"value":["The purpose of this post is to enable readers to create data from scratch which they can use for their analyses or visualizations."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["10-09-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["simulation","distributions"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2347,6 +2347,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="d-title">
 <h1>Simulate variables and data</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:simulation" class="dt-tag">simulation</a>
+  <a href="../../index.html#category:distributions" class="dt-tag">distributions</a>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>The purpose of this post is to enable readers to create data from scratch which they can use for their analyses or visualizations.</p></p>
 </div>
@@ -2363,12 +2367,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h3>Contents</h3>
 <ul>
 <li><a href="#packages">Packages</a></li>
+<li><a href="#data-simulation">Data simulation</a></li>
 <li><a href="#manual-values">Manual values</a></li>
 <li><a href="#categorical-variables-with-sample">Categorical variables with <code>sample()</code></a></li>
 <li><a href="#numerical-variables">Numerical variables</a></li>
 <li><a href="#distributions">Distributions</a></li>
 <li><a href="#combining-variables-in-a-dataframe">Combining variables in a dataframe</a></li>
-<li><a href="#exporting">Exporting</a></li>
 </ul>
 </nav>
 </div>
@@ -2382,7 +2386,19 @@ d-appendix d-footnote-list a.footnote-backlink {
 </code></pre>
 </div>
 </div>
-<p>Important to make your data creation reproducible (i.e. if you run it again, it gives the same result) is the <code>set.seed()</code> function. As we are creating instances of random variables we assure with this function that every time the same sequence of random variables is generated. You can use any number you like inside this function.</p>
+<h3 id="data-simulation">Data simulation</h3>
+<p>In this post we will learn how to simulate data like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>  client_id    name age  ocupation balance married_flg
+1         1   Frank  26 sr analyst  245.96          No
+2         2  Dorian  26    analyst 2273.39          No
+3         3     Eva  18    manager 2270.47          No
+4         4   Elena  34    analyst  373.45          No
+5         5    Andy  18    analyst  961.21         Yes
+6         6 Barbara  28    analyst   69.32         Yes
+7         7  Yvonne  37    analyst 3218.13         Yes</code></pre>
+</div>
+<p>Important to make your data creation reproducible (i.e. if you run it again, it yields the same result) is the <code>set.seed()</code> function. As we are creating instances of random variables we assure with this function that every time the same sequence of random variables is generated. You can use any number you like inside this function.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>64</span><span class='op'>)</span>
@@ -2434,7 +2450,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span><span class='va'>client_gen</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="data-simulation_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+<p><img src="data-simulation_files/figure-html5/unnamed-chunk-6-1.png" width="576" /></p>
 </div>
 <h3 id="numerical-variables">Numerical variables</h3>
 <p>The same <code>sample()</code> function works with numbers.</p>
@@ -2463,7 +2479,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span><span class='va'>client_age</span><span class='op'>==</span><span class='fl'>27</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="data-simulation_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+<p><img src="data-simulation_files/figure-html5/unnamed-chunk-8-1.png" width="576" /></p>
 </div>
 <h3 id="distributions">Distributions</h3>
 <p>If you would like to work with probability distributions to create numerical variable, this is also very easy with the base functions of type r+(starting letters of the distribution).</p>
@@ -2484,22 +2500,22 @@ d-appendix d-footnote-list a.footnote-backlink {
 6  6   32.90848
 7  7   58.76874</code></pre>
 </div>
-<p>We can use the <code>round()</code> function to round each value to their next integer.</p>
+<p>As we are simulating ages, we are not interested in decimal values. We can use the <code>round()</code> function to round each number to the next integer.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10000</span>,<span class='fl'>1</span>,<span class='fl'>100</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span>binwidth<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+<pre><code><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10000</span>,<span class='fl'>1</span>,<span class='fl'>100</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="data-simulation_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+<pre><code> [1] 93 26 28 29 90 81 95  3 21 62</code></pre>
 </div>
-<p>But uniformly distributed variables are not always what we want. In the example above we simulated 10,000 clients and distributes their ages uniformly. Then there are as many 99 year old clients as there are 50 year old clients.</p>
+<p>But uniformly distributed variables are not always what we want. In the example above we simulated 10,000 clients and distributes their ages uniformly. For most applications it would be unrealistic that there are as many 99 year old clients as there are 50 year old clients.</p>
 <p>But we can easily access a whole list of other distribution functions, like the famous Normal distribution (with mean and standard deviation as parameters).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10000</span>,mean<span class='op'>=</span><span class='fl'>50</span>,sd<span class='op'>=</span><span class='fl'>20</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="data-simulation_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+<p><img src="data-simulation_files/figure-html5/unnamed-chunk-11-1.png" width="576" /></p>
 </div>
 <p>If we want to limit the values to not be smaller than 0 or larger than 100, we can use pmin and pmax.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2507,17 +2523,20 @@ d-appendix d-footnote-list a.footnote-backlink {
 <pre><code><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10000</span>,mean<span class='op'>=</span><span class='fl'>50</span>,sd<span class='op'>=</span><span class='fl'>20</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmin</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="data-simulation_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+<p><img src="data-simulation_files/figure-html5/unnamed-chunk-12-1.png" width="576" /></p>
 </div>
-<p>For many applications (like balance distribution or any data that contains outliers) I like to use the Exponential distribution (with parameter <code>rate</code> and expectation 1/rate).</p>
+<p>For many applications (like balance distribution or any data that contains outliers) I like to use the Exponential distribution (with parameter <code>rate</code> and expectation 1/<code>rate</code>).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='fl'>10000</span>,rate<span class='op'>=</span><span class='fl'>0.01</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="data-simulation_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+<p><img src="data-simulation_files/figure-html5/unnamed-chunk-13-1.png" width="576" /></p>
 </div>
-<p>If you want to explore further probability distributions check out this <a href="https://www.stat.umn.edu/geyer/old/5101/rlook.html">link</a>.</p>
+<p>If you want to explore further probability distributions check out this <a href="https://www.stat.umn.edu/geyer/old/5101/rlook.html">link</a>. Playing around with the parameters of the distributions you will notice that you can simulate almost any variable you like (Take a short look at: <a href="https://beta-dist-table.netlify.app/">The different faces of the Beta distribution</a>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="data-simulation_files/figure-html5/unnamed-chunk-14-1.png" width="480" data-distill-preview=1 /></p>
+</div>
 <h3 id="combining-variables-in-a-dataframe">Combining variables in a dataframe</h3>
 <p>To create our first simulated dataframe, we can start by simulating the variables separately and then putting them together.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2547,23 +2566,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 7         7  Yvonne  37    analyst 3218.13         Yes</code></pre>
 </div>
 <p>Great! We just simulated a dataset which we can use now for visualization or modeling purposes.</p>
-<h3 id="exporting">Exporting</h3>
-<p>When we are happy with our created dataset and want to use it somewhere else we can export it using the base R function.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>raw</span>,<span class='st'>"data.csv"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<p>Alternatively, if this is not fast enough, we can also use the <code>fwrite</code> function from the data.table package which is much faster.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-datatable.com'>data.table</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/fwrite.html'>fwrite</a></span><span class='op'>(</span><span class='va'>raw</span>,<span class='st'>"data.csv"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

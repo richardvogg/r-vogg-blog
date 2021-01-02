@@ -11,6 +11,11 @@ output:
     self_contained: false
     toc: true
     toc-float: false
+preview: img/puzzle.png
+categories:
+  - text data
+  - fuzzy matching
+  - stringdist
 ---
 
 

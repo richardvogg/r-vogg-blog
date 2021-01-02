@@ -11,6 +11,9 @@ output:
     self_contained: false
     toc: true
     toc-float: false
+categories:
+  - simulation
+  - rmultinom
 ---
 
 ```{r setup, include=FALSE}

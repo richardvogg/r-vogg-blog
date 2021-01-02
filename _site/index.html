@@ -2464,28 +2464,11 @@ function init_posts_list() {
 
 
 
-<div class="posts-container posts-apply-limit l-page">
+<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="R-Vogg-blog">R-Vogg-blog</h1>
-<a href="posts/2020-12-03-simulate-dependent-variables/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 3, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Richard Vogg</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2020-12-03-simulate-dependent-variables/simulate-dependent-variables_files/figure-html5/unnamed-chunk-4-1.png"/>
-</div>
-<div class="description">
-<h2>Simulate dependent variables</h2>
-<div class="dt-tags"></div>
-<p>When you simulate a dataset it is often not enough to have independent variables, but you  want to have some dependency between the variables. In this post we explore ways of creating this dependency.</p>
-</div>
-</a>
 <a href="posts/2020-12-03-useful-packages-for-data-composition/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<script class="post-metadata" type="text/json">{"categories":["simulation","packages"]}</script>
 <div class="metadata">
 <div class="publishedDate">Dec. 3, 2020</div>
 <div class="dt-authors">
@@ -2497,12 +2480,15 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Useful packages for data simulation</h2>
-<div class="dt-tags"></div>
+<div class="dt-tags">
+<div class="dt-tag">simulation</div>
+<div class="dt-tag">packages</div>
+</div>
 <p>We will explore the packages wakefield, rcorpora, charlatan, fabricatr, and GenOrd which can be helpful for data simulation.</p>
 </div>
 </a>
 <a href="posts/2020-11-13-data-composition-with-rmultinom/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<script class="post-metadata" type="text/json">{"categories":["simulation","rmultinom"]}</script>
 <div class="metadata">
 <div class="publishedDate">Nov. 13, 2020</div>
 <div class="dt-authors">
@@ -2514,12 +2500,35 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Data simulation with rmultinom</h2>
-<div class="dt-tags"></div>
+<div class="dt-tags">
+<div class="dt-tag">simulation</div>
+<div class="dt-tag">rmultinom</div>
+</div>
 <p>When creating several datasets that depend on each other, the rmultinom function from the stats package can be a useful helper. In this example we will see how to create customer transactions from a customer table.</p>
 </div>
 </a>
+<a href="posts/2020-11-01-simulate-dependent-variables/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["simulation","correlation"]}</script>
+<div class="metadata">
+<div class="publishedDate">Nov. 1, 2020</div>
+<div class="dt-authors">
+<div class="dt-author">Richard Vogg</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="posts/2020-11-01-simulate-dependent-variables/simulate-dependent-variables_files/figure-html5/unnamed-chunk-5-1.png"/>
+</div>
+<div class="description">
+<h2>Simulate dependent variables</h2>
+<div class="dt-tags">
+<div class="dt-tag">simulation</div>
+<div class="dt-tag">correlation</div>
+</div>
+<p>When you simulate a dataset it is often not enough to have independent variables, but you  want to have some dependency between the variables. In this post we explore ways of creating this dependency.</p>
+</div>
+</a>
 <a href="posts/2020-10-09-data-simulation/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<script class="post-metadata" type="text/json">{"categories":["simulation","distributions"]}</script>
 <div class="metadata">
 <div class="publishedDate">Oct. 9, 2020</div>
 <div class="dt-authors">
@@ -2527,37 +2536,87 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/2020-10-09-data-simulation/data-simulation_files/figure-html5/unnamed-chunk-5-1.png"/>
+<img src="posts/2020-10-09-data-simulation/data-simulation_files/figure-html5/unnamed-chunk-14-1.png"/>
 </div>
 <div class="description">
 <h2>Simulate variables and data</h2>
-<div class="dt-tags"></div>
+<div class="dt-tags">
+<div class="dt-tag">simulation</div>
+<div class="dt-tag">distributions</div>
+</div>
 <p>The purpose of this post is to enable readers to create data from scratch which they can use for their analyses or visualizations.</p>
 </div>
 </a>
 <a href="posts/2020-10-09-fuzzy-merging/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<script class="post-metadata" type="text/json">{"categories":["text data","fuzzy matching","stringdist"]}</script>
 <div class="metadata">
-<div class="publishedDate">Oct. 9, 2020</div>
+<div class="publishedDate">Oct. 8, 2020</div>
 <div class="dt-authors">
 <div class="dt-author">Richard Vogg</div>
 </div>
 </div>
 <div class="thumbnail">
-<img/>
+<img src="posts/2020-10-09-fuzzy-merging/img/puzzle.png"/>
 </div>
 <div class="description">
 <h2>Fuzzy matching</h2>
-<div class="dt-tags"></div>
+<div class="dt-tags">
+<div class="dt-tag">text data</div>
+<div class="dt-tag">fuzzy matching</div>
+<div class="dt-tag">stringdist</div>
+</div>
 <p>Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald's Company.</p>
 </div>
 </a>
+</div>
+<div class="posts-sidebar">
+<div class="sidebar-section categories">
+<h3>Categories</h3>
+<ul>
+<li>
+<a href="#category:articles">articles</a>
+<span class="category-count">(5)</span>
+</li>
+<li>
+<a href="#category:correlation">correlation</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:distributions">distributions</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:fuzzy_matching">fuzzy matching</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:packages">packages</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:rmultinom">rmultinom</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:simulation">simulation</a>
+<span class="category-count">(4)</span>
+</li>
+<li>
+<a href="#category:stringdist">stringdist</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:text_data">text data</a>
+<span class="category-count">(1)</span>
+</li>
+</ul>
+</div>
 </div>
 <div class="posts-more">
 <a href="#">More articles &raquo;</a>
 </div>
 </div>
-<!--/radix_placeholder_article_listing-->
+<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
 <h1>R-Vogg-blog</h1>

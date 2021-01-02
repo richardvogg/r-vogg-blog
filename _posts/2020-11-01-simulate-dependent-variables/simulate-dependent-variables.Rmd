@@ -5,12 +5,15 @@ description: |
 author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
-date: 12-03-2020
+date: 11-01-2020
 output:
   distill::distill_article:
     self_contained: false
     toc: true
     toc-float: false
+categories:
+  - simulation
+  - correlation
 ---
 
 
@@ -32,14 +35,17 @@ library(ggplot2)
 
 ## Simulating dependent variables
 
-If we want to have a dataset that "makes sense" from a real world perspective, wouldn't it be great if managers in general had higher balances than junior analysts? Or if 18 years old clients are less likely to be married than 30 years olds?
-This does not mean that no 18 years old can be married in our dataset, but if we look at the average, we would expect a difference between both groups.
+Storytelling with data is an important skill for anyone who is analyzing data. You try to find interesting information in data and then think of how to convey these insights to others.
+
+In the previous post we saw how to simulate independent variables. Instead of finding stories in the data we now want to "hide" stories for others to find or to show how a certain analytics / visualization / data wrangling technique works.
+
+An example: when we look at bank clients, we would expect older clients to have (on average!) a higher balance than younger clients.
+
 In this section we are going to have a look at techniques to create dependence between variables.
 
 ### Rule based
 
-We can use `ifelse()` and `case_when()` from the {dplyr} package to create new variables that depend on others. Let's make a small example with two columns which depend on each other: married, which indicates if the person is married, and age.
-
+We can use `ifelse()` and `case_when()` from the {dplyr} package to create new variables that depend on others. Let's make a small example with two columns: married, which indicates if the person is married, and age.
 
 We will simulate 1000 clients, around 50% of which are married.
 
@@ -48,7 +54,7 @@ k <- 1000
 married <- sample(c("Y","N"),k,replace=T)
 ```
 
-Next, we want that our married clients are slightly older than our non-married clients. For this example we just assume that the average age of the married clients is 40, and the average age of the non-married clients is 30.
+Next, we want that our married clients are slightly older than our non-married clients. For this example we assume that the average age of the married clients is 40, and the average age of the non-married clients is 30.
 
 ```{r}
 data <- data.frame(id=1:k,married) %>% 
@@ -57,7 +63,9 @@ data <- data.frame(id=1:k,married) %>%
       pmax(18) %>% #every client should be at least 18
       round()
     )
+```
 
+```{r,echo=FALSE}
 head(data)
 ```
 
@@ -90,11 +98,11 @@ data %>%
 
 ### Correlation based
 
-If we just deal with numeric variables and want to have a slightly more complex connection between the variables, we can also try another approach, for which we specify a correlation matrix beforehand and reorder our variables afterwards so that they match the desired correlation.
+If we just deal with numeric variables and want to have a slightly more complex connection between the variables, we can try another approach, for which we specify a correlation matrix beforehand and reorder our variables afterwards so that they match the desired correlation.
 
-Of course, we need to find reasonable correlation values, for example between age and number of kids (slightly positively correlated) or between savings and number of kids (slightly negatively correlated). This requires some research.
+Of course, we need to find reasonable correlation values, for example between age and number of kids (probably slightly positively correlated) or between savings and number of kids (probably slightly negatively correlated). This requires some research.
 
-First, we simulate the data independently. Ideas about how to do this can be found in [this](https://r-vogg-blog.netlify.app/posts/2020-10-09-data-simulation/) blogpost.
+First, we simulate the data independently. Ideas about how to do this can be found in the previous blogpost.
 
 ```{r}
 set.seed(64)
@@ -108,25 +116,31 @@ kids_cnt <- sample(0:5,k,replace=T,prob=c(100,120,80,30,5,1))
 
 
 data <- data.frame(age,balance,kids_cnt,tenure)
+
+```
+
+```{r, echo=FALSE}
 data %>% head(7)
 ```
 
+
 We directly see that there are things that don't make too much sense, like the 22-years-old with a tenure of 22 years. Further, there is no dependence between the variables.
 
-To improve this, we want to reshuffle the rows and get a correlation close to a desired one. First we simulate a helping dataset of same size, where every entry is random normal distributed.
+To improve this, we want to reshuffle the rows and get a correlation close to a desired one. First we simulate a helping dataset of same size, where every entry is random normally distributed.
 
 ```{r}
+#same size
 nvars <- ncol(data)
 numobs <- nrow(data)
 
 set.seed(3)
-rnorm_helper <- matrix(rnorm(nvars*numobs,0,1),nrow=nvars)
+rnorm_helper <- matrix(rnorm(nvars*numobs),nrow=numobs)
 ```
 
 The correlation of this matrix should be close to the identity matrix.
 
 ```{r}
-cor(t(rnorm_helper))
+cor(rnorm_helper)
 ```
 
 Next, we specify our desired correlation matrix. Just to put this in words, we want to correlate the four variables age, balance, kids_cnt and tenure. Each variable with itself has a correlation of 1. We want age and balance to have a positive correlation of 0.3, age and kids_cnt of 0.4 and age and tenure of 0.2. Likewise, we specify all desired correlations between pairs of variables.
@@ -144,8 +158,8 @@ We can now multiply the `rnorm_helper` matrix with the Cholesky decomposition of
 (Explanation found [here](https://math.stackexchange.com/q/163472))
 
 ```{r}
-L <- t(chol(Q))
-Z <- L %*% rnorm_helper
+L <- chol(Q)
+Z <- L %*% t(rnorm_helper)
 ```
 
 Good, now we convert this new data to a data frame and name it like our original data. 
@@ -176,13 +190,19 @@ for(name in names(raw)) {
 
 ```
 
-Let's check the correlation of this new dataset. It is close to our desired correlation matrix. The main reason for the small difference is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 5).
+Let's check the correlation of this new dataset. It is close to our desired correlation matrix `Q`. The main reason for the small difference is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 5).
 
 ```{r}
 cor(raw)
+```
+
+<aside>
+To compare: This was `Q`:
+```{r,echo=FALSE}
 Q
 ```
 
+</aside>
 Our final reshuffled and correctly correlated dataset is now stored in `raw`.
 
 ```{r}
@@ -198,3 +218,4 @@ head(raw,7,addrownums=FALSE)
 diag(nvars) * 0.1 + Q
 ```
 
+* After the correlation process it might be helpful to check some of your data manually to see if the observation make sense and - if needed - perform manual corrections.
