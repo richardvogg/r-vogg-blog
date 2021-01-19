@@ -30,6 +30,8 @@ We will simulate client data, and for each client we will create transactions.
 
 The `rmultinom()` function simulates the multinomial distribution ([Link](https://en.wikipedia.org/wiki/Multinomial_distribution)).
 
+## rmultinom - like a game setup
+
 In my head I always picture the multinomial distribution as a game setup. You have N balls and K bins. Instead of the number of bins, we send a vector of probabilities (of length K), how likely it is for the balls to land in each bin (you can imagine that some bins are closer and others are further away, or that some are larger than others). This vector will be normalized automatically, so you do not have to worry about this.
 
 Let's try an example, with N=1000 and K=5. We want one of the bins to be twice as large as the others.
@@ -43,7 +45,8 @@ test1 <- rmultinom(n=1,size=1000,c(2,1,1,1,1))
 qplot(1:5,test1,geom="col")
 ```
 
-Note: The `rmultinom()` function with n=1 is similar to the `sample()` function. You would obtain an equivalent result with `table(sample(1:5,1000,replace=TRUE,prob=c(2,1,1,1,1)))` but I believe that `rmultinom()` is more elegant.
+
+## An application of rmultinom
 
 How can we use this function to create transactions for a given number of customers? The key is to simulate all important values on client level and use `rmultinom` to decompose the values into smaller portions. First, let's get some clients.
 

@@ -41,7 +41,7 @@ Looking for interesting packages around data simulation I stumbled across the {w
 library(wakefield)
 ```
 
-Introduction can be found [here](https://github.com/trinker/wakefield).
+Introduction can be found [here](https://github.com/trinker/wakefield). It is very easy to create data with all types of variables.
 
 ```{r}
 r_data_frame(
@@ -82,9 +82,10 @@ test
 
 
 Looks too perfect? Include random missing values in columns 2 and 4:
+(Note: If you create a larger dataframe, you can use the `%>%` operator to structure your code better).
 
 ```{r}
-test <- test %>% r_na(cols=c(2,4),prob=0.3)
+test <- r_na(test, cols=c(2,4),prob=0.3)
 ```
 
 ```{r,echo=FALSE}
@@ -118,8 +119,9 @@ The `relate` parameter inside the `r_series` function helps to connect the resul
 * sd is the standard deviation of the mean value
 
 Examples:
-* `+3_1`: The test results get better on average 3 points with a standard deviation of 1.
-* `*1.05_0.2`: The results get better on average 5% with a standard deviation of 0.2.
+
+* additive: `+3_1`: The test results get better on average 3 points with a standard deviation of 1.
+* multiplicative: `*1.05_0.2`: The results get better on average 5% with a standard deviation of 0.2.
 
 ```{r}
 r_data_frame(
@@ -322,7 +324,7 @@ panel_units <- fabricate(
   )
 )
 
-panel_units
+head(panel_units,10)
 ```
 
 ```{r,echo=FALSE}
@@ -371,6 +373,7 @@ marginal <- list(0.6, c(1/3,2/3), c(1/4,2/4,3/4), c(1/5,2/5,3/5,4/5))
 ```
 
 Read the list as follows:
+
 * We will create 4 random variables.
 * The first variable will have two values: 60% of the data will be 1, 40% will be 2.
 * The second variable will have three values, 1,2 and 3 with a probability of 33% each.

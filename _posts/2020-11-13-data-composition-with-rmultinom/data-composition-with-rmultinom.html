@@ -1459,13 +1459,17 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#rmultinom---like-a-game-setup">rmultinom - like a game setup</a></li>
+<li><a href="#an-application-of-rmultinom">An application of rmultinom</a><ul>
 <li><a href="#automate-this-for-all-customers">Automate this for all customers</a></li>
+</ul></li>
 <li><a href="#other-possible-applications">Other possible applications</a></li>
 </ul>
 </nav>
 </div>
 <p>In this article I want to show how the <code>rmultinom()</code> function can help to simulate data. We will simulate client data, and for each client we will create transactions.</p>
 <p>The <code>rmultinom()</code> function simulates the multinomial distribution (<a href="https://en.wikipedia.org/wiki/Multinomial_distribution">Link</a>).</p>
+<h2 id="rmultinom---like-a-game-setup">rmultinom - like a game setup</h2>
 <p>In my head I always picture the multinomial distribution as a game setup. You have N balls and K bins. Instead of the number of bins, we send a vector of probabilities (of length K), how likely it is for the balls to land in each bin (you can imagine that some bins are closer and others are further away, or that some are larger than others). This vector will be normalized automatically, so you do not have to worry about this.</p>
 <p>Let’s try an example, with N=1000 and K=5. We want one of the bins to be twice as large as the others.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1477,7 +1481,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="data-composition-with-rmultinom_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
-<p>Note: The <code>rmultinom()</code> function with n=1 is similar to the <code>sample()</code> function. You would obtain an equivalent result with <code>table(sample(1:5,1000,replace=TRUE,prob=c(2,1,1,1,1)))</code> but I believe that <code>rmultinom()</code> is more elegant.</p>
+<h2 id="an-application-of-rmultinom">An application of rmultinom</h2>
 <p>How can we use this function to create transactions for a given number of customers? The key is to simulate all important values on client level and use <code>rmultinom</code> to decompose the values into smaller portions. First, let’s get some clients.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">

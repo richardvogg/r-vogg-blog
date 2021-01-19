@@ -1484,7 +1484,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </code></pre>
 </div>
 </div>
-<p>Introduction can be found <a href="https://github.com/trinker/wakefield">here</a>.</p>
+<p>Introduction can be found <a href="https://github.com/trinker/wakefield">here</a>. It is very easy to create data with all types of variables.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/pkg/wakefield/man/r_data_frame.html'>r_data_frame</a></span><span class='op'>(</span>
@@ -1501,18 +1501,18 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </code></pre>
 </div>
 <pre><code># A tibble: 500 x 8
-   ID      Age    IQ Height Died  Animal             Browser Political
-   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt; &lt;fct&gt;              &lt;fct&gt;   &lt;fct&gt;    
- 1 001      22    97     72 TRUE  Emperor Tamarin    Chrome  Republic~
- 2 002      85    87     71 FALSE Elephant Seal      Chrome  Democrat 
- 3 003      75    99     66 TRUE  Chipmunk           Safari  Republic~
- 4 004      26   105     68 FALSE Cross River Goril~ Chrome  Democrat 
- 5 005      88   102     74 FALSE Chipmunk           Chrome  Democrat 
- 6 006      87   110     69 FALSE Cross River Goril~ Chrome  Democrat 
- 7 007      26    94     65 TRUE  Reindeer           Chrome  Democrat 
- 8 008      24    99     75 TRUE  Bedlington Terrier Chrome  Republic~
- 9 009      34    83     69 FALSE Whippet            Firefox Democrat 
-10 010      39   101     71 TRUE  Emperor Tamarin    Firefox Democrat 
+   ID      Age    IQ Height Died  Animal            Browser Political 
+   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt; &lt;fct&gt;             &lt;fct&gt;   &lt;fct&gt;     
+ 1 001      69    91     69 TRUE  Chinchilla        Chrome  Democrat  
+ 2 002      49    87     69 FALSE Galapagos Penguin Chrome  Republican
+ 3 003      60   112     64 FALSE Birds Of Paradise Firefox Republican
+ 4 004      43    97     69 TRUE  Sea Squirt        IE      Democrat  
+ 5 005      32    92     75 TRUE  Galapagos Penguin Chrome  Republican
+ 6 006      42    99     70 FALSE Ocelot            Chrome  Republican
+ 7 007      87    91     70 FALSE Poison Dart Frog  Chrome  Republican
+ 8 008      23    91     67 TRUE  Drever            Firefox Democrat  
+ 9 009      54    94     67 FALSE Pointer           Safari  Democrat  
+10 010      86    96     69 TRUE  Sea Squirt        Chrome  Democrat  
 # ... with 490 more rows</code></pre>
 </div>
 <p>There are a lot of predefined variables that you can use. (Call <code>variables(type="matrix",ncols=5)</code> to see them.)</p>
@@ -1559,22 +1559,22 @@ attr(,&quot;class&quot;)
 <pre><code># A tibble: 500 x 4
    ID      Age `Reading(mins)` Income
    &lt;chr&gt; &lt;int&gt;           &lt;int&gt;  &lt;dbl&gt;
- 1 001      26              22  31899
- 2 002      29              26  10316
- 3 003      23              19  87808
- 4 004      39              17   8425
- 5 005      27              15   2519
- 6 006      42              24  15936
- 7 007      36              17  58968
- 8 008      30              21    977
- 9 009      21              16  26040
-10 010      35              19  19345
+ 1 001      39              22  49775
+ 2 002      19              25  19148
+ 3 003      19              20  32714
+ 4 004      41              19  11000
+ 5 005      35              21  64802
+ 6 006      29              20  36548
+ 7 007      43              21  62348
+ 8 008      35              18  24371
+ 9 009      50              18 135653
+10 010      48              23  51157
 # ... with 490 more rows</code></pre>
 </div>
-<p>Looks too perfect? Include random missing values in columns 2 and 4:</p>
+<p>Looks too perfect? Include random missing values in columns 2 and 4: (Note: If you create a larger dataframe, you can use the <code>%&gt;%</code> operator to structure your code better).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='va'>test</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/wakefield/man/r_na.html'>r_na</a></span><span class='op'>(</span>cols<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span>,prob<span class='op'>=</span><span class='fl'>0.3</span><span class='op'>)</span>
+<pre><code><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/wakefield/man/r_na.html'>r_na</a></span><span class='op'>(</span><span class='va'>test</span>, cols<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span>,prob<span class='op'>=</span><span class='fl'>0.3</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -1582,16 +1582,16 @@ attr(,&quot;class&quot;)
 <pre><code># A tibble: 500 x 4
    ID      Age `Reading(mins)` Income
    &lt;chr&gt; &lt;int&gt;           &lt;int&gt;  &lt;dbl&gt;
- 1 001      NA              22  31899
- 2 002      NA              26  10316
- 3 003      23              19  87808
- 4 004      39              17   8425
- 5 005      NA              15   2519
- 6 006      42              24  15936
- 7 007      36              17  58968
- 8 008      30              21    977
- 9 009      21              16  26040
-10 010      NA              19     NA
+ 1 001      39              22     NA
+ 2 002      19              25     NA
+ 3 003      19              20     NA
+ 4 004      41              19  11000
+ 5 005      NA              21  64802
+ 6 006      29              20  36548
+ 7 007      43              21     NA
+ 8 008      35              18     NA
+ 9 009      50              18     NA
+10 010      NA              23  51157
 # ... with 490 more rows</code></pre>
 </div>
 <h3 id="series">Series</h3>
@@ -1602,18 +1602,18 @@ attr(,&quot;class&quot;)
 </code></pre>
 </div>
 <pre><code># A tibble: 10 x 5
-   Question_1    Question_2    Question_3    Question_4   Question_5  
- * &lt;ord&gt;         &lt;ord&gt;         &lt;ord&gt;         &lt;ord&gt;        &lt;ord&gt;       
- 1 Agree         Strongly Agr~ Strongly Agr~ Strongly Di~ Strongly Ag~
- 2 Disagree      Strongly Agr~ Neutral       Disagree     Strongly Ag~
- 3 Strongly Agr~ Strongly Dis~ Strongly Agr~ Disagree     Strongly Ag~
- 4 Disagree      Strongly Dis~ Neutral       Disagree     Disagree    
- 5 Agree         Neutral       Agree         Strongly Ag~ Strongly Di~
- 6 Strongly Dis~ Strongly Agr~ Neutral       Agree        Agree       
- 7 Disagree      Neutral       Strongly Dis~ Agree        Strongly Ag~
- 8 Neutral       Strongly Agr~ Agree         Strongly Di~ Disagree    
- 9 Neutral       Disagree      Agree         Neutral      Strongly Di~
-10 Neutral       Agree         Agree         Strongly Di~ Agree       </code></pre>
+   Question_1    Question_2    Question_3    Question_4    Question_5 
+ * &lt;ord&gt;         &lt;ord&gt;         &lt;ord&gt;         &lt;ord&gt;         &lt;ord&gt;      
+ 1 Strongly Dis~ Agree         Disagree      Strongly Agr~ Disagree   
+ 2 Disagree      Strongly Dis~ Strongly Agr~ Agree         Agree      
+ 3 Strongly Agr~ Neutral       Strongly Agr~ Strongly Agr~ Disagree   
+ 4 Disagree      Strongly Agr~ Neutral       Strongly Agr~ Strongly A~
+ 5 Agree         Strongly Dis~ Agree         Strongly Dis~ Neutral    
+ 6 Strongly Dis~ Disagree      Strongly Agr~ Strongly Agr~ Disagree   
+ 7 Strongly Agr~ Strongly Agr~ Strongly Dis~ Strongly Agr~ Agree      
+ 8 Strongly Agr~ Neutral       Neutral       Agree         Strongly A~
+ 9 Strongly Dis~ Strongly Agr~ Strongly Dis~ Neutral       Strongly A~
+10 Strongly Dis~ Disagree      Disagree      Strongly Dis~ Disagree   </code></pre>
 </div>
 <p>These can also be packaged inside a data frame, for example when simulating test results for students.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1629,16 +1629,16 @@ attr(,&quot;class&quot;)
 <pre><code># A tibble: 10 x 5
    Student   age Test_1 Test_2 Test_3
    &lt;chr&gt;   &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
- 1 01         13     88     89     91
- 2 02         22     88     88     88
- 3 03         16     94     84     86
- 4 04         12     86     87     88
- 5 05         15     89     80     84
- 6 06         14     85     88     90
- 7 07          9     81     89     83
- 8 08         17     85     93     90
- 9 09         17     83     88     86
-10 10         19     89     89     86</code></pre>
+ 1 01         16     89     85     91
+ 2 02         17     91     87     85
+ 3 03         13     84     88     85
+ 4 04         13     91     89     83
+ 5 05         10     86     87     78
+ 6 06         15     87     87     84
+ 7 07         12     83     85     90
+ 8 08         16     89     94     84
+ 9 09         14     93     82     91
+10 10         10     89     86     87</code></pre>
 </div>
 <p>That is great but not very real, because the test results are completely independent from each other. The <code>relate</code> parameter inside the <code>r_series</code> function helps to connect the results, and the format is <code>fM_sd</code>.</p>
 <ul>
@@ -1646,7 +1646,7 @@ attr(,&quot;class&quot;)
 <li>M is the mean value</li>
 <li>sd is the standard deviation of the mean value</li>
 </ul>
-<p>Examples: * <code>+3_1</code>: The test results get better on average 3 points with a standard deviation of 1. * <code>*1.05_0.2</code>: The results get better on average 5% with a standard deviation of 0.2.</p>
+<p>Examples: * additive: <code>+3_1</code>: The test results get better on average 3 points with a standard deviation of 1. * multiplicative: <code>*1.05_0.2</code>: The results get better on average 5% with a standard deviation of 0.2.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/pkg/wakefield/man/r_data_frame.html'>r_data_frame</a></span><span class='op'>(</span>
@@ -1660,16 +1660,16 @@ attr(,&quot;class&quot;)
 <pre><code># A tibble: 10 x 5
    Student   age Test_1     Test_2     Test_3    
    &lt;chr&gt;   &lt;int&gt; &lt;variable&gt; &lt;variable&gt; &lt;variable&gt;
- 1 01         14 93.5       94.5       95.5      
- 2 02         14 92.8       95.0       98.1      
- 3 03         13 92.1       95.8       99.0      
- 4 04         13 89.8       93.6       96.4      
- 5 05         11 84.4       87.8       90.9      
- 6 06         14 87.6       91.2       95.3      
- 7 07         14 85.0       88.3       94.1      
- 8 08         16 88.2       89.2       92.0      
- 9 09          9 86.4       88.9       91.5      
-10 10         19 90.1       91.7       95.0      </code></pre>
+ 1 01         13 96.6       98.8       99.6      
+ 2 02         18 90.7       93.4       98.3      
+ 3 03         13 83.8       88.0       92.7      
+ 4 04         10 91.6       93.3       96.1      
+ 5 05         15 92.3       95.5       99.6      
+ 6 06         16 88.9       92.0       95.8      
+ 7 07         11 93.0       96.4       98.9      
+ 8 08         10 91.5       95.0       96.5      
+ 9 09         14 85.9       86.5       90.3      
+10 10         13 84.5       88.4       90.9      </code></pre>
 </div>
 <p>With this in mind, you can create customer balances over time very easily.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1710,16 +1710,16 @@ attr(,&quot;class&quot;)
 <pre><code><span class='fu'><a href='https://rdrr.io/pkg/rcorpora/man/corpora.html'>corpora</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>293</span>,<span class='fl'>10</span><span class='op'>)</span><span class='op'>]</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;words/stopwords/no&quot;               
- [2] &quot;foods/hot_peppers&quot;                
- [3] &quot;animals/birds_north_america&quot;      
- [4] &quot;humans/famousDuos&quot;                
- [5] &quot;foods/vegetable_cooking_times&quot;    
- [6] &quot;technology/video_hosting_websites&quot;
- [7] &quot;games/trivial_pursuit&quot;            
- [8] &quot;materials/layperson-metals&quot;       
- [9] &quot;animals/cats&quot;                     
-[10] &quot;objects/corpora_winners&quot;          </code></pre>
+<pre><code> [1] &quot;words/stopwords/de&quot;                            
+ [2] &quot;humans/prefixes&quot;                               
+ [3] &quot;humans/thirdPersonPronouns&quot;                    
+ [4] &quot;animals/cats&quot;                                  
+ [5] &quot;humans/celebrities&quot;                            
+ [6] &quot;music/bands_that_have_opened_for_tool&quot;         
+ [7] &quot;technology/knots&quot;                              
+ [8] &quot;foods/iba_cocktails&quot;                           
+ [9] &quot;words/adjs&quot;                                    
+[10] &quot;societies_and_groups/fraternities/professional&quot;</code></pre>
 </div>
 <p>To view the words of one collection use the name in the <code>corpora()</code> function.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1756,16 +1756,16 @@ $pizzaToppings
 <pre><code># A tibble: 100 x 5
    first_name last_name self_description home_country favorite_pizza_~
    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;           
- 1 Fernando   King      lazy             Mongolia     grilled onions  
- 2 Kennedy    Rogers    prejudiced       Montenegro   ham             
- 3 Emmanuel   Jones     orderly          Mongolia     hot sauce       
- 4 Edward     Gonzalez  fussy            Guinea       ground beef     
- 5 Samantha   Griffin   level-headed     India        meatballs       
- 6 Micah      Gardner   agile            Fiji         spinach         
- 7 Diego      Daniels   fastidious       Denmark      cheese          
- 8 Natalie    Campbell  awesome          Czech Repub~ pineapple       
- 9 Kaylee     Myers     unsophisticated  Benin        meatballs       
-10 Aidan      Black     enterprising     Singapore    garlic          
+ 1 Jacob      Peterson  lean             Peru         sausage         
+ 2 Ruby       Roberts   immature         Nicaragua    Canadian bacon  
+ 3 Carson     Gonzales  quick            Haiti        bacon           
+ 4 Shane      Stewart   one-sided        Nauru        ground beef     
+ 5 Molly      Rice      civil            Iraq         breakfast bacon 
+ 6 Stephanie  Chavez    ambitious        Monaco       green peppers   
+ 7 Kaden      Gutierrez picky            Egypt        Canadian bacon  
+ 8 Valerie    Foster    irritating       Malta        spinach         
+ 9 Genesis    Owens     talented         Tuvalu       green peppers   
+10 Amy        Wood      unfriendly       Vatican Cit~ hot sauce       
 # ... with 90 more rows</code></pre>
 </div>
 <h2 id="charlatan">charlatan</h2>
@@ -1777,11 +1777,16 @@ $pizzaToppings
 <span class='fu'><a href='https://docs.ropensci.org/charlatan/reference/ch_job.html'>ch_job</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;Industrial/product designer&quot; &quot;Youth worker&quot;               
- [3] &quot;Visual merchandiser&quot;         &quot;Cabin crew&quot;                 
- [5] &quot;Warehouse manager&quot;           &quot;Forensic psychologist&quot;      
- [7] &quot;Musician&quot;                    &quot;Warehouse manager&quot;          
- [9] &quot;Pharmacist, hospital&quot;        &quot;Merchant navy officer&quot;      </code></pre>
+<pre><code> [1] &quot;Development worker, community&quot;    
+ [2] &quot;Veterinary surgeon&quot;               
+ [3] &quot;Advertising account executive&quot;    
+ [4] &quot;Optician, dispensing&quot;             
+ [5] &quot;Museum education officer&quot;         
+ [6] &quot;Research officer, trade union&quot;    
+ [7] &quot;Engineer, automotive&quot;             
+ [8] &quot;Pharmacist, community&quot;            
+ [9] &quot;Sales promotion account executive&quot;
+[10] &quot;Customer service manager&quot;         </code></pre>
 </div>
 <p>You can even use get typical names or jobs for a given country. To see the available languages and countries type <code>charlatan::PersonProvider$new()$allowed_locales()</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1789,26 +1794,21 @@ $pizzaToppings
 <pre><code><span class='fu'><a href='https://docs.ropensci.org/charlatan/reference/ch_name.html'>ch_name</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>10</span>,locale<span class='op'>=</span><span class='st'>"de_DE"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;Frau Silva Jacobi Jäckel&quot;          
- [2] &quot;Gerhardt Sölzer&quot;                   
- [3] &quot;Gesa Junken-Ring&quot;                  
- [4] &quot;Robert Salz&quot;                       
- [5] &quot;Christoph Geisler&quot;                 
- [6] &quot;Dipl.-Ing. Andrew Steinberg B.Eng.&quot;
- [7] &quot;Hiltraud Trubin-Hölzenbecher&quot;      
- [8] &quot;Carsten Lange&quot;                     
- [9] &quot;Hans Dieter Scholz&quot;                
-[10] &quot;Univ.Prof. Vinzenz Misicher&quot;       </code></pre>
+<pre><code> [1] &quot;Ernestine Drubin&quot;             &quot;Burkhardt Koch B.Sc.&quot;        
+ [3] &quot;Christof Barth B.Eng.&quot;        &quot;Univ.Prof. Burkhardt Beier&quot;  
+ [5] &quot;Lambert Mans-Bolnbach&quot;        &quot;Prof. Darius Anders B.Sc.&quot;   
+ [7] &quot;Univ.Prof. Felix Römer B.Sc.&quot; &quot;Kay-Uwe Atzler-Döhn&quot;         
+ [9] &quot;Reingard Neuschäfer B.Eng.&quot;   &quot;Klaus-Dieter Hölzenbecher&quot;   </code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://docs.ropensci.org/charlatan/reference/ch_phone_number.html'>ch_phone_number</a></span><span class='op'>(</span>locale<span class='op'>=</span><span class='st'>"de_DE"</span>,n<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;+49(0)6053 39062&quot;    &quot;+49(0)3116570271&quot;    &quot;07281 572364&quot;       
- [4] &quot;08191 49288&quot;         &quot;(06819) 00442&quot;       &quot;02564 195619&quot;       
- [7] &quot;04519 705930&quot;        &quot;+49(0)1695 423941&quot;   &quot;+49(0)4772 34159&quot;   
-[10] &quot;+49 (0) 7975 358065&quot;</code></pre>
+<pre><code> [1] &quot;+49(0)7367 624040&quot;   &quot;03154789561&quot;         &quot;(08044) 075665&quot;     
+ [4] &quot;(02605) 71714&quot;       &quot;+49(0)6273434607&quot;    &quot;06457 409315&quot;       
+ [7] &quot;00114 07336&quot;         &quot;+49(0)6680 38728&quot;    &quot;04223885899&quot;        
+[10] &quot;+49 (0) 4533 749527&quot;</code></pre>
 </div>
 <p>A nice small application with fake locations and random R colors.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1842,16 +1842,16 @@ $pizzaToppings
 </code></pre>
 </div>
 <pre><code>   family n_members members n_accounts account
-1       1         1      01          1      01
-2       2         7      02          2      02
-3       2         7      02          2      03
-4       2         7      03          2      04
-5       2         7      03          2      05
-6       2         7      04          1      06
-7       2         7      05          1      07
-8       2         7      06          1      08
-9       2         7      07          1      09
-10      2         7      08          2      10</code></pre>
+1       1         2      01          2      01
+2       1         2      01          2      02
+3       1         2      02          1      03
+4       2         9      03          4      04
+5       2         9      03          4      05
+6       2         9      03          4      06
+7       2         9      03          4      07
+8       2         9      04          2      08
+9       2         9      04          2      09
+10      2         9      05          2      10</code></pre>
 </div>
 <p>Link levels. We can create 15 clients with their birth year and join year and some correlation between both variables.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1866,21 +1866,21 @@ $pizzaToppings
 </code></pre>
 </div>
 <pre><code>   client birth_year join_year
-1      01       1967      2000
-2      02       1967      2004
-3      03       1957      2002
-4      04       1997      2009
-5      05       1954      1991
-6      06       1995      2004
-7      07       1998      2005
-8      08       1960      2002
-9      09       1961      2005
-10     10       1970      2007
-11     11       1999      2008
-12     12       1983      1992
-13     13       1981      2001
-14     14       1984      2003
-15     15       1956      2001</code></pre>
+1      01       1971      1998
+2      02       1999      2009
+3      03       1989      2006
+4      04       1973      2008
+5      05       1978      1996
+6      06       1983      2001
+7      07       1960      1996
+8      08       1978      1997
+9      09       1975      1997
+10     10       1984      2002
+11     11       1997      2008
+12     12       1991      2002
+13     13       1963      1999
+14     14       1996      2009
+15     15       1984      2001</code></pre>
 </div>
 <h3 id="ordered-data">Ordered data</h3>
 <p><code>fabricatr</code> has an amazing function to create ordered categorical data.</p>
@@ -1894,8 +1894,8 @@ $pizzaToppings
 <span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] OK          OK          OK          Boring      OK         
- [6] OK          OK          Interesting OK          OK         
+<pre><code> [1] OK          Boring      OK          Interesting OK         
+ [6] Boring      OK          OK          Interesting Interesting
 Levels: Very boring Boring OK Interesting Very Interesting</code></pre>
 </div>
 <p>Let’s take a look at another example where we have two types of clients, gold clients that receive a yearly gift from the bank and standard clients that do not. How could we simulate their responses to a satisfaction survey?</p>
@@ -1915,13 +1915,13 @@ Levels: Very boring Boring OK Interesting Very Interesting</code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>   ID gold_client_flag satisfaction
-1 001                0      Neutral
-2 002                0      Neutral
-3 003                0    Satisfied
-4 004                1      Neutral
-5 005                0      Neutral
-6 006                1      Neutral</code></pre>
+<pre><code>   ID gold_client_flag     satisfaction
+1 001                0 Very Unsatisfied
+2 002                0          Neutral
+3 003                0          Neutral
+4 004                0        Satisfied
+5 005                0      Unsatisfied
+6 006                0          Neutral</code></pre>
 </div>
 <p>We can summarize the results and see the differences between the two groups. Ideal data for teaching hypothesis testing.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1933,11 +1933,11 @@ Levels: Very boring Boring OK Interesting Very Interesting</code></pre>
 <pre><code># A tibble: 5 x 3
   satisfaction       `0`   `1`
   &lt;fct&gt;            &lt;int&gt; &lt;int&gt;
-1 Very Unsatisfied    10    NA
-2 Unsatisfied         22     1
-3 Neutral             30     5
-4 Satisfied            9    14
-5 Very Satisfied      NA     9</code></pre>
+1 Very Unsatisfied    12    NA
+2 Unsatisfied         22     2
+3 Neutral             29     9
+4 Satisfied           11     9
+5 Very Satisfied       1     5</code></pre>
 </div>
 <h3 id="time-series">Time series</h3>
 <p>Example from <a href="https://declaredesign.org/r/fabricatr/articles/time_series.html">this article</a>.</p>
@@ -1958,61 +1958,31 @@ Levels: Very boring Boring OK Interesting Very Interesting</code></pre>
   <span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='va'>panel_units</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>panel_units</span>,<span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>   countries base_gdp growth_units growth_error years ts_year
-1          1 18.24860    0.3598048    0.1882976    01       0
-2          1 18.24860    0.3598048    0.1882976    02       1
-3          1 18.24860    0.3598048    0.1882976    03       2
-4          1 18.24860    0.3598048    0.1882976    04       3
-5          1 18.24860    0.3598048    0.1882976    05       4
-6          2 20.22503    0.2527846    0.2673691    06       0
-7          2 20.22503    0.2527846    0.2673691    07       1
-8          2 20.22503    0.2527846    0.2673691    08       2
-9          2 20.22503    0.2527846    0.2673691    09       3
-10         2 20.22503    0.2527846    0.2673691    10       4
-11         3 19.51671    0.4242682    0.4830631    11       0
-12         3 19.51671    0.4242682    0.4830631    12       1
-13         3 19.51671    0.4242682    0.4830631    13       2
-14         3 19.51671    0.4242682    0.4830631    14       3
-15         3 19.51671    0.4242682    0.4830631    15       4
-16         4 18.96536    0.7043073    0.4737888    16       0
-17         4 18.96536    0.7043073    0.4737888    17       1
-18         4 18.96536    0.7043073    0.4737888    18       2
-19         4 18.96536    0.7043073    0.4737888    19       3
-20         4 18.96536    0.7043073    0.4737888    20       4
-21         5 19.98155    0.2285968    0.1649447    21       0
-22         5 19.98155    0.2285968    0.1649447    22       1
-23         5 19.98155    0.2285968    0.1649447    23       2
-24         5 19.98155    0.2285968    0.1649447    24       3
-25         5 19.98155    0.2285968    0.1649447    25       4
+1          1 15.81650    0.2936397    0.2843482    01       0
+2          1 15.81650    0.2936397    0.2843482    02       1
+3          1 15.81650    0.2936397    0.2843482    03       2
+4          1 15.81650    0.2936397    0.2843482    04       3
+5          1 15.81650    0.2936397    0.2843482    05       4
+6          2 15.25248    0.5143369    0.4467515    06       0
+7          2 15.25248    0.5143369    0.4467515    07       1
+8          2 15.25248    0.5143369    0.4467515    08       2
+9          2 15.25248    0.5143369    0.4467515    09       3
+10         2 15.25248    0.5143369    0.4467515    10       4
    gdp_measure
-1     18.27962
-2     18.76802
-3     18.70152
-4     19.35480
-5     19.68878
-6     20.31903
-7     20.80900
-8     21.01035
-9     21.07865
-10    21.35453
-11    19.59217
-12    20.41650
-13    20.28511
-14    20.68378
-15    21.75954
-16    18.67586
-17    20.06506
-18    21.01921
-19    21.69612
-20    21.40323
-21    20.13365
-22    20.21459
-23    20.25501
-24    20.83598
-25    21.05301</code></pre>
+1     15.54446
+2     16.25074
+3     16.26999
+4     16.50294
+5     17.46510
+6     15.13692
+7     16.36070
+8     16.30388
+9     16.94710
+10    17.80540</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="useful-packages-for-data-composition_files/figure-html5/unnamed-chunk-28-1.png" width="624" /></p>
@@ -2057,7 +2027,14 @@ Levels: Very boring Boring OK Interesting Very Interesting</code></pre>
 </code></pre>
 </div>
 </div>
-<p>Read the list as follows: * We will create 4 random variables. * The first variable will have two values: 60% of the data will be 1, 40% will be 2. * The second variable will have three values, 1,2 and 3 with a probability of 33% each. * etc… * Each vector in this list refers to one variable, and we will see the cumulative probability for each value.</p>
+<p>Read the list as follows:</p>
+<ul>
+<li>We will create 4 random variables.</li>
+<li>The first variable will have two values: 60% of the data will be 1, 40% will be 2.</li>
+<li>The second variable will have three values, 1,2 and 3 with a probability of 33% each.</li>
+<li>etc…</li>
+<li>Each vector in this list refers to one variable, and we will see the cumulative probability for each value.</li>
+</ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/pkg/GenOrd/man/corrcheck.html'>corrcheck</a></span><span class='op'>(</span><span class='va'>marginal</span><span class='op'>)</span>
@@ -2101,12 +2078,12 @@ Levels: Very boring Boring OK Interesting Very Interesting</code></pre>
 </code></pre>
 </div>
 <pre><code>  X1 X2 X3 X4
-1  1  1  2  1
-2  1  1  3  1
-3  1  2  3  5
-4  1  1  1  1
-5  1  1  1  1
-6  1  2  2  1</code></pre>
+1  1  1  4  1
+2  2  3  4  5
+3  1  2  2  3
+4  2  3  3  4
+5  2  3  3  5
+6  2  3  4  5</code></pre>
 </div>
 <p>Let’s verify that the data is actually what we expected. We check the correlation and the marginal distribution for two of the variables.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2115,27 +2092,27 @@ Levels: Very boring Boring OK Interesting Very Interesting</code></pre>
 </code></pre>
 </div>
 <pre><code>          X1        X2        X3        X4
-X1 1.0000000 0.5251874 0.3949602 0.3015469
-X2 0.5251874 1.0000000 0.5193721 0.4134063
-X3 0.3949602 0.5193721 1.0000000 0.5169985
-X4 0.3015469 0.4134063 0.5169985 1.0000000</code></pre>
+X1 1.0000000 0.4894198 0.3312862 0.2572479
+X2 0.4894198 1.0000000 0.4567171 0.3850669
+X3 0.3312862 0.4567171 1.0000000 0.4893278
+X4 0.2572479 0.3850669 0.4893278 1.0000000</code></pre>
 <div class="sourceCode">
 <pre><code><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>X4</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>  X4   n
-1  1 196
-2  2 231
-3  3 183
-4  4 194
-5  5 196</code></pre>
+1  1 182
+2  2 193
+3  3 218
+4  4 212
+5  5 195</code></pre>
 <div class="sourceCode">
 <pre><code><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>X1</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>  X1   n
-1  1 627
-2  2 373</code></pre>
+1  1 584
+2  2 416</code></pre>
 </div>
 <p>Later we can rename the columns and values, but will have assured that they have the desired correlations.</p>
 <h2 id="more-packages">More packages</h2>
