@@ -2414,12 +2414,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <pre><code>  id married age
-1  1       Y  46
-2  2       Y  53
-3  3       Y  46
-4  4       Y  30
+1  1       Y  39
+2  2       N  33
+3  3       N  29
+4  4       Y  44
 5  5       N  28
-6  6       N  38</code></pre>
+6  6       Y  36</code></pre>
 </div>
 <p>We can take a quick look if the difference is visible in a boxplot.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2460,7 +2460,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span class='va'>age</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,mean<span class='op'>=</span><span class='fl'>35</span>,sd<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='fl'>18</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>balance</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='va'>k</span>,rate<span class='op'>=</span><span class='fl'>0.001</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
 <span class='va'>tenure</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>k</span>,mean<span class='op'>=</span><span class='fl'>15</span>,sd<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>kids_cnt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>5</span>,<span class='va'>k</span>,replace<span class='op'>=</span><span class='cn'>T</span>,prob<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>,<span class='fl'>120</span>,<span class='fl'>80</span>,<span class='fl'>30</span>,<span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>kids_cnt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>6</span>,<span class='va'>k</span>,replace<span class='op'>=</span><span class='cn'>T</span>,prob<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>,<span class='fl'>120</span>,<span class='fl'>80</span>,<span class='fl'>30</span>,<span class='fl'>5</span>,<span class='fl'>2</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
 
 
 <span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>age</span>,<span class='va'>balance</span>,<span class='va'>kids_cnt</span>,<span class='va'>tenure</span><span class='op'>)</span>
@@ -2486,34 +2486,34 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span class='va'>numobs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
-<span class='va'>rnorm_helper</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>nvars</span><span class='op'>*</span><span class='va'>numobs</span><span class='op'>)</span>,nrow<span class='op'>=</span><span class='va'>numobs</span><span class='op'>)</span>
+<span class='va'>rnorm_helper</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>nvars</span><span class='op'>*</span><span class='va'>numobs</span>,<span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>,nrow<span class='op'>=</span><span class='va'>nvars</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <p>The correlation of this matrix should be close to the identity matrix.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>rnorm_helper</span><span class='op'>)</span>
+<pre><code><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>rnorm_helper</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>             [,1]        [,2]        [,3]         [,4]
-[1,]  1.000000000  0.01401896 -0.04354997  0.003074106
-[2,]  0.014018960  1.00000000 -0.02230676 -0.023084811
-[3,] -0.043549974 -0.02230676  1.00000000  0.034222804
-[4,]  0.003074106 -0.02308481  0.03422280  1.000000000</code></pre>
+[1,]  1.000000000 -0.00574905 0.009783835 -0.023569599
+[2,] -0.005749050  1.00000000 0.049500977  0.010347672
+[3,]  0.009783835  0.04950098 1.000000000  0.005859748
+[4,] -0.023569599  0.01034767 0.005859748  1.000000000</code></pre>
 </div>
 <p>Next, we specify our desired correlation matrix. Just to put this in words, we want to correlate the four variables age, balance, kids_cnt and tenure. Each variable with itself has a correlation of 1. We want age and balance to have a positive correlation of 0.3, age and kids_cnt of 0.4 and age and tenure of 0.2. Likewise, we specify all desired correlations between pairs of variables.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>0.3</span>,<span class='fl'>0.4</span>,<span class='fl'>0.2</span>,  <span class='fl'>0.3</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0.3</span>,  <span class='fl'>0.4</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>0.3</span>,  <span class='fl'>0.2</span>,<span class='fl'>0.3</span>,<span class='op'>-</span><span class='fl'>0.3</span>,<span class='fl'>1</span><span class='op'>)</span>,ncol<span class='op'>=</span><span class='va'>nvars</span><span class='op'>)</span>
+<pre><code><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>0.3</span>,<span class='fl'>0.4</span>,<span class='fl'>0.2</span>,  <span class='fl'>0.3</span>,<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>0.3</span>,<span class='fl'>0.3</span>,  <span class='fl'>0.4</span>,<span class='op'>-</span><span class='fl'>0.3</span>,<span class='fl'>1</span>,<span class='op'>-</span><span class='fl'>0.3</span>,  <span class='fl'>0.2</span>,<span class='fl'>0.3</span>,<span class='op'>-</span><span class='fl'>0.3</span>,<span class='fl'>1</span><span class='op'>)</span>,ncol<span class='op'>=</span><span class='va'>nvars</span><span class='op'>)</span>
 
 <span class='va'>Q</span>
 </code></pre>
 </div>
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]  1.0  0.3  0.4  0.2
-[2,]  0.3  1.0  0.0  0.3
-[3,]  0.4  0.0  1.0 -0.3
+[2,]  0.3  1.0 -0.3  0.3
+[3,]  0.4 -0.3  1.0 -0.3
 [4,]  0.2  0.3 -0.3  1.0</code></pre>
 </div>
 <p>We can now multiply the <code>rnorm_helper</code> matrix with the Cholesky decomposition of our desired correlation matrix <code>Q</code>. Why this works, is explained in the following comment. If you are not interested in mathematical details, you can skip this part.</p>
@@ -2521,8 +2521,8 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>(Explanation found <a href="https://math.stackexchange.com/q/163472">here</a>)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='va'>L</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/chol.html'>chol</a></span><span class='op'>(</span><span class='va'>Q</span><span class='op'>)</span>
-<span class='va'>Z</span> <span class='op'>&lt;-</span> <span class='va'>L</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>rnorm_helper</span><span class='op'>)</span>
+<pre><code><span class='va'>L</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/chol.html'>chol</a></span><span class='op'>(</span><span class='va'>Q</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>Z</span> <span class='op'>&lt;-</span> <span class='va'>L</span> <span class='op'>%*%</span> <span class='va'>rnorm_helper</span>
 </code></pre>
 </div>
 </div>
@@ -2535,14 +2535,14 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>raw</span>,<span class='fl'>7</span>,addrownums<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         age     balance   kids_cnt      tenure
-1 -0.9319024 -1.03937912  0.7529340 -0.02161421
-2 -0.5187915 -0.01357012  0.1255967 -0.79836995
-3 -0.3057782  0.77408122 -1.6277816 -0.05606764
-4 -1.1081923 -1.04008135  1.0143045 -0.33897914
-5  0.8742047 -0.22794845  2.1760844 -0.85681356
-6 -0.5173514 -0.69228249  0.2082067 -1.21550256
-7 -0.1811401 -1.31629872  1.6929196 -1.89784740</code></pre>
+<pre><code>         age     balance    kids_cnt     tenure
+1 -0.9619334 -0.56763178 -0.04795672 -1.3731410
+2  0.1957828  0.08747126  0.13371210  1.0071453
+3 -1.2188574  0.84333548 -1.64422257 -0.6774232
+4 -0.7163585  0.02610745 -0.27556113 -0.4031339
+5 -0.9530173 -0.90428943  0.88834971 -0.5867759
+6 -0.5784837 -1.07244273  0.01971809 -1.7605861
+7 -0.4844551 -0.85227479  1.06544301  0.2243580</code></pre>
 </div>
 <p>The correlation of this dataset is close to our desired outcome.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2551,10 +2551,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 </code></pre>
 </div>
 <pre><code>               age    balance   kids_cnt     tenure
-age      1.0000000  0.2680816  0.2221714  0.1887492
-balance  0.2680816  1.0000000 -0.2196451  0.2275166
-kids_cnt 0.2221714 -0.2196451  1.0000000 -0.3648036
-tenure   0.1887492  0.2275166 -0.3648036  1.0000000</code></pre>
+age      1.0000000  0.2937627  0.4053011  0.1707997
+balance  0.2937627  1.0000000 -0.2590168  0.2802119
+kids_cnt 0.4053011 -0.2590168  1.0000000 -0.3038721
+tenure   0.1707997  0.2802119 -0.3038721  1.0000000</code></pre>
 </div>
 <p>However, this dataset <code>raw</code> does not have anything to do with our original data. It is still only transformed random normal data. But as we know that this dataset has the correct correlation, we can use this to reorder the rows of our other dataset.</p>
 <p>And then we just replace the largest value of the random normal dataset with the largest value in our dataset, the second largest with the second largest etc. We go column by column and repeat this procedure.</p>
@@ -2568,25 +2568,25 @@ tenure   0.1887492  0.2275166 -0.3648036  1.0000000</code></pre>
 </code></pre>
 </div>
 </div>
-<p>Let’s check the correlation of this new dataset. It is close to our desired correlation matrix <code>Q</code>. The main reason for the small difference is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 5).</p>
+<p>Let’s check the correlation of this new dataset. It is close to our desired correlation matrix <code>Q</code>. The main reason for the small difference is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 6).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>raw</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>               age    balance   kids_cnt     tenure
-age      1.0000000  0.2347427  0.1956973  0.1806137
-balance  0.2347427  1.0000000 -0.1706980  0.2131863
-kids_cnt 0.1956973 -0.1706980  1.0000000 -0.3497388
-tenure   0.1806137  0.2131863 -0.3497388  1.0000000</code></pre>
+age      1.0000000  0.2423117  0.3777257  0.1743281
+balance  0.2423117  1.0000000 -0.2010457  0.2390589
+kids_cnt 0.3777257 -0.2010457  1.0000000 -0.2803064
+tenure   0.1743281  0.2390589 -0.2803064  1.0000000</code></pre>
 </div>
 <aside>
 To compare: This was <code>Q</code>:
 <div class="layout-chunk" data-layout="l-body">
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]  1.0  0.3  0.4  0.2
-[2,]  0.3  1.0  0.0  0.3
-[3,]  0.4  0.0  1.0 -0.3
+[2,]  0.3  1.0 -0.3  0.3
+[3,]  0.4 -0.3  1.0 -0.3
 [4,]  0.2  0.3 -0.3  1.0</code></pre>
 </div>
 </aside>
@@ -2597,13 +2597,13 @@ To compare: This was <code>Q</code>:
 </code></pre>
 </div>
 <pre><code>     age balance kids_cnt tenure
-1054  18  244.80        2      1
-1216  27  251.62        1      1
-1898  18  120.84        2      1
-1736  30  722.46        0      1
-1316  27  587.91        0      1
-307   22  157.54        3      1
-1970  31 1156.21        2      2</code></pre>
+1934  34   36.36        4      1
+733   37   52.44        2      1
+123   22  290.91        2      1
+1032  26  130.01        2      1
+1463  32   88.87        2      1
+448   43   26.54        5      1
+1804  35  911.63        1      2</code></pre>
 </div>
 <h2 id="closing-comments">Closing comments</h2>
 <ul>
@@ -2617,8 +2617,8 @@ To compare: This was <code>Q</code>:
 </div>
 <pre><code>     [,1] [,2] [,3] [,4]
 [1,]  1.1  0.3  0.4  0.2
-[2,]  0.3  1.1  0.0  0.3
-[3,]  0.4  0.0  1.1 -0.3
+[2,]  0.3  1.1 -0.3  0.3
+[3,]  0.4 -0.3  1.1 -0.3
 [4,]  0.2  0.3 -0.3  1.1</code></pre>
 </div>
 <ul>

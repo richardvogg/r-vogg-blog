@@ -112,7 +112,7 @@ k <- 2000
 age <- rnorm(k,mean=35,sd=10) %>% pmax(18) %>% round()
 balance <- rexp(k,rate=0.001) %>% round(2)
 tenure <- rnorm(k,mean=15,sd=5) %>% pmax(1) %>% round()
-kids_cnt <- sample(0:5,k,replace=T,prob=c(100,120,80,30,5,1))
+kids_cnt <- sample(0:6,k,replace=T,prob=c(100,120,80,30,5,2,1))
 
 
 data <- data.frame(age,balance,kids_cnt,tenure)
@@ -134,19 +134,19 @@ nvars <- ncol(data)
 numobs <- nrow(data)
 
 set.seed(3)
-rnorm_helper <- matrix(rnorm(nvars*numobs),nrow=numobs)
+rnorm_helper <- matrix(rnorm(nvars*numobs,0,1),nrow=nvars)
 ```
 
 The correlation of this matrix should be close to the identity matrix.
 
 ```{r}
-cor(rnorm_helper)
+cor(t(rnorm_helper))
 ```
 
 Next, we specify our desired correlation matrix. Just to put this in words, we want to correlate the four variables age, balance, kids_cnt and tenure. Each variable with itself has a correlation of 1. We want age and balance to have a positive correlation of 0.3, age and kids_cnt of 0.4 and age and tenure of 0.2. Likewise, we specify all desired correlations between pairs of variables.
 
 ```{r}
-Q <- matrix(c(1,0.3,0.4,0.2,  0.3,1,0,0.3,  0.4,0,1,-0.3,  0.2,0.3,-0.3,1),ncol=nvars)
+Q <- matrix(c(1,0.3,0.4,0.2,  0.3,1,-0.3,0.3,  0.4,-0.3,1,-0.3,  0.2,0.3,-0.3,1),ncol=nvars)
 
 Q
 ```
@@ -158,8 +158,8 @@ We can now multiply the `rnorm_helper` matrix with the Cholesky decomposition of
 (Explanation found [here](https://math.stackexchange.com/q/163472))
 
 ```{r}
-L <- chol(Q)
-Z <- L %*% t(rnorm_helper)
+L <- t(chol(Q))
+Z <- L %*% rnorm_helper
 ```
 
 Good, now we convert this new data to a data frame and name it like our original data. 
@@ -190,7 +190,7 @@ for(name in names(raw)) {
 
 ```
 
-Let's check the correlation of this new dataset. It is close to our desired correlation matrix `Q`. The main reason for the small difference is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 5).
+Let's check the correlation of this new dataset. It is close to our desired correlation matrix `Q`. The main reason for the small difference is that our variables take less values than a random normal distributed variable (e.g. kids count just takes values between 0 and 6).
 
 ```{r}
 cor(raw)
