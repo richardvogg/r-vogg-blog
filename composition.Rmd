@@ -1,0 +1,10 @@
+---
+title: "Data Composition"
+site: distill::distill_website
+listing:
+  posts:
+    - 2020-10-09-data-simulation
+    - 2020-11-01-simulate-dependent-variables
+    - 2020-11-13-data-composition-with-rmultinom
+    - 2020-12-03-useful-packages-for-data-composition
+---

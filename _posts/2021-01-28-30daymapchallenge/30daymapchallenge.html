@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #545454; font-weight: bold; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #a1024a; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007faa; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #008000; } /* Char */
+code span.cn { color: #d91e18; } /* Constant */
+code span.co { color: #545454; } /* Comment */
+code span.cv { color: #545454; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #aa5d00; } /* DataType */
+code span.dv { color: #a1024a; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #a1024a; } /* Float */
+code span.fu { color: #4254a7; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #545454; font-weight: bold; } /* Information */
+code span.kw { color: #007faa; font-weight: bold; } /* Keyword */
+code span.op { color: #696969; } /* Operator */
+code span.ot { color: #007faa; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #008000; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #008000; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #008000; } /* VerbatimString */
+code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>What I learned: #30DayMapChallenge</title>
+  
+  <meta property="description" itemprop="description" content="During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost."/>
+  
+  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-01-28"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-01-28"/>
+  <meta name="article:author" content="Unknown"/>
+  
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="What I learned: #30DayMapChallenge"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost."/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="What I learned: #30DayMapChallenge"/>
+  <meta property="twitter:description" content="During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost."/>
+  
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["What I learned: #30DayMapChallenge"]},{"type":"character","attributes":{},"value":["During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Unknown"]}]}]},{"type":"character","attributes":{},"value":["01-28-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["spatial","rayshader","geogrid","sf","ggrepel","webglobe"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["30daymapchallenge_files/anchor-4.2.2/anchor.min.js","30daymapchallenge_files/bowser-1.9.3/bowser.min.js","30daymapchallenge_files/distill-2.2.21/template.v2.js","30daymapchallenge_files/figure-html5/unnamed-chunk-1-1.png","30daymapchallenge_files/figure-html5/unnamed-chunk-2-1.png","30daymapchallenge_files/figure-html5/unnamed-chunk-3-1.png","30daymapchallenge_files/figure-html5/unnamed-chunk-4-1.png","30daymapchallenge_files/htmlwidgets-1.5.1/htmlwidgets.js","30daymapchallenge_files/jquery-1.12.4/jquery.min.js","30daymapchallenge_files/leaflet-1.3.1/images/layers-2x.png","30daymapchallenge_files/leaflet-1.3.1/images/layers.png","30daymapchallenge_files/leaflet-1.3.1/images/marker-icon-2x.png","30daymapchallenge_files/leaflet-1.3.1/images/marker-icon.png","30daymapchallenge_files/leaflet-1.3.1/images/marker-shadow.png","30daymapchallenge_files/leaflet-1.3.1/leaflet.css","30daymapchallenge_files/leaflet-1.3.1/leaflet.js","30daymapchallenge_files/leaflet-binding-2.0.3/leaflet.js","30daymapchallenge_files/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js","30daymapchallenge_files/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js","30daymapchallenge_files/leafletfix-1.0.0/leafletfix.css","30daymapchallenge_files/Proj4Leaflet-1.0.1/proj4-compressed.js","30daymapchallenge_files/Proj4Leaflet-1.0.1/proj4leaflet.js","30daymapchallenge_files/rstudio_leaflet-1.3.1/images/1px.png","30daymapchallenge_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css","30daymapchallenge_files/webcomponents-2.0.0/webcomponents.js","img/covid.gif","img/day01.png","img/day09.png","img/day11.gif","img/day14.png","img/day17.png","img/day22.png","img/day27.png","img/day29.png","img/day30.png","img/results.png","img/results_map.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+  
+  <style type="text/css">
+  
+  body {
+    background-color: white;
+  }
+  
+  .pandoc-table {
+    width: 100%;
+  }
+  
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+  
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+  
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+  
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+  
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+  
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+  
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+  
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+  
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+  
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+  
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+  
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+  
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .shaded-content {
+    background: white;
+  }
+  
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+  
+  d-appendix {
+    padding-top: 30px;
+  }
+  
+  d-article>p>img {
+    width: 100%;
+  }
+  
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+  
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+  
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+  
+  /* Tweak code blocks */
+  
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+  
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: hidden;
+  }
+  
+  d-article div.sourceCode {
+    background-color: white;
+  }
+  
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+  
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  d-article pre a {
+    border-bottom: none;
+  }
+  
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+  
+  @media(min-width: 768px) {
+  
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+  
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+  
+  d-article pre {
+    font-size: 14px;
+  }
+  
+  }
+  
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  /* CSS for d-contents */
+  
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+  
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+  
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+  
+  .d-contents li {
+    list-style-type: none
+  }
+  
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+  
+  .d-contents ul {
+    padding-left: 1em
+  }
+  
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+  
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+  
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+  
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+  
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+  
+  
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+  
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+  
+  
+  /* Figure */
+  
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+  
+  .figure img {
+    width: 100%;
+  }
+  
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+  
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+  
+  /* Citations */
+  
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+  
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+  
+  
+  /* Tweak 1000px media break to show more text */
+  
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+  
+    .grid {
+      grid-column-gap: 16px;
+    }
+  
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+  
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+  
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+  
+  
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+  
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  /* Include appendix styles here so they can be overridden */
+  
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+  
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+  
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+  
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+  
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+  
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+  
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  d-appendix > * {
+    grid-column: text;
+  }
+  
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+  
+  /* Include footnote styles here so they can be overridden */
+  
+  d-footnote-list {
+    contain: layout style;
+  }
+  
+  d-footnote-list > * {
+    grid-column: text;
+  }
+  
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+  
+  
+  
+  /* Anchor.js */
+  
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+  
+  /* Social footer */
+  
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+  
+  .disqus-comments {
+    margin-right: 30px;
+  }
+  
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+  
+  #disqus_thread {
+    margin-top: 30px;
+  }
+  
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+  
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+  
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+  
+  
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+  
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+  
+  /* Styles for posts lists (not auto-injected) */
+  
+  
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+  
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+  
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+  
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+  
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+  
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+  
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+  
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+  
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+  
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+  
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+  
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+  
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .posts-list img {
+    opacity: 1;
+  }
+  
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+  
+  .posts-more {
+    clear: both;
+  }
+  
+  
+  .posts-sidebar {
+    font-size: 16px;
+  }
+  
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+  
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+  
+  .categories li>a {
+    border-bottom: none;
+  }
+  
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+  
+  .categories .active {
+    font-weight: 600;
+  }
+  
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+  
+  
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+  
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+  
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+  
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+  
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+  
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  
+  
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+  
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+  
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+  
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+  
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+  
+  
+  
+  </style>
+  
+  <script type="application/javascript">
+  
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+  
+  // show body when load is complete
+  function on_load_complete() {
+  
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+  
+  
+    // set body to visible
+    document.body.style.visibility = 'visible';
+  
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+  
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+  
+  function init_distill() {
+  
+    init_common();
+  
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+  
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+  
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+  
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+  
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+  
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+  
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+  
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+  
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+  
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+  
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+  
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+  
+      // capture layout
+      var layout = $(this).attr('data-layout');
+  
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+  
+  
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+  
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+  
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+  
+    // load distill framework
+    load_distill_framework();
+  
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+  
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+  
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+  
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+  
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+  
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+  
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+  
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+  
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+  
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+  
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+  
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+  
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+  
+      // clear polling timer
+      clearInterval(tid);
+  
+      // show body now that everything is ready
+      on_load_complete();
+    }
+  
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+  
+  }
+  
+  function init_downlevel() {
+  
+    init_common();
+  
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+  
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+  
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+  
+    // remove toc
+    $('.d-contents').remove();
+  
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+  
+  
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+  
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+  
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+  
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+  
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+  
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+  
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+  
+    $('body').addClass('downlevel');
+  
+    on_load_complete();
+  }
+  
+  
+  function init_common() {
+  
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+  
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+  
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+  
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+  
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+  
+      }
+    });
+  
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+  
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+  
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+  
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+  
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+  
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+  
+  </script>
+  
+  <!--/radix_placeholder_distill-->
+  <script src="30daymapchallenge_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+  <script src="30daymapchallenge_files/jquery-1.12.4/jquery.min.js"></script>
+  <link href="30daymapchallenge_files/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+  <script src="30daymapchallenge_files/leaflet-1.3.1/leaflet.js"></script>
+  <link href="30daymapchallenge_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+  <script src="30daymapchallenge_files/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+  <script src="30daymapchallenge_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="30daymapchallenge_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+  <script src="30daymapchallenge_files/leaflet-binding-2.0.3/leaflet.js"></script>
+  <script src="30daymapchallenge_files/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+  <script src="30daymapchallenge_files/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+  <script src="30daymapchallenge_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="30daymapchallenge_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="30daymapchallenge_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="30daymapchallenge_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"What I learned: #30DayMapChallenge","description":"During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost.","authors":[{"author":"Unknown","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-28T00:00:00.000+01:00","citationText":"Unknown, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>What I learned: #30DayMapChallenge</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">spatial</div>
+<div class="dt=tag">rayshader</div>
+<div class="dt=tag">geogrid</div>
+<div class="dt=tag">sf</div>
+<div class="dt=tag">ggrepel</div>
+<div class="dt=tag">webglobe</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost.</p></p>
+</div>
+
+<div class="d-byline">
+  Unknown  
+  
+<br/>01-28-2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#my-mapping-experience">My mapping experience</a></li>
+<li><a href="#interesting-datasets">Interesting datasets</a><ul>
+<li><a href="#earthquakes">Earthquakes</a></li>
+<li><a href="#elevation-data">Elevation data</a></li>
+<li><a href="#chile-shapefiles">Chile Shapefiles</a></li>
+<li><a href="#election-results-plebiscito-chile">Election results Plebiscito Chile</a></li>
+<li><a href="#forest-fires-in-chile">Forest fires in Chile</a></li>
+<li><a href="#global-precipitation-and-temperatures">Global precipitation and temperatures</a></li>
+<li><a href="#open-trade-statistics">Open Trade Statistics</a></li>
+<li><a href="#land-cover-and-more">Land cover and more</a></li>
+<li><a href="#movebank-for-animal-tracking">Movebank for animal tracking</a></li>
+<li><a href="#covid-history-germany">COVID history Germany</a></li>
+<li><a href="#nasa-worldview">NASA Worldview</a></li>
+</ul></li>
+<li><a href="#how-to-plot-the-world-countries">How to plot the world / countries?</a><ul>
+<li><a href="#ggplot2-sf">ggplot2 + sf</a></li>
+<li><a href="#open-street-map">Open Street Map</a></li>
+<li><a href="#tmap">tmap</a></li>
+<li><a href="#leaflet">leaflet</a></li>
+</ul></li>
+<li><a href="#interesting-techniques">Interesting techniques</a><ul>
+<li><a href="#inset_element">inset_element</a></li>
+<li><a href="#geogrid">geogrid</a></li>
+<li><a href="#rayshader">rayshader</a></li>
+<li><a href="#gganimate">gganimate</a></li>
+<li><a href="#fuzzy-matching">Fuzzy matching</a></li>
+<li><a href="#emojis-on-a-map">Emojis on a map</a></li>
+<li><a href="#webglobe">webglobe</a></li>
+<li><a href="#ggrepel">ggrepel</a></li>
+</ul></li>
+<li><a href="#closing-words">Closing words</a></li>
+</ul>
+</nav>
+</div>
+<p>This was the map I created for the last day. It shows around which places I created my maps (indicating which place was shown on which day). I invite you to look at my codes on Github (<a href="https://github.com/richardvogg/30DayMapChallenge">Link</a>) in case that any of the topics mentioned in this post are of a particular interest for you.</p>
+<p><img src="img/day30.png" /></p>
+<h2 id="my-mapping-experience">My mapping experience</h2>
+<p>Before 2020 I had no idea of how to create a map. At the beginning of the year there was a GIS workshop for the Green Initiative Group at our company and an expert explained us about raster and vector data, where to find data about Chile and many more interesting things around GIS.</p>
+<p>In May, I participated in the awesome tutorial by Stephanie Orellana Bello about Spatial Data in R (<a href="https://github.com/sporella/datos_espaciales_tutorial">Link to the tutorial in Spanish</a>). This allowed me to do my first steps on my own. I am familiar with R, but had to learn a lot about the spatial part.</p>
+<p>I learned a lot during the Challenge and would like to summarize the most interesting things. Overall, my learnings can be split into three large topics:</p>
+<ul>
+<li>Interesting data</li>
+<li>How to plot the world / countries?</li>
+<li>Interesting techniques (and packages)</li>
+</ul>
+<h2 id="interesting-datasets">Interesting datasets</h2>
+<p>For datasets it is important that they can be downloaded easily and are in a format that can either be directly mapped or combined with a prebuild world or country map.</p>
+<h3 id="earthquakes">Earthquakes</h3>
+<p>Following this <a href="https://earthquake.usgs.gov/earthquakes/search/">Link</a> you can get information about earthquakes. It is highly customizable (you can select an area of interest on a map and select a timeframe of interest).</p>
+<p>I used it to create the map for Day 1 (Points).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="img/day01.png" width="60%" /></p>
+</div>
+<h3 id="elevation-data">Elevation data</h3>
+<p>To download worldwide elevation data, you have two options (probably many more, but these are the two ones I tried). For the first one, you would need to register at NASA Earthdata and can click on the square of interest on this <a href="http://dwtkns.com/srtm30m/">website</a> (I used this during day 11 - 3D). Alternatively, you can also use the <code>get_elev_raster()</code> function of the {elevatr} package (compare day 24 - Elevation).</p>
+<h3 id="chile-shapefiles">Chile Shapefiles</h3>
+<p>The <strong>Biblioteca del Congreso Nacional de Chile</strong> (<a href="https://www.bcn.cl/siit/mapas_vectoriales">Link</a>) provides some interesting shapefiles around regions and communes in Chile. Moreover, I used the data about water masses (lakes, lagoons etc.) on two submissions.</p>
+<h3 id="election-results-plebiscito-chile">Election results Plebiscito Chile</h3>
+<p>The results of the chilean elections for a new constitution on October 26th are a very interesting dataset to analyze. Gonzalo Diaz has made the results of each commune available following this <a href="https://twitter.com/gdiazc/status/1321637872261353473">link</a>.</p>
+<h3 id="forest-fires-in-chile">Forest fires in Chile</h3>
+<p>There are many forest fires in the central regions of Chile every year during summer. CONAF makes the numbers of the last years available <a href="http://www.conaf.cl/incendios-forestales/incendios-forestales-en-chile/estadisticas-historicas/">here</a>. This is an excellent example of an untidy dataset. I have a cleaning skript for that dataset <a href="https://github.com/richardvogg/GreenInitiatives/blob/master/Conaf_Forestfires.R">here</a>. After cleaning it is easy to look at trends over time and per region.</p>
+<h3 id="global-precipitation-and-temperatures">Global precipitation and temperatures</h3>
+<p>Worldwide historical data (until today) about temperature, precipitation, radiation and many more interesting measurements can be found at the Physical Sciences Laboratory of the NOAA (National Oceanic and Atmospheric Administration) <a href="https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html">here</a>. I used this for two days: Day 13 - Raster where I showed the precipitation of every day in 2019 in Germany and Day 14 - Climate Change where I showed precipitation anomalies in South America.</p>
+<p><img src="img/day14.png" /></p>
+<h3 id="open-trade-statistics">Open Trade Statistics</h3>
+<p>Mauricio Vargas created the excellent {tradestatistics} package (<a href="https://github.com/ropensci/tradestatistics">info</a>). It contains historical information of trade between countries. I used this on day 15 - Connections, to show how much trash has been exported from the US into different countries.</p>
+<h3 id="land-cover-and-more">Land cover and more</h3>
+<p>The OECD.Stat website contains a lot of interesting data on country level (<a href="https://stats.oecd.org/Index.aspx?DataSetCode=LAND_COVER">Link</a>). I used this on day 18 - Land use to see which percentage of which country is used for agricultural purposes.</p>
+<h3 id="movebank-for-animal-tracking">Movebank for animal tracking</h3>
+<p>This interesting project makes available some data about animal movement. Not all datasets are freely available, but a lot of them can be downloaded and analyzed <a href="https://www.movebank.org/cms/movebank-main">here</a>.</p>
+<p><img src="img/day22.png" /></p>
+<h3 id="covid-history-germany">COVID history Germany</h3>
+<p>NPGEO Corona registered all COVID cases per German county (Landkreis) since the beginning of the pandemy. You can download the data <a href="https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0?selectedAttribute=Refdatum">here</a>. In order to bring this on a map, you might also be interested in the shapefiles of the counties which can be downloaded <a href="https://opendata-esri-de.opendata.arcgis.com/datasets/affd8ace4c204981b5d32070f9547eb9_0">here</a>.</p>
+<p><img src="img/covid.gif" /></p>
+<h3 id="nasa-worldview">NASA Worldview</h3>
+<p>NASA Worldview is an amazing project which contains worldwide satellite imagery for many many applications. Not all of it can be downloaded, but it is definitely worth taking a look (<a href="https://worldview.earthdata.nasa.gov/">Link</a>). NASA also has a short tutorial about how to use the website <a href="https://www.youtube.com/watch?v=nW8JZJ-5g_0">here</a>.</p>
+<h2 id="how-to-plot-the-world-countries">How to plot the world / countries?</h2>
+<h3 id="ggplot2-sf">ggplot2 + sf</h3>
+<p>ggplot2 is one of the best packages R can offer (I use it a lot for data visualization). Now I learned that it is also great to work with maps.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/borders.html'>borders</a></span><span class='op'>(</span>regions <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Germany"</span>,<span class='st'>"France"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_map.html'>coord_quickmap</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="30daymapchallenge_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<p>Instead of plotting directly, you can also get the borders of a country as a dataframe with the <code>map_data(map="world",region="Chile")</code> (this can be useful in case you want to transform it). I used this function to plot Chile over Europe for Day 29 - Globe.</p>
+<p><img src="img/day29.png" /></p>
+<h3 id="open-street-map">Open Street Map</h3>
+<p>If you have downloaded any shapefiles (for example from one of the previous examples) you can use the {sf} package to work with them and still plot them with ggplot. The Open Street Map project also provides shapefiles of all types of interesting points, lines and areas.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://docs.ropensci.org/osmdata/'>osmdata</a></span><span class='op'>)</span> <span class='co'>#Open Street Map</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+
+<span class='co'># Unfortunately the bounding box of Valparaiso is not super good, so we adapt it</span>
+<span class='va'>bbox</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/getbb.html'>getbb</a></span><span class='op'>(</span><span class='st'>"Valparaíso,Valparaiso Chile"</span><span class='op'>)</span>
+<span class='va'>bbox</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>71.6615</span>, <span class='op'>-</span><span class='fl'>71.5607</span><span class='op'>)</span>
+<span class='va'>bbox</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>33.08</span>, <span class='op'>-</span><span class='fl'>33.017</span><span class='op'>)</span>
+
+
+<span class='va'>streets</span> <span class='op'>&lt;-</span> <span class='va'>bbox</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/opq.html'>opq</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/add_osm_feature.html'>add_osm_feature</a></span><span class='op'>(</span>key <span class='op'>=</span> <span class='st'>"highway"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/osmdata_sf.html'>osmdata_sf</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>streets</span><span class='op'>$</span><span class='va'>osm_lines</span>,col<span class='op'>=</span><span class='st'>"grey50"</span>,size<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="30daymapchallenge_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<h3 id="tmap">tmap</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"World"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>World</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col<span class='op'>=</span><span class='st'>"life_exp"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="30daymapchallenge_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<h3 id="leaflet">leaflet</h3>
+<p>There are a lot of different designs available. Just change <code>providers$OpenStreetMap</code> for <code>providers$Stamen.Watercolor</code> or others to have a different view of the world.</p>
+<p>You can add rectangles, labels, markers and more and zoom into the map.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://rstudio.github.io/leaflet/'>leaflet</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/leaflet/man/leaflet.html'>leaflet</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/leaflet/man/addProviderTiles.html'>addProviderTiles</a></span><span class='op'>(</span>provider<span class='op'>=</span><span class='va'>providers</span><span class='op'>$</span><span class='va'>OpenStreetMap</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/leaflet/man/map-layers.html'>addRectangles</a></span><span class='op'>(</span><span class='fl'>5.99</span>, <span class='fl'>47.30</span>, <span class='fl'>15.02</span>, <span class='fl'>54.98</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div id="htmlwidget-70a24f7ef33f2bca4f0d" style="width:624px;height:384px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-70a24f7ef33f2bca4f0d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addRectangles","args":[47.3,5.99,54.98,15.02,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[47.3,54.98],"lng":[5.99,15.02]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<h2 id="interesting-techniques">Interesting techniques</h2>
+<h3 id="inset_element">inset_element</h3>
+<p>During the Challenge Thomas Lin Pedersen announced an exciting update of the {patchwork} package. One function called <code>inset_element</code> was added which allows to place a plot inside a plot.</p>
+<p>It is incredibly easy to use. For the Day 9 - Monochrome submission, I created a small map of South America to show the location of Valparaíso and added it as an inset to the prior map called <code>valpo</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>valpo</span> <span class='op'>+</span> <span class='fu'>inset_element</span><span class='op'>(</span><span class='va'>south_america</span>,<span class='fl'>0.4</span>,<span class='fl'>0.85</span>,<span class='fl'>0.5</span>,<span class='fl'>1</span>,align_to <span class='op'>=</span> <span class='st'>"full"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="img/day09.png" width="70%" /></p>
+</div>
+<h3 id="geogrid">geogrid</h3>
+<p>Joseph Bailey created <a href="https://github.com/jbaileyh/geogrid">this</a> awesome package which converts a shapefile into a similar gridded shapefile. This can be very helpful if you have some very small and some very large areas and it is hard to see the smaller areas. One has to pay this equal representation with the loss of shapes, so you will lose the fact that people can recognize an area by its shape. I used this to show the results of the Chilean election results (there were only two options, so it can be shown as a percentage). Take a look to see the advantages and disadvantages of each version.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="img/results.png" width="50%" /><img src="img/results_map.png" width="50%" /></p>
+</div>
+<h3 id="rayshader">rayshader</h3>
+<p>This package, created by Tyler Morgan-Wall, is awesome! It creates 3D plots or 3D elevation maps which look great and are highly customizable. I did my first steps with this package during the challenge.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'>#Downloaded from the elevation data source from part 1</span>
+<span class='va'>peru</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='op'>(</span><span class='st'>"C:/Richard/R and Python/Datasets/Peru Elevation/S09W078.hgt"</span><span class='op'>)</span>
+
+<span class='co'>#smaller area</span>
+<span class='va'>bbox</span> <span class='op'>&lt;-</span> <span class='fu'>extent</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>77.680</span>,<span class='op'>-</span><span class='fl'>77.630</span>,<span class='op'>-</span><span class='fl'>8.910</span>,<span class='op'>-</span><span class='fl'>8.850</span><span class='op'>)</span>
+
+<span class='va'>alpamayo</span> <span class='op'>&lt;-</span> <span class='fu'>crop</span><span class='op'>(</span><span class='va'>peru</span>, <span class='va'>bbox</span><span class='op'>)</span>
+
+<span class='va'>elmat</span> <span class='op'>&lt;-</span> <span class='fu'>raster_to_matrix</span><span class='op'>(</span><span class='va'>alpamayo</span><span class='op'>)</span>
+
+<span class='va'>elmat</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>sphere_shade</span><span class='op'>(</span>texture <span class='op'>=</span> <span class='st'>"desert"</span>,sunangle <span class='op'>=</span> <span class='fl'>270</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>add_shadow</span><span class='op'>(</span><span class='fu'>ray_shade</span><span class='op'>(</span><span class='va'>elmat</span>, zscale <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>, <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>plot_3d</span><span class='op'>(</span><span class='va'>elmat</span>, zscale <span class='op'>=</span> <span class='fl'>30</span>, fov <span class='op'>=</span> <span class='fl'>0</span>, theta <span class='op'>=</span> <span class='fl'>45</span>, zoom <span class='op'>=</span> <span class='fl'>0.75</span>, phi <span class='op'>=</span> <span class='fl'>20</span>, windowsize <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1000</span>, <span class='fl'>800</span><span class='op'>)</span>,
+          baseshape <span class='op'>=</span> <span class='st'>"circle"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>0.2</span><span class='op'>)</span>
+<span class='fu'>render_snapshot</span><span class='op'>(</span><span class='st'>"Day11_3D/plot.png"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>This creates one view of the Alpamayo mountain in Peru. It is also easy to create many of those and create a gif.</p>
+<p><img src="img/day11.gif" /></p>
+<h3 id="gganimate">gganimate</h3>
+<p>Now that we are already talking about animated plots, I want to highlight the package {gganimate} (also by Thomas Lin Pedersen) which makes a gif out of a ggplot.</p>
+<h3 id="fuzzy-matching">Fuzzy matching</h3>
+<p>When you find an interesting dataset which is not linked to a shapefile, you can not map it directly, but have to join it to a suitable shapefile first. During this join it can happen that the names are not exactly the same (e.g. United States vs. United States of America, or Korea Republic vs. South Korea). Fuzzy matching can help you to find inexact matches. As this is a longer topic, I actually wrote a whole post about this during day 19 - NULL, which can be found <a href="https://mapchallenge-fuzzymatching.netlify.app/">here</a>.</p>
+<h3 id="emojis-on-a-map">Emojis on a map</h3>
+<p>I guess there are also many ways to add emojis to a map. I used this to show Brewery locations of a private alcohol-free beer testing we did with my family.</p>
+<p>A minimal example would look like this, where I added the latitude, longitude and average rating (Durchschnitt) to each brewery.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>breweries</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>lon</span>,y<span class='op'>=</span><span class='va'>lat</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/borders.html'>borders</a></span><span class='op'>(</span>regions<span class='op'>=</span><span class='st'>"Germany"</span>,fill<span class='op'>=</span><span class='st'>"grey30"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_text</a></span><span class='op'>(</span>label<span class='op'>=</span><span class='st'>"\U0001F37A"</span>,family<span class='op'>=</span><span class='st'>"EmojiOne"</span>,size<span class='op'>=</span><span class='fl'>10</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>col<span class='op'>=</span><span class='va'>Durchschnitt</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_color_gradient</a></span><span class='op'>(</span>low<span class='op'>=</span><span class='st'>"red"</span>,high<span class='op'>=</span><span class='st'>"yellow"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>The final code was slightly longer (mainly to change the layout, crop the map etc.), but the idea of using Emojis is to find the Emoji unicode value online and add it as text with <code>geom_text</code>, using “EmojiOne” as font family.</p>
+<p><img src="img/day27.png" /></p>
+<h3 id="webglobe">webglobe</h3>
+<p>I was not aware of how easy it is to work with plots of the globe. The {webglobe} package makes it very easy to highlight countries or points. Check the code of Day 29 - Globe for the whole example, it is not very long, I promise.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-barnes/webglobe/'>webglobe</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/webglobe/man/webglobe.html'>webglobe</a></span><span class='op'>(</span>immediate<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/webglobe/man/wgpolygondf.html'>wgpolygondf</a></span><span class='op'>(</span><span class='va'>chile_shift</span>,fill<span class='op'>=</span><span class='st'>"purple"</span>,stroke_width <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/webglobe/man/wgcamcenter.html'>wgcamcenter</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>20</span>, <span class='fl'>8000</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="ggrepel">ggrepel</h3>
+<p>Among the maps submitted to the #30DayMapChallenge I most enjoyed those that told a story. Annotations are a helpful tool when describing certain points in a map. The {ggrepel} function helps to avoid overlaps between labels. I used this in many maps, for example during Day 17 - Historical where I explained how the midpoint of Europe shifted in the past when countries joined or left.</p>
+<p><img src="img/day17.png" /></p>
+<h2 id="closing-words">Closing words</h2>
+<p>Participating in the #30DayMapChallenge was a lot of fun, a big thanks to Topi Tjukanov for organizing it and congratulations to all participants. It was great to browse through the contributions on Twitter, learn from you and dream about what type of cool maps I might be able to produce at some point in the future.</p>
+<p>The description and rules of the challenge can be found <a href="https://github.com/tjukanovt/30DayMapChallenge">here</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

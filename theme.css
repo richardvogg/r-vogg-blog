@@ -75,6 +75,10 @@ d-appendix {
   font-family: 'Libre Baskerville';
 }
 
+.nav-right > a {
+  font-family: 'Libre Baskerville';
+}
+
 
 d-article h1 {
   font-size: 28px;
@@ -83,6 +87,7 @@ d-article h1 {
 d-article h2 {
   font-size: 24px;
 }
+
 
 .distill-site-footer {
   --text-color:       rgba(255, 255, 255, 0.8);
