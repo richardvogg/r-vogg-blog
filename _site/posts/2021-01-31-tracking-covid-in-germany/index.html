@@ -86,38 +86,38 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
   <!--radix_placeholder_meta_tags-->
-<title>R-Vogg-Blog: What I learned: #30DayMapChallenge</title>
+<title>R-Vogg-Blog: Tracking COVID in Germany</title>
 
-<meta property="description" itemprop="description" content="During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost."/>
+<meta property="description" itemprop="description" content="Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used."/>
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-01-28"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-01-28"/>
+<meta property="article:published" itemprop="datePublished" content="2021-01-31"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-01-31"/>
 <meta name="article:author" content="Richard Vogg"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="R-Vogg-Blog: What I learned: #30DayMapChallenge"/>
+<meta property="og:title" content="R-Vogg-Blog: Tracking COVID in Germany"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost."/>
+<meta property="og:description" content="Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="R-Vogg-Blog"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="R-Vogg-Blog: What I learned: #30DayMapChallenge"/>
-<meta property="twitter:description" content="During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost."/>
+<meta property="twitter:title" content="R-Vogg-Blog: Tracking COVID in Germany"/>
+<meta property="twitter:description" content="Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories"]}},"value":[{"type":"character","attributes":{},"value":["What I learned: #30DayMapChallenge"]},{"type":"character","attributes":{},"value":["During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["01-28-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["img/day30.png"]},{"type":"character","attributes":{},"value":["spatial","rayshader","geogrid","sf","ggrepel","webglobe"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Tracking COVID in Germany"]},{"type":"character","attributes":{},"value":["Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["01-31-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["covid","germany","fuzzy matching","spatial"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["30daymapchallenge_files/anchor-4.2.2/anchor.min.js","30daymapchallenge_files/bowser-1.9.3/bowser.min.js","30daymapchallenge_files/distill-2.2.21/template.v2.js","30daymapchallenge_files/figure-html5/unnamed-chunk-1-1.png","30daymapchallenge_files/figure-html5/unnamed-chunk-2-1.png","30daymapchallenge_files/figure-html5/unnamed-chunk-3-1.png","30daymapchallenge_files/figure-html5/unnamed-chunk-4-1.png","30daymapchallenge_files/htmlwidgets-1.5.1/htmlwidgets.js","30daymapchallenge_files/jquery-1.12.4/jquery.min.js","30daymapchallenge_files/leaflet-1.3.1/images/layers-2x.png","30daymapchallenge_files/leaflet-1.3.1/images/layers.png","30daymapchallenge_files/leaflet-1.3.1/images/marker-icon-2x.png","30daymapchallenge_files/leaflet-1.3.1/images/marker-icon.png","30daymapchallenge_files/leaflet-1.3.1/images/marker-shadow.png","30daymapchallenge_files/leaflet-1.3.1/leaflet.css","30daymapchallenge_files/leaflet-1.3.1/leaflet.js","30daymapchallenge_files/leaflet-binding-2.0.3/leaflet.js","30daymapchallenge_files/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js","30daymapchallenge_files/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js","30daymapchallenge_files/leafletfix-1.0.0/leafletfix.css","30daymapchallenge_files/Proj4Leaflet-1.0.1/proj4-compressed.js","30daymapchallenge_files/Proj4Leaflet-1.0.1/proj4leaflet.js","30daymapchallenge_files/rstudio_leaflet-1.3.1/images/1px.png","30daymapchallenge_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css","30daymapchallenge_files/webcomponents-2.0.0/webcomponents.js","img/covid.gif","img/day01.png","img/day09.png","img/day11.gif","img/day14.png","img/day17.png","img/day22.png","img/day27.png","img/day29.png","img/day30.png","img/results.png","img/results_map.png"]}
+  {"type":"character","attributes":{},"value":["img/covid.gif","tracking-covid-in-germany_files/anchor-4.2.2/anchor.min.js","tracking-covid-in-germany_files/bowser-1.9.3/bowser.min.js","tracking-covid-in-germany_files/distill-2.2.21/template.v2.js","tracking-covid-in-germany_files/figure-html5/unnamed-chunk-10-1.png","tracking-covid-in-germany_files/figure-html5/unnamed-chunk-6-1.png","tracking-covid-in-germany_files/jquery-1.11.3/jquery.min.js","tracking-covid-in-germany_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2311,17 +2311,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 	color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-  <script src="../../site_libs/jquery-1.12.4/jquery.min.js"></script>
-  <link href="../../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-  <script src="../../site_libs/leaflet-1.3.1/leaflet.js"></script>
-  <link href="../../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-  <script src="../../site_libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
-  <script src="../../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-  <link href="../../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-  <script src="../../site_libs/leaflet-binding-2.0.3/leaflet.js"></script>
-  <script src="../../site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-  <script src="../../site_libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
@@ -2337,7 +2327,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"What I learned: #30DayMapChallenge","description":"During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-28T00:00:00.000+01:00","citationText":"Vogg, 2021"}
+{"title":"Tracking COVID in Germany","description":"Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-31T00:00:00.000+01:00","citationText":"Vogg, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2362,24 +2352,22 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>What I learned: #30DayMapChallenge</h1>
+<h1>Tracking COVID in Germany</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
+  <a href="../../index.html#category:covid" class="dt-tag">covid</a>
+  <a href="../../index.html#category:germany" class="dt-tag">germany</a>
+  <a href="../../index.html#category:fuzzy_matching" class="dt-tag">fuzzy matching</a>
   <a href="../../index.html#category:spatial" class="dt-tag">spatial</a>
-  <a href="../../index.html#category:rayshader" class="dt-tag">rayshader</a>
-  <a href="../../index.html#category:geogrid" class="dt-tag">geogrid</a>
-  <a href="../../index.html#category:sf" class="dt-tag">sf</a>
-  <a href="../../index.html#category:ggrepel" class="dt-tag">ggrepel</a>
-  <a href="../../index.html#category:webglobe" class="dt-tag">webglobe</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost.</p></p>
+<p><p>Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.</p></p>
 </div>
 
 <div class="d-byline">
   Richard Vogg <a href="https://github.com/richardvogg" class="uri">https://github.com/richardvogg</a> 
   
-<br/>01-28-2021
+<br/>01-31-2021
 </div>
 
 <div class="d-article">
@@ -2387,232 +2375,421 @@ d-appendix d-footnote-list a.footnote-backlink {
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#my-mapping-experience">My mapping experience</a></li>
-<li><a href="#interesting-datasets">Interesting datasets</a><ul>
-<li><a href="#earthquakes">Earthquakes</a></li>
-<li><a href="#elevation-data">Elevation data</a></li>
-<li><a href="#chile-shapefiles">Chile Shapefiles</a></li>
-<li><a href="#election-results-plebiscito-chile">Election results Plebiscito Chile</a></li>
-<li><a href="#forest-fires-in-chile">Forest fires in Chile</a></li>
-<li><a href="#global-precipitation-and-temperatures">Global precipitation and temperatures</a></li>
-<li><a href="#open-trade-statistics">Open Trade Statistics</a></li>
-<li><a href="#land-cover-and-more">Land cover and more</a></li>
-<li><a href="#movebank-for-animal-tracking">Movebank for animal tracking</a></li>
-<li><a href="#covid-history-germany">COVID history Germany</a></li>
-<li><a href="#nasa-worldview">NASA Worldview</a></li>
-</ul></li>
-<li><a href="#how-to-plot-the-world-countries">How to plot the world / countries?</a><ul>
-<li><a href="#ggplot2-sf">ggplot2 + sf</a></li>
-<li><a href="#open-street-map">Open Street Map</a></li>
-<li><a href="#tmap">tmap</a></li>
-<li><a href="#leaflet">leaflet</a></li>
-</ul></li>
-<li><a href="#interesting-techniques">Interesting techniques</a><ul>
-<li><a href="#inset_element">inset_element</a></li>
-<li><a href="#geogrid">geogrid</a></li>
-<li><a href="#rayshader">rayshader</a></li>
-<li><a href="#gganimate">gganimate</a></li>
+<li><a href="#the-result">The result</a></li>
+<li><a href="#the-data">The data</a></li>
+<li><a href="#a-map-with-missing-values">A map with missing values</a></li>
 <li><a href="#fuzzy-matching">Fuzzy matching</a></li>
-<li><a href="#emojis-on-a-map">Emojis on a map</a></li>
-<li><a href="#webglobe">webglobe</a></li>
-<li><a href="#ggrepel">ggrepel</a></li>
-</ul></li>
-<li><a href="#closing-words">Closing words</a></li>
+<li><a href="#creating-a-gif">Creating a gif</a></li>
+<li><a href="#closing-comments">Closing comments</a></li>
 </ul>
 </nav>
 </div>
-<p>This was the map I created for the last day. It shows around which places I created my maps (indicating which place was shown on which day). I invite you to look at my codes on Github (<a href="https://github.com/richardvogg/30DayMapChallenge">Link</a>) in case that any of the topics mentioned in this post are of a particular interest for you.</p>
-<p><img src="img/day30.png" /></p>
-<h2 id="my-mapping-experience">My mapping experience</h2>
-<p>Before 2020 I had no idea of how to create a map. At the beginning of the year there was a GIS workshop for the Green Initiative Group at our company and an expert explained us about raster and vector data, where to find data about Chile and many more interesting things around GIS.</p>
-<p>In May, I participated in the awesome tutorial by Stephanie Orellana Bello about Spatial Data in R (<a href="https://github.com/sporella/datos_espaciales_tutorial">Link to the tutorial in Spanish</a>). This allowed me to do my first steps on my own. I am familiar with R, but had to learn a lot about the spatial part.</p>
-<p>I learned a lot during the Challenge and would like to summarize the most interesting things. Overall, my learnings can be split into three large topics:</p>
-<ul>
-<li>Interesting data</li>
-<li>How to plot the world / countries?</li>
-<li>Interesting techniques (and packages)</li>
-</ul>
-<h2 id="interesting-datasets">Interesting datasets</h2>
-<p>For datasets it is important that they can be downloaded easily and are in a format that can either be directly mapped or combined with a prebuild world or country map.</p>
-<h3 id="earthquakes">Earthquakes</h3>
-<p>Following this <a href="https://earthquake.usgs.gov/earthquakes/search/">Link</a> you can get information about earthquakes. It is highly customizable (you can select an area of interest on a map and select a timeframe of interest).</p>
-<p>I used it to create the map for Day 1 (Points).</p>
+<h3 id="the-result">The result</h3>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="img/day01.png" width="60%" /></p>
+<p><img src="img/covid.gif" width="70%" /></p>
 </div>
-<h3 id="elevation-data">Elevation data</h3>
-<p>To download worldwide elevation data, you have two options (probably many more, but these are the two ones I tried). For the first one, you would need to register at NASA Earthdata and can click on the square of interest on this <a href="http://dwtkns.com/srtm30m/">website</a> (I used this during day 11 - 3D). Alternatively, you can also use the <code>get_elev_raster()</code> function of the {elevatr} package (compare day 24 - Elevation).</p>
-<h3 id="chile-shapefiles">Chile Shapefiles</h3>
-<p>The <strong>Biblioteca del Congreso Nacional de Chile</strong> (<a href="https://www.bcn.cl/siit/mapas_vectoriales">Link</a>) provides some interesting shapefiles around regions and communes in Chile. Moreover, I used the data about water masses (lakes, lagoons etc.) on two submissions.</p>
-<h3 id="election-results-plebiscito-chile">Election results Plebiscito Chile</h3>
-<p>The results of the chilean elections for a new constitution on October 26th are a very interesting dataset to analyze. Gonzalo Diaz has made the results of each commune available following this <a href="https://twitter.com/gdiazc/status/1321637872261353473">link</a>.</p>
-<h3 id="forest-fires-in-chile">Forest fires in Chile</h3>
-<p>There are many forest fires in the central regions of Chile every year during summer. CONAF makes the numbers of the last years available <a href="http://www.conaf.cl/incendios-forestales/incendios-forestales-en-chile/estadisticas-historicas/">here</a>. This is an excellent example of an untidy dataset. I have a cleaning skript for that dataset <a href="https://github.com/richardvogg/GreenInitiatives/blob/master/Conaf_Forestfires.R">here</a>. After cleaning it is easy to look at trends over time and per region.</p>
-<h3 id="global-precipitation-and-temperatures">Global precipitation and temperatures</h3>
-<p>Worldwide historical data (until today) about temperature, precipitation, radiation and many more interesting measurements can be found at the Physical Sciences Laboratory of the NOAA (National Oceanic and Atmospheric Administration) <a href="https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html">here</a>. I used this for two days: Day 13 - Raster where I showed the precipitation of every day in 2019 in Germany and Day 14 - Climate Change where I showed precipitation anomalies in South America.</p>
-<p><img src="img/day14.png" /></p>
-<h3 id="open-trade-statistics">Open Trade Statistics</h3>
-<p>Mauricio Vargas created the excellent {tradestatistics} package (<a href="https://github.com/ropensci/tradestatistics">info</a>). It contains historical information of trade between countries. I used this on day 15 - Connections, to show how much trash has been exported from the US into different countries.</p>
-<h3 id="land-cover-and-more">Land cover and more</h3>
-<p>The OECD.Stat website contains a lot of interesting data on country level (<a href="https://stats.oecd.org/Index.aspx?DataSetCode=LAND_COVER">Link</a>). I used this on day 18 - Land use to see which percentage of which country is used for agricultural purposes.</p>
-<h3 id="movebank-for-animal-tracking">Movebank for animal tracking</h3>
-<p>This interesting project makes available some data about animal movement. Not all datasets are freely available, but a lot of them can be downloaded and analyzed <a href="https://www.movebank.org/cms/movebank-main">here</a>.</p>
-<p><img src="img/day22.png" /></p>
-<h3 id="covid-history-germany">COVID history Germany</h3>
-<p>NPGEO Corona registered all COVID cases per German county (Landkreis) since the beginning of the pandemy. You can download the data <a href="https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0?selectedAttribute=Refdatum">here</a>. In order to bring this on a map, you might also be interested in the shapefiles of the counties which can be downloaded <a href="https://opendata-esri-de.opendata.arcgis.com/datasets/affd8ace4c204981b5d32070f9547eb9_0">here</a>.</p>
-<p><img src="img/covid.gif" /></p>
-<h3 id="nasa-worldview">NASA Worldview</h3>
-<p>NASA Worldview is an amazing project which contains worldwide satellite imagery for many many applications. Not all of it can be downloaded, but it is definitely worth taking a look (<a href="https://worldview.earthdata.nasa.gov/">Link</a>). NASA also has a short tutorial about how to use the website <a href="https://www.youtube.com/watch?v=nW8JZJ-5g_0">here</a>.</p>
-<h2 id="how-to-plot-the-world-countries">How to plot the world / countries?</h2>
-<h3 id="ggplot2-sf">ggplot2 + sf</h3>
-<p>ggplot2 is one of the best packages R can offer (I use it a lot for data visualization). Now I learned that it is also great to work with maps.</p>
+<h3 id="the-data">The data</h3>
+<p>I found a dataset about COVID cases in the different communes (LK) in Germany in an Excel file online (<a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.html;jsessionid=4CB77CB72D7C8E3D5DC7CAF9C1AF8729.internet062">Link</a>). It shows cases (Fälle) and the 7-Day-Incidence value (per 100,000 inhabitants).</p>
+<p>(Note: unfortunately, the RKI changed the format of the data shortly after I downloaded the file, now the same data is only available on a broader Bundesland level. You might want to try <a href="https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0?selectedAttribute=Refdatum">this</a> Link).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/borders.html'>borders</a></span><span class='op'>(</span>regions <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Germany"</span>,<span class='st'>"France"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_map.html'>coord_quickmap</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">LK</th>
+<th style="text-align: right;">Fälle</th>
+<th style="text-align: right;">Inzidenz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SK Augsburg</td>
+<td style="text-align: right;">999</td>
+<td style="text-align: right;">336.8377</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Herne</td>
+<td style="text-align: right;">464</td>
+<td style="text-align: right;">296.5823</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Neukölln</td>
+<td style="text-align: right;">917</td>
+<td style="text-align: right;">285.5604</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Duisburg</td>
+<td style="text-align: right;">1401</td>
+<td style="text-align: right;">280.9383</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Rottal-Inn</td>
+<td style="text-align: right;">335</td>
+<td style="text-align: right;">275.7156</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Bautzen</td>
+<td style="text-align: right;">780</td>
+<td style="text-align: right;">260.2099</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p><img src="30daymapchallenge_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
-</div>
-<p>Instead of plotting directly, you can also get the borders of a country as a dataframe with the <code>map_data(map="world",region="Chile")</code> (this can be useful in case you want to transform it). I used this function to plot Chile over Europe for Day 29 - Globe.</p>
-<p><img src="img/day29.png" /></p>
-<h3 id="open-street-map">Open Street Map</h3>
-<p>If you have downloaded any shapefiles (for example from one of the previous examples) you can use the {sf} package to work with them and still plot them with ggplot. The Open Street Map project also provides shapefiles of all types of interesting points, lines and areas.</p>
+<p>The SK (Stadt) and LK (Landkreis) are important, as they indicate whether it is about the city or the county around the city. In some cases you have both.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://docs.ropensci.org/osmdata/'>osmdata</a></span><span class='op'>)</span> <span class='co'>#Open Street Map</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-
-<span class='co'># Unfortunately the bounding box of Valparaiso is not super good, so we adapt it</span>
-<span class='va'>bbox</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/getbb.html'>getbb</a></span><span class='op'>(</span><span class='st'>"Valparaíso,Valparaiso Chile"</span><span class='op'>)</span>
-<span class='va'>bbox</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>71.6615</span>, <span class='op'>-</span><span class='fl'>71.5607</span><span class='op'>)</span>
-<span class='va'>bbox</span><span class='op'>[</span><span class='fl'>2</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>33.08</span>, <span class='op'>-</span><span class='fl'>33.017</span><span class='op'>)</span>
-
-
-<span class='va'>streets</span> <span class='op'>&lt;-</span> <span class='va'>bbox</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/opq.html'>opq</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/add_osm_feature.html'>add_osm_feature</a></span><span class='op'>(</span>key <span class='op'>=</span> <span class='st'>"highway"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/osmdata_sf.html'>osmdata_sf</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>streets</span><span class='op'>$</span><span class='va'>osm_lines</span>,col<span class='op'>=</span><span class='st'>"grey50"</span>,size<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">LK</th>
+<th style="text-align: right;">Fälle</th>
+<th style="text-align: right;">Inzidenz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">LK Würzburg</td>
+<td style="text-align: right;">237</td>
+<td style="text-align: right;">146.02408</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Würzburg</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: right;">127.40945</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Aschaffenburg</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">83.09625</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Aschaffenburg</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">74.62687</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p><img src="30daymapchallenge_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
-</div>
-<h3 id="tmap">tmap</h3>
+<p>Now, if I want to show this information on a map, I need a shapefile with the communes. The good news is, there is one (<a href="https://opendata-esri-de.opendata.arcgis.com/datasets/affd8ace4c204981b5d32070f9547eb9_0">Link</a>). The bad news is, the names are in a different format than in the Excel file with the COVID cases.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"World"</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>World</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col<span class='op'>=</span><span class='st'>"life_exp"</span><span class='op'>)</span>
-</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">GEN</th>
+<th style="text-align: left;">BEZ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Flensburg</td>
+<td style="text-align: left;">Kreisfreie Stadt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kiel</td>
+<td style="text-align: left;">Kreisfreie Stadt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lübeck</td>
+<td style="text-align: left;">Kreisfreie Stadt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Neumünster</td>
+<td style="text-align: left;">Kreisfreie Stadt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dithmarschen</td>
+<td style="text-align: left;">Kreis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Herzogtum Lauenburg</td>
+<td style="text-align: left;">Kreis</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p><img src="30daymapchallenge_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
-</div>
-<h3 id="leaflet">leaflet</h3>
-<p>There are a lot of different designs available. Just change <code>providers$OpenStreetMap</code> for <code>providers$Stamen.Watercolor</code> or others to have a different view of the world.</p>
-<p>You can add rectangles, labels, markers and more and zoom into the map.</p>
+<p>A first fix to bring the two formats closer together would be to convert BEZ into LK and SK and paste it together with GEN.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://rstudio.github.io/leaflet/'>leaflet</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/pkg/leaflet/man/leaflet.html'>leaflet</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/leaflet/man/addProviderTiles.html'>addProviderTiles</a></span><span class='op'>(</span>provider<span class='op'>=</span><span class='va'>providers</span><span class='op'>$</span><span class='va'>OpenStreetMap</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/leaflet/man/map-layers.html'>addRectangles</a></span><span class='op'>(</span><span class='fl'>5.99</span>, <span class='fl'>47.30</span>, <span class='fl'>15.02</span>, <span class='fl'>54.98</span><span class='op'>)</span>
-</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SK Flensburg</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Kiel</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Lübeck</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Neumünster</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Dithmarschen</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Herzogtum Lauenburg</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="htmlwidget-7ca03657798072c5b974" style="width:624px;height:384px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7ca03657798072c5b974">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addRectangles","args":[47.3,5.99,54.98,15.02,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[47.3,54.98],"lng":[5.99,15.02]}},"evals":[],"jsHooks":[]}</script>
-</div>
-<h2 id="interesting-techniques">Interesting techniques</h2>
-<h3 id="inset_element">inset_element</h3>
-<p>During the Challenge Thomas Lin Pedersen announced an exciting update of the {patchwork} package. One function called <code>inset_element</code> was added which allows to place a plot inside a plot.</p>
-<p>It is incredibly easy to use. For the Day 9 - Monochrome submission, I created a small map of South America to show the location of Valparaíso and added it as an inset to the prior map called <code>valpo</code>.</p>
+<h3 id="a-map-with-missing-values">A map with missing values</h3>
+<p>This already helps a lot. Let’s see if we can join the COVID indicence values to the shapefile with the communes.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='va'>valpo</span> <span class='op'>+</span> <span class='fu'>inset_element</span><span class='op'>(</span><span class='va'>south_america</span>,<span class='fl'>0.4</span>,<span class='fl'>0.85</span>,<span class='fl'>0.5</span>,<span class='fl'>1</span>,align_to <span class='op'>=</span> <span class='st'>"full"</span><span class='op'>)</span>
-</code></pre>
+<p><img src="tracking-covid-in-germany_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
-</div>
+<p>This already looks quite good, but there are a lot of missing communes.</p>
+<p>Let’s look into the Excel file with COVID cases which ones did not have a match.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="img/day09.png" width="70%" /></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">LK</th>
+<th style="text-align: right;">Fälle</th>
+<th style="text-align: right;">Inzidenz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Neukölln</td>
+<td style="text-align: right;">917</td>
+<td style="text-align: right;">285.5604</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Offenbach</td>
+<td style="text-align: right;">330</td>
+<td style="text-align: right;">253.3006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Mülheim a.d.Ruhr</td>
+<td style="text-align: right;">378</td>
+<td style="text-align: right;">221.5294</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Berlin Friedrichshain-Kreuzberg</td>
+<td style="text-align: right;">617</td>
+<td style="text-align: right;">218.7486</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Reinickendorf</td>
+<td style="text-align: right;">554</td>
+<td style="text-align: right;">213.3321</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Lindau</td>
+<td style="text-align: right;">162</td>
+<td style="text-align: right;">197.6068</td>
+</tr>
+</tbody>
+</table>
 </div>
-<h3 id="geogrid">geogrid</h3>
-<p>Joseph Bailey created <a href="https://github.com/jbaileyh/geogrid">this</a> awesome package which converts a shapefile into a similar gridded shapefile. This can be very helpful if you have some very small and some very large areas and it is hard to see the smaller areas. One has to pay this equal representation with the loss of shapes, so you will lose the fact that people can recognize an area by its shape. I used this to show the results of the Chilean election results (there were only two options, so it can be shown as a percentage). Take a look to see the advantages and disadvantages of each version.</p>
+<p>Can we find equivalent names in the shapefile? We search for Berlin, Offenbach, Mülheim and Lindau.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="img/results.png" width="50%" /><img src="img/results_map.png" width="50%" /></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SK Mülheim an der Ruhr</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Offenbach am Main</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Offenbach</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Lindau (Bodensee)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin</td>
+</tr>
+</tbody>
+</table>
 </div>
-<h3 id="rayshader">rayshader</h3>
-<p>This package, created by Tyler Morgan-Wall, is awesome! It creates 3D plots or 3D elevation maps which look great and are highly customizable. I did my first steps with this package during the challenge.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='co'>#Downloaded from the elevation data source from part 1</span>
-<span class='va'>peru</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='op'>(</span><span class='st'>"C:/Richard/R and Python/Datasets/Peru Elevation/S09W078.hgt"</span><span class='op'>)</span>
-
-<span class='co'>#smaller area</span>
-<span class='va'>bbox</span> <span class='op'>&lt;-</span> <span class='fu'>extent</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>77.680</span>,<span class='op'>-</span><span class='fl'>77.630</span>,<span class='op'>-</span><span class='fl'>8.910</span>,<span class='op'>-</span><span class='fl'>8.850</span><span class='op'>)</span>
-
-<span class='va'>alpamayo</span> <span class='op'>&lt;-</span> <span class='fu'>crop</span><span class='op'>(</span><span class='va'>peru</span>, <span class='va'>bbox</span><span class='op'>)</span>
-
-<span class='va'>elmat</span> <span class='op'>&lt;-</span> <span class='fu'>raster_to_matrix</span><span class='op'>(</span><span class='va'>alpamayo</span><span class='op'>)</span>
-
-<span class='va'>elmat</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>sphere_shade</span><span class='op'>(</span>texture <span class='op'>=</span> <span class='st'>"desert"</span>,sunangle <span class='op'>=</span> <span class='fl'>270</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>add_shadow</span><span class='op'>(</span><span class='fu'>ray_shade</span><span class='op'>(</span><span class='va'>elmat</span>, zscale <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>, <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>plot_3d</span><span class='op'>(</span><span class='va'>elmat</span>, zscale <span class='op'>=</span> <span class='fl'>30</span>, fov <span class='op'>=</span> <span class='fl'>0</span>, theta <span class='op'>=</span> <span class='fl'>45</span>, zoom <span class='op'>=</span> <span class='fl'>0.75</span>, phi <span class='op'>=</span> <span class='fl'>20</span>, windowsize <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1000</span>, <span class='fl'>800</span><span class='op'>)</span>,
-          baseshape <span class='op'>=</span> <span class='st'>"circle"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>0.2</span><span class='op'>)</span>
-<span class='fu'>render_snapshot</span><span class='op'>(</span><span class='st'>"Day11_3D/plot.png"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<p>This creates one view of the Alpamayo mountain in Peru. It is also easy to create many of those and create a gif.</p>
-<p><img src="img/day11.gif" /></p>
-<h3 id="gganimate">gganimate</h3>
-<p>Now that we are already talking about animated plots, I want to highlight the package {gganimate} (also by Thomas Lin Pedersen) which makes a gif out of a ggplot.</p>
+<p>We notice a few things: Berlin has only one entry in the shapefile and a more detailed breakdown in the COVID cases document. SK Offenbach is called Offenbach am Main, Lindau is called Lindau (Bodensee). And Mülheim a.d.Ruhr is written Mülheim an der Ruhr.</p>
+<p>One option would be to find all the matches manually and replace them. There are around 40, so this would be feasible but a little annoying. Maybe we can save this time of comparing each element and let the computer find the best match for us.</p>
+<p>Fuzzy matching is doing exactly this: Based on string distances, it finds the closest match in the other source.</p>
 <h3 id="fuzzy-matching">Fuzzy matching</h3>
-<p>When you find an interesting dataset which is not linked to a shapefile, you can not map it directly, but have to join it to a suitable shapefile first. During this join it can happen that the names are not exactly the same (e.g. United States vs. United States of America, or Korea Republic vs. South Korea). Fuzzy matching can help you to find inexact matches. As this is a longer topic, I actually wrote a whole post about this during day 19 - NULL, which can be found <a href="https://mapchallenge-fuzzymatching.netlify.app/">here</a>.</p>
-<h3 id="emojis-on-a-map">Emojis on a map</h3>
-<p>I guess there are also many ways to add emojis to a map. I used this to show Brewery locations of a private alcohol-free beer testing we did with my family.</p>
-<p>A minimal example would look like this, where I added the latitude, longitude and average rating (Durchschnitt) to each brewery.</p>
+<p>I wrote a function to do the calculation of the string distances and find the best fit. Additionally, we have the option to clean the input before, i.e. transform all letters to lowercase, remove or replace certain words which disturb the process. Usually such words would become clear after running the matching process once and noticing some undesired results.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 44%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">original</th>
+<th style="text-align: left;">best_fit</th>
+<th style="text-align: right;">similarity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">StadtRegion Aachen</td>
+<td style="text-align: left;">LK Städteregion Aachen</td>
+<td style="text-align: right;">0.2315310</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Berlin Friedrichshain-Kreuzberg</td>
+<td style="text-align: left;">SK Berlin</td>
+<td style="text-align: right;">0.1470588</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Steglitz-Zehlendorf</td>
+<td style="text-align: left;">SK Berlin</td>
+<td style="text-align: right;">0.1379310</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region Hannover</td>
+<td style="text-align: left;">LK Region Hannover</td>
+<td style="text-align: right;">0.1333333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Reinickendorf</td>
+<td style="text-align: left;">SK Berlin</td>
+<td style="text-align: right;">0.1217391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Lindau</td>
+<td style="text-align: left;">LK Lindau (Bodensee)</td>
+<td style="text-align: right;">0.1100000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Sankt Wendel</td>
+<td style="text-align: left;">LK St. Wendel</td>
+<td style="text-align: right;">0.0970513</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Berlin Spandau</td>
+<td style="text-align: left;">SK Berlin</td>
+<td style="text-align: right;">0.0941176</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Neustadt a.d.Weinstraße</td>
+<td style="text-align: left;">SK Neustadt an der Weinstraße</td>
+<td style="text-align: right;">0.0915340</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Mülheim a.d.Ruhr</td>
+<td style="text-align: left;">SK Mülheim an der Ruhr</td>
+<td style="text-align: right;">0.0841542</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Ludwigshafen</td>
+<td style="text-align: left;">SK Ludwigshafen am Rhein</td>
+<td style="text-align: right;">0.0750000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Frankenthal</td>
+<td style="text-align: left;">SK Frankenthal (Pfalz)</td>
+<td style="text-align: right;">0.0727273</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Landau i.d.Pfalz</td>
+<td style="text-align: left;">SK Landau in der Pfalz</td>
+<td style="text-align: right;">0.0665072</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Halle</td>
+<td style="text-align: left;">SK Halle (Saale)</td>
+<td style="text-align: right;">0.0545455</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Neustadt a.d.Aisch-Bad Windsheim</td>
+<td style="text-align: left;">LK Neustadt a.d. Aisch-Bad Windsheim</td>
+<td style="text-align: right;">0.0341270</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Freiburg i.Breisgau</td>
+<td style="text-align: left;">SK Freiburg im Breisgau</td>
+<td style="text-align: right;">0.0264822</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Mühldorf a.Inn</td>
+<td style="text-align: left;">LK Mühldorf a. Inn</td>
+<td style="text-align: right;">0.0111111</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Neumarkt i.d.OPf.</td>
+<td style="text-align: left;">LK Neumarkt i.d. OPf.</td>
+<td style="text-align: right;">0.0095238</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Pfaffenhofen a.d.Ilm</td>
+<td style="text-align: left;">LK Pfaffenhofen a.d. Ilm</td>
+<td style="text-align: right;">0.0083333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Wunsiedel i.Fichtelgebirge</td>
+<td style="text-align: left;">LK Wunsiedel i. Fichtelgebirge</td>
+<td style="text-align: right;">0.0066667</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This table serves as a control point. We can check that all the items were matched correctly. It also serves as a dictionary which we will use to replace the original names before joining.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="tracking-covid-in-germany_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+</div>
+<h3 id="creating-a-gif">Creating a gif</h3>
+<p>To create the gif, we select dates of interest (in our case day by day from Feb 15 to Nov 25).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>breweries</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>lon</span>,y<span class='op'>=</span><span class='va'>lat</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/borders.html'>borders</a></span><span class='op'>(</span>regions<span class='op'>=</span><span class='st'>"Germany"</span>,fill<span class='op'>=</span><span class='st'>"grey30"</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_text</a></span><span class='op'>(</span>label<span class='op'>=</span><span class='st'>"\U0001F37A"</span>,family<span class='op'>=</span><span class='st'>"EmojiOne"</span>,size<span class='op'>=</span><span class='fl'>10</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>col<span class='op'>=</span><span class='va'>Durchschnitt</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_color_gradient</a></span><span class='op'>(</span>low<span class='op'>=</span><span class='st'>"red"</span>,high<span class='op'>=</span><span class='st'>"yellow"</span><span class='op'>)</span><span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+<pre><code><span class='va'>sel_dates</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.Date.html'>seq.Date</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-02-15"</span><span class='op'>)</span>,to<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-11-25"</span><span class='op'>)</span>,by<span class='op'>=</span><span class='st'>"day"</span><span class='op'>)</span>
+<span class='va'>img_frames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"covid"</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>sel_dates</span><span class='op'>)</span>, <span class='st'>".png"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>The final code was slightly longer (mainly to change the layout, crop the map etc.), but the idea of using Emojis is to find the Emoji unicode value online and add it as text with <code>geom_text</code>, using “EmojiOne” as font family.</p>
-<p><img src="img/day27.png" /></p>
-<h3 id="webglobe">webglobe</h3>
-<p>I was not aware of how easy it is to work with plots of the globe. The {webglobe} package makes it very easy to highlight countries or points. Check the code of Day 29 - Globe for the whole example, it is not very long, I promise.</p>
+<p>We loop through the dates and create one image for each day. Note how easy it is to create the Germany map with <code>ggplot(aes(fill=cases7_per_bin))+geom_sf()</code> from the {sf} package. The rest is just changing the colors.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-barnes/webglobe/'>webglobe</a></span><span class='op'>)</span>
+<pre><code><span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>sel_dates</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  
+  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>" - image"</span>, <span class='va'>i</span>, <span class='st'>"of"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>sel_dates</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  
+  <span class='va'>map</span> <span class='op'>&lt;-</span> <span class='va'>final</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>%in%</span> <span class='va'>sel_dates</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>fill<span class='op'>=</span><span class='va'>cases7_per_bin</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'>geom_sf</span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
+    <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'COVID in Germany'</span>,
+         subtitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='va'>sel_dates</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,<span class='st'>"%B"</span><span class='op'>)</span>,
+         fill <span class='op'>=</span> <span class='st'>"7 day incidence values"</span>,
+         caption <span class='op'>=</span> <span class='st'>"Data from: NPGEO Corona, Hub RKI"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grey80"</span>,<span class='st'>"grey60"</span>,
+                               <span class='st'>"grey40"</span>,<span class='st'>"gold2"</span>,<span class='st'>"orangered1"</span>,<span class='st'>"red3"</span>,<span class='st'>"red4"</span><span class='op'>)</span>,drop<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/pkg/webglobe/man/webglobe.html'>webglobe</a></span><span class='op'>(</span>immediate<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/webglobe/man/wgpolygondf.html'>wgpolygondf</a></span><span class='op'>(</span><span class='va'>chile_shift</span>,fill<span class='op'>=</span><span class='st'>"purple"</span>,stroke_width <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/webglobe/man/wgcamcenter.html'>wgcamcenter</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>20</span>, <span class='fl'>8000</span><span class='op'>)</span>
+
+  <span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span><span class='op'>(</span>filename<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"covid"</span>,<span class='va'>i</span>,<span class='st'>".png"</span><span class='op'>)</span>,width <span class='op'>=</span> <span class='fl'>800</span>,height <span class='op'>=</span> <span class='fl'>800</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
 </code></pre>
 </div>
 </div>
-<h3 id="ggrepel">ggrepel</h3>
-<p>Among the maps submitted to the #30DayMapChallenge I most enjoyed those that told a story. Annotations are a helpful tool when describing certain points in a map. The {ggrepel} function helps to avoid overlaps between labels. I used this in many maps, for example during Day 17 - Historical where I explained how the midpoint of Europe shifted in the past when countries joined or left.</p>
-<p><img src="img/day17.png" /></p>
-<h2 id="closing-words">Closing words</h2>
-<p>Participating in the #30DayMapChallenge was a lot of fun, a big thanks to Topi Tjukanov for organizing it and congratulations to all participants. It was great to browse through the contributions on Twitter, learn from you and dream about what type of cool maps I might be able to produce at some point in the future.</p>
-<p>The description and rules of the challenge can be found <a href="https://github.com/tjukanovt/30DayMapChallenge">here</a>.</p>
+<p>After saving all the images, we can use {magick}’s <code>image_write_gif</code> function to put them together and create our gif.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>magick</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/video.html'>image_write_gif</a></span><span class='op'>(</span><span class='fu'>magick</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='va'>img_frames</span><span class='op'>)</span>,
+                        path <span class='op'>=</span> <span class='st'>"covid.gif"</span>,
+                        delay <span class='op'>=</span> <span class='fl'>1</span><span class='op'>/</span><span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="closing-comments">Closing comments</h3>
+<ul>
+<li>I recently started putting the fuzzy matching functionality into a package. Check out the first version of {fuzzymatch} <a href="https://github.com/richardvogg/fuzzymatch">here</a>. The function <code>fuzzy_matches</code> performs the task of matching names from one datasource to another.</li>
+<li>The code behind this example was written with R and can be found <a href="https://github.com/richardvogg/30DayMapChallenge">here</a> (under Day 25 - COVID)</li>
+<li>I previously used fuzzy matching in an example from the banking world (matching company names) and talked about this in Latin-R 2019, you can find the presentation and the deck <a href="https://github.com/richardvogg/LatinR-2019-Fuzzy-merging">here</a>.</li>
+<li>If you wonder about what happened to the Berlin case in our example above, I did not take extra care of it. In practice one would have to sum up the cases and find an average incidence value to replace the values from different parts of the city. As this was not directly related to the fuzzy matching exercise, I omitted it.</li>
+<li>I am very curious if there are other applications for fuzzy matching in the GIS world, or if there are other methods to overcome a problem like this. Feel free to reach out to me.</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

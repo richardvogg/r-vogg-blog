@@ -86,629 +86,39 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>R-Vogg-Blog: Spatial data</title>
+  <title>Tracking COVID in Germany</title>
+  
+  <meta property="description" itemprop="description" content="Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used."/>
   
   
-  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-01-31"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-01-31"/>
+  <meta name="article:author" content="Richard Vogg"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="R-Vogg-Blog: Spatial data"/>
+  <meta property="og:title" content="Tracking COVID in Germany"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="R-Vogg-Blog"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="R-Vogg-Blog: Spatial data"/>
+  <meta property="twitter:title" content="Tracking COVID in Germany"/>
+  <meta property="twitter:description" content="Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used."/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Spatial data"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2021-01-28-30daymapchallenge","2021-01-31-tracking-covid-in-germany"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Tracking COVID in Germany"]},{"type":"character","attributes":{},"value":["Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["01-31-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["covid","germany","fuzzy matching","spatial"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["img/covid.gif","tracking-covid-in-germany_files/anchor-4.2.2/anchor.min.js","tracking-covid-in-germany_files/bowser-1.9.3/bowser.min.js","tracking-covid-in-germany_files/distill-2.2.21/template.v2.js","tracking-covid-in-germany_files/figure-html5/unnamed-chunk-10-1.png","tracking-covid-in-germany_files/figure-html5/unnamed-chunk-6-1.png","tracking-covid-in-germany_files/jquery-1.11.3/jquery.min.js","tracking-covid-in-germany_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-  
-  <script type="application/javascript">
-  
-    window.headroom_prevent_pin = false;
-  
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-  
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-  
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-  
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-  
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-  
-  <style type="text/css">
-  
-  /* Theme (user-documented overrideables for nav appearance) */
-  
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-  
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  .distill-site-nav a:hover {
-    color: white;
-  }
-  
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-  
-  .distill-site-header {
-  
-  }
-  
-  .distill-site-footer {
-  
-  }
-  
-  
-  /* Site Header */
-  
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-  
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-  
-  
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-  
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-  
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-  
-  .distill-site-header .logo {
-    padding: 0;
-  }
-  
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-  
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-  
-  
-  
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-  
-  
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-  
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-  
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-  
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-  
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-dropdown-active {
-    display: block;
-  }
-  
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-  
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-  
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-  
-  /* Site Footer */
-  
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-  
-  /* Headroom */
-  
-  d-title {
-    padding-top: 6rem;
-  }
-  
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-  
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-  
-  .headroom--unpinned {
-    top: -100px;
-  }
-  
-  .headroom--pinned {
-    top: 0;
-  }
-  
-  </style>
-  
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-  
-  <script type="application/javascript">
-  
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-  
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-  
-  function createIndex() {
-    var options = {
-      keys: [
-        "title",
-        "categories",
-        "description",
-        "contents"
-      ]
-    };
-    return new window.Fuse([],options);
-  }
-  
-  function createFuseIndex() {
-  
-    // create fuse index
-    var options = { keys: ["title", "description", "contents"] };
-    var fuse = new window.Fuse([], options);
-  
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-  
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-  
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-  
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-  
-    createFuseIndex()
-      .then(function(fuse) {
-  
-        // make search box visible
-        searchEl.classList.remove('hidden');
-  
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-              keys: [
-                { name: 'title', weight: 20 },
-                { name: 'categories', weight: 15 },
-                { name: 'description', weight: 10 },
-                { name: 'contents', weight: 5 },
-              ],
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-              .filter(function(item) { return !!item.description; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description}
-                  </div>
-                  <div class="search-item-preview">
-                    <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  
-  });
-  
-  </script>
-  
-  <style type="text/css">
-  
-  /* Algolioa Autocomplete */
-  
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-  
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-  
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-  
-  </style>
-  
-  
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
   
@@ -1993,596 +1403,471 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   
   </script>
   
-  <style type="text/css">
-  /* base variables */
-  
-  /* Edit the CSS properties in this file to create a custom
-     Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
-     you may set its value to: unset
-     All rows must end with a semi-colon.                      */
-  
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-  
-  
-  
-  html {
-    /*-- Main font sizes --*/
-    --title-size:      50px;
-    --body-size:       1.06rem;
-    --code-size:       14px;
-    --aside-size:      12px;
-    --fig-cap-size:    13px;
-    /*-- Main font colors --*/
-    --title-color:     #000000;
-    --header-color:    rgba(0, 0, 0, 0.8);
-    --body-color:      rgba(0, 0, 0, 0.8);
-    --aside-color:     rgba(0, 0, 0, 0.6);
-    --fig-cap-color:   rgba(0, 0, 0, 0.6);
-    /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    sans-serif;
-    --mono-font:       monospace;
-    --body-font:       sans-serif;
-  }
-  
-  /*-- ARTICLE METADATA --*/
-  .d-byline {
-    --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
-    --body-size:       0.8rem;
-    --body-color:      rgba(0, 0, 0, 0.8);
-  }
-  
-  /*-- ARTICLE TABLE OF CONTENTS --*/
-  .d-contents {
-    --heading-size:    18px;
-    --contents-size:   13px;
-  }
-  
-  /*-- ARTICLE APPENDIX --*/
-  d-appendix {
-    --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
-    --text-size:       0.8em;
-    --text-color:      rgba(0, 0, 0, 0.5);
-  }
-  
-  /*-- WEBSITE HEADER + FOOTER --*/
-  /* These properties only apply to Distill sites and blogs  */
-  
-  .distill-site-header {
-    --title-size:       18px;
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }
-  
-  .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }</style>
-  <style type="text/css">
-  /* base variables */
-  
-  /* Edit the CSS properties in this file to create a custom
-     Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
-     you may set its value to: unset
-     All rows must end with a semi-colon.                      */
-  
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-  @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville");
-  
-  
-  
-  
-  html {
-    /*-- Main font sizes --*/
-    --title-size:      30px;
-    --body-size:       1.06rem;
-    --code-size:       14px;
-    --aside-size:      12px;
-    --fig-cap-size:    13px;
-    /*-- Main font colors --*/
-    --title-color:     #000000;
-    --header-color:    rgba(0, 0, 0, 0.8);
-    --body-color:      rgba(0, 0, 0, 0.8);
-    --aside-color:     rgba(0, 0, 0, 0.6);
-    --fig-cap-color:   rgba(0, 0, 0, 0.6);
-    /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    'Libre Baskerville';
-    --mono-font:       monospace;
-    --body-font:       sans-serif;
-  }
-  
-  /*-- ARTICLE METADATA --*/
-  .d-byline {
-    --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
-    --body-size:       0.8rem;
-    --body-color:      rgba(0, 0, 0, 0.8);
-  }
-  
-  /*-- ARTICLE TABLE OF CONTENTS --*/
-  .d-contents {
-    --heading-size:    18px;
-    --contents-size:   13px;
-  }
-  
-  /*-- ARTICLE APPENDIX --*/
-  d-appendix {
-    --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
-    --text-size:       0.8em;
-    --text-color:      rgba(0, 0, 0, 0.5);
-  }
-  
-  /*-- WEBSITE HEADER + FOOTER --*/
-  /* These properties only apply to Distill sites and blogs  */
-  
-  .distill-site-header {
-    --title-size:       20px;
-    --text-color:       rgba(0, 0, 0, 0.8);
-    --text-size:        18px;
-    --hover-color:      black;
-    --bkgd-color:       #FF8C00;
-  }
-  
-  .title {
-    font-family: 'Libre Baskerville';
-  }
-  
-  .posts-list .description h2 {
-    font-family: 'Libre Baskerville';
-  }
-  
-  .nav-right > a {
-    font-family: 'Libre Baskerville';
-  }
-  
-  
-  d-article h1 {
-    font-size: 28px;
-  }
-  
-  d-article h2 {
-    font-size: 24px;
-  }
-  
-  
-  .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }</style>
-  <style type="text/css">
-  /* base style */
-  
-  /* FONT FAMILIES */
-  
-  :root {
-    --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-    --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-  }
-  
-  body {
-    font-family: var(--body-font), var(--body-default);
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font), var(--heading-default);
-  }
-  
-  d-article div.sourceCode code,
-  d-article pre code {
-  	font-family: var(--mono-font), var(--mono-default);
-  }
-  
-  
-  /*-- TITLE --*/
-  d-title h1,
-  .posts-list > h1 {
-    color: var(--title-color, black);
-  }
-  
-  d-title h1 {
-    font-size: var(--title-size, 50px);
-  }
-  
-  /*-- HEADERS --*/
-  d-article h1,
-  d-article h2,
-  d-article h3,
-  d-article h4,
-  d-article h5,
-  d-article h6 {
-    color: var(--header-color, rgba(0, 0, 0, 0.8));
-  }
-  
-  /*-- BODY --*/
-  /* only text inside of <p> tags */
-  d-article > p {
-    color: var(--body-color, rgba(0, 0, 0, 0.8));
-    font-size: var(--body-size, 1.06rem);
-  }
-  
-  /*-- CODE --*/
-  d-article div.sourceCode code,
-  d-article pre code {
-  	font-size: var(--code-size, 14px);
-  }
-  
-  /*-- ASIDE --*/
-  d-article aside {
-  	font-size: var(--aside-size, 12px);
-  	color: var(--aside-color, rgba(0, 0, 0, 0.6));
-  }
-  
-  /*-- FIGURE CAPTIONS --*/
-  figure .caption,
-  figure figcaption,
-  .figure .caption {
-  	font-size: var(--fig-cap-size, 13px);
-  	color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
-  }
-  
-  /*-- METADATA --*/
-  d-byline h3 {
-  	font-size: var(--heading-size, 0.6rem);
-  	color: var(--heading-color, rgba(0, 0, 0, 0.5));
-  }
-  
-  d-byline {
-  	font-size: var(--body-size, 0.8rem);
-  	color: var(--body-color, rgba(0, 0, 0, 0.8));
-  }
-  
-  d-byline a,
-  d-article d-byline a {
-  	color: var(--body-color, rgba(0, 0, 0, 0.8));
-  }
-  
-  /*-- TABLE OF CONTENTS --*/
-  .d-contents nav h3 {
-  	font-size: var(--heading-size, 18px);
-  }
-  
-  .d-contents nav a {
-  	font-size: var(--contents-size, 13px);
-  }
-  
-  /*-- APPENDIX --*/
-  d-appendix h3 {
-    font-size: var(--heading-size, 15px);
-  	color: var(--heading-color, rgba(0, 0, 0, 0.65));
-  }
-  
-  d-appendix {
-    font-size: var(--text-size, 0.8em);
-  	color: var(--text-color, rgba(0, 0, 0, 0.5));
-  }
-  
-  d-appendix d-footnote-list a.footnote-backlink {
-  	color: var(--text-color, rgba(0, 0, 0, 0.5));
-  }
-  
-  /*-- WEBSITE HEADER + FOOTER --*/
-  .distill-site-header .title {
-  	font-size: var(--title-size, 18px);
-  }
-  
-  .distill-site-header {
-  	font-size: var(--text-size, 15px);
-  	color: var(--text-color, rgba(255, 255, 255, 0.8));
-  	background-color: var(--bkgd-color, #0F2E3D);
-  }
-  
-  .distill-site-header a:hover {
-  	color: var(--hover-color, white);
-  }
-  
-  .distill-site-footer {
-  	font-size: var(--text-size, 15px);
-  	color: var(--text-color, rgba(255, 255, 255, 0.8));
-  	background-color: var(--bkgd-color, #0F2E3D);
-  }
-  
-  .distill-site-footer a:hover {
-  	color: var(--hover-color, white);
-  }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="tracking-covid-in-germany_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="tracking-covid-in-germany_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="tracking-covid-in-germany_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="tracking-covid-in-germany_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="tracking-covid-in-germany_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Spatial data","authors":[]}
+{"title":"Tracking COVID in Germany","description":"Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-31T00:00:00.000+01:00","citationText":"Vogg, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">R-Vogg-Blog</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Welcome</a>
-<a href="composition.html">Data composition</a>
-<a href="fuzzy.html">Fuzzy string matching</a>
-<a href="spatial.html">Spatial data</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Spatial data">Spatial data</h1>
-<a href="posts/2021-01-28-30daymapchallenge/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["spatial","rayshader","geogrid","sf","ggrepel","webglobe"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 28, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Richard Vogg</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-01-28-30daymapchallenge/img/day30.png"/>
-</div>
-<div class="description">
-<h2>What I learned: #30DayMapChallenge</h2>
-<div class="dt-tags">
-<div class="dt-tag">spatial</div>
-<div class="dt-tag">rayshader</div>
-<div class="dt-tag">geogrid</div>
-<div class="dt-tag">sf</div>
-<div class="dt-tag">ggrepel</div>
-<div class="dt-tag">webglobe</div>
-</div>
-<p>During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost.</p>
-</div>
-</a>
-<a href="posts/2021-01-31-tracking-covid-in-germany/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["covid","germany","fuzzy matching","spatial"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 31, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Richard Vogg</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-01-31-tracking-covid-in-germany/img/covid.gif"/>
-</div>
-<div class="description">
-<h2>Tracking COVID in Germany</h2>
-<div class="dt-tags">
-<div class="dt-tag">covid</div>
-<div class="dt-tag">germany</div>
-<div class="dt-tag">fuzzy matching</div>
-<div class="dt-tag">spatial</div>
-</div>
-<p>Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:articles">articles</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:covid">covid</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:fuzzy_matching">fuzzy matching</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:geogrid">geogrid</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:germany">germany</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:ggrepel">ggrepel</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:rayshader">rayshader</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:sf">sf</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:spatial">spatial</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:webglobe">webglobe</a>
-<span class="category-count">(1)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Spatial data</h1>
+<h1>Tracking COVID in Germany</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">covid</div>
+<div class="dt=tag">germany</div>
+<div class="dt=tag">fuzzy matching</div>
+<div class="dt=tag">spatial</div>
+</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.</p></p>
 </div>
 
+<div class="d-byline">
+  Richard Vogg <a href="https://github.com/richardvogg" class="uri">https://github.com/richardvogg</a> 
+  
+<br/>01-31-2021
+</div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#the-result">The result</a></li>
+<li><a href="#the-data">The data</a></li>
+<li><a href="#a-map-with-missing-values">A map with missing values</a></li>
+<li><a href="#fuzzy-matching">Fuzzy matching</a></li>
+<li><a href="#creating-a-gif">Creating a gif</a></li>
+<li><a href="#closing-comments">Closing comments</a></li>
+</ul>
+</nav>
+</div>
+<h3 id="the-result">The result</h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="img/covid.gif" width="70%" /></p>
+</div>
+<h3 id="the-data">The data</h3>
+<p>I found a dataset about COVID cases in the different communes (LK) in Germany in an Excel file online (<a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.html;jsessionid=4CB77CB72D7C8E3D5DC7CAF9C1AF8729.internet062">Link</a>). It shows cases (Fälle) and the 7-Day-Incidence value (per 100,000 inhabitants).</p>
+<p>(Note: unfortunately, the RKI changed the format of the data shortly after I downloaded the file, now the same data is only available on a broader Bundesland level. You might want to try <a href="https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0?selectedAttribute=Refdatum">this</a> Link).</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">LK</th>
+<th style="text-align: right;">Fälle</th>
+<th style="text-align: right;">Inzidenz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SK Augsburg</td>
+<td style="text-align: right;">999</td>
+<td style="text-align: right;">336.8377</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Herne</td>
+<td style="text-align: right;">464</td>
+<td style="text-align: right;">296.5823</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Neukölln</td>
+<td style="text-align: right;">917</td>
+<td style="text-align: right;">285.5604</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Duisburg</td>
+<td style="text-align: right;">1401</td>
+<td style="text-align: right;">280.9383</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Rottal-Inn</td>
+<td style="text-align: right;">335</td>
+<td style="text-align: right;">275.7156</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Bautzen</td>
+<td style="text-align: right;">780</td>
+<td style="text-align: right;">260.2099</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The SK (Stadt) and LK (Landkreis) are important, as they indicate whether it is about the city or the county around the city. In some cases you have both.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">LK</th>
+<th style="text-align: right;">Fälle</th>
+<th style="text-align: right;">Inzidenz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">LK Würzburg</td>
+<td style="text-align: right;">237</td>
+<td style="text-align: right;">146.02408</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Würzburg</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: right;">127.40945</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Aschaffenburg</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">83.09625</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Aschaffenburg</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">74.62687</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Now, if I want to show this information on a map, I need a shapefile with the communes. The good news is, there is one (<a href="https://opendata-esri-de.opendata.arcgis.com/datasets/affd8ace4c204981b5d32070f9547eb9_0">Link</a>). The bad news is, the names are in a different format than in the Excel file with the COVID cases.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">GEN</th>
+<th style="text-align: left;">BEZ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Flensburg</td>
+<td style="text-align: left;">Kreisfreie Stadt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kiel</td>
+<td style="text-align: left;">Kreisfreie Stadt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lübeck</td>
+<td style="text-align: left;">Kreisfreie Stadt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Neumünster</td>
+<td style="text-align: left;">Kreisfreie Stadt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dithmarschen</td>
+<td style="text-align: left;">Kreis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Herzogtum Lauenburg</td>
+<td style="text-align: left;">Kreis</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A first fix to bring the two formats closer together would be to convert BEZ into LK and SK and paste it together with GEN.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SK Flensburg</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Kiel</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Lübeck</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Neumünster</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Dithmarschen</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Herzogtum Lauenburg</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="a-map-with-missing-values">A map with missing values</h3>
+<p>This already helps a lot. Let’s see if we can join the COVID indicence values to the shapefile with the communes.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="tracking-covid-in-germany_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<p>This already looks quite good, but there are a lot of missing communes.</p>
+<p>Let’s look into the Excel file with COVID cases which ones did not have a match.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">LK</th>
+<th style="text-align: right;">Fälle</th>
+<th style="text-align: right;">Inzidenz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Neukölln</td>
+<td style="text-align: right;">917</td>
+<td style="text-align: right;">285.5604</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Offenbach</td>
+<td style="text-align: right;">330</td>
+<td style="text-align: right;">253.3006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Mülheim a.d.Ruhr</td>
+<td style="text-align: right;">378</td>
+<td style="text-align: right;">221.5294</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Berlin Friedrichshain-Kreuzberg</td>
+<td style="text-align: right;">617</td>
+<td style="text-align: right;">218.7486</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Reinickendorf</td>
+<td style="text-align: right;">554</td>
+<td style="text-align: right;">213.3321</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Lindau</td>
+<td style="text-align: right;">162</td>
+<td style="text-align: right;">197.6068</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Can we find equivalent names in the shapefile? We search for Berlin, Offenbach, Mülheim and Lindau.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SK Mülheim an der Ruhr</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Offenbach am Main</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Offenbach</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Lindau (Bodensee)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We notice a few things: Berlin has only one entry in the shapefile and a more detailed breakdown in the COVID cases document. SK Offenbach is called Offenbach am Main, Lindau is called Lindau (Bodensee). And Mülheim a.d.Ruhr is written Mülheim an der Ruhr.</p>
+<p>One option would be to find all the matches manually and replace them. There are around 40, so this would be feasible but a little annoying. Maybe we can save this time of comparing each element and let the computer find the best match for us.</p>
+<p>Fuzzy matching is doing exactly this: Based on string distances, it finds the closest match in the other source.</p>
+<h3 id="fuzzy-matching">Fuzzy matching</h3>
+<p>I wrote a function to do the calculation of the string distances and find the best fit. Additionally, we have the option to clean the input before, i.e. transform all letters to lowercase, remove or replace certain words which disturb the process. Usually such words would become clear after running the matching process once and noticing some undesired results.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 44%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">original</th>
+<th style="text-align: left;">best_fit</th>
+<th style="text-align: right;">similarity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">StadtRegion Aachen</td>
+<td style="text-align: left;">LK Städteregion Aachen</td>
+<td style="text-align: right;">0.2315310</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Berlin Friedrichshain-Kreuzberg</td>
+<td style="text-align: left;">SK Berlin</td>
+<td style="text-align: right;">0.1470588</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Steglitz-Zehlendorf</td>
+<td style="text-align: left;">SK Berlin</td>
+<td style="text-align: right;">0.1379310</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region Hannover</td>
+<td style="text-align: left;">LK Region Hannover</td>
+<td style="text-align: right;">0.1333333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Berlin Reinickendorf</td>
+<td style="text-align: left;">SK Berlin</td>
+<td style="text-align: right;">0.1217391</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Lindau</td>
+<td style="text-align: left;">LK Lindau (Bodensee)</td>
+<td style="text-align: right;">0.1100000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Sankt Wendel</td>
+<td style="text-align: left;">LK St. Wendel</td>
+<td style="text-align: right;">0.0970513</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Berlin Spandau</td>
+<td style="text-align: left;">SK Berlin</td>
+<td style="text-align: right;">0.0941176</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Neustadt a.d.Weinstraße</td>
+<td style="text-align: left;">SK Neustadt an der Weinstraße</td>
+<td style="text-align: right;">0.0915340</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Mülheim a.d.Ruhr</td>
+<td style="text-align: left;">SK Mülheim an der Ruhr</td>
+<td style="text-align: right;">0.0841542</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Ludwigshafen</td>
+<td style="text-align: left;">SK Ludwigshafen am Rhein</td>
+<td style="text-align: right;">0.0750000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Frankenthal</td>
+<td style="text-align: left;">SK Frankenthal (Pfalz)</td>
+<td style="text-align: right;">0.0727273</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SK Landau i.d.Pfalz</td>
+<td style="text-align: left;">SK Landau in der Pfalz</td>
+<td style="text-align: right;">0.0665072</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Halle</td>
+<td style="text-align: left;">SK Halle (Saale)</td>
+<td style="text-align: right;">0.0545455</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Neustadt a.d.Aisch-Bad Windsheim</td>
+<td style="text-align: left;">LK Neustadt a.d. Aisch-Bad Windsheim</td>
+<td style="text-align: right;">0.0341270</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SK Freiburg i.Breisgau</td>
+<td style="text-align: left;">SK Freiburg im Breisgau</td>
+<td style="text-align: right;">0.0264822</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Mühldorf a.Inn</td>
+<td style="text-align: left;">LK Mühldorf a. Inn</td>
+<td style="text-align: right;">0.0111111</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Neumarkt i.d.OPf.</td>
+<td style="text-align: left;">LK Neumarkt i.d. OPf.</td>
+<td style="text-align: right;">0.0095238</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LK Pfaffenhofen a.d.Ilm</td>
+<td style="text-align: left;">LK Pfaffenhofen a.d. Ilm</td>
+<td style="text-align: right;">0.0083333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LK Wunsiedel i.Fichtelgebirge</td>
+<td style="text-align: left;">LK Wunsiedel i. Fichtelgebirge</td>
+<td style="text-align: right;">0.0066667</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This table serves as a control point. We can check that all the items were matched correctly. It also serves as a dictionary which we will use to replace the original names before joining.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="tracking-covid-in-germany_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+</div>
+<h3 id="creating-a-gif">Creating a gif</h3>
+<p>To create the gif, we select dates of interest (in our case day by day from Feb 15 to Nov 25).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>sel_dates</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.Date.html'>seq.Date</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-02-15"</span><span class='op'>)</span>,to<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-11-25"</span><span class='op'>)</span>,by<span class='op'>=</span><span class='st'>"day"</span><span class='op'>)</span>
+<span class='va'>img_frames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"covid"</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>sel_dates</span><span class='op'>)</span>, <span class='st'>".png"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>We loop through the dates and create one image for each day. Note how easy it is to create the Germany map with <code>ggplot(aes(fill=cases7_per_bin))+geom_sf()</code> from the {sf} package. The rest is just changing the colors.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>sel_dates</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  
+  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>" - image"</span>, <span class='va'>i</span>, <span class='st'>"of"</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>sel_dates</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  
+  <span class='va'>map</span> <span class='op'>&lt;-</span> <span class='va'>final</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>%in%</span> <span class='va'>sel_dates</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>fill<span class='op'>=</span><span class='va'>cases7_per_bin</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'>geom_sf</span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
+    <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'COVID in Germany'</span>,
+         subtitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='va'>sel_dates</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,<span class='st'>"%B"</span><span class='op'>)</span>,
+         fill <span class='op'>=</span> <span class='st'>"7 day incidence values"</span>,
+         caption <span class='op'>=</span> <span class='st'>"Data from: NPGEO Corona, Hub RKI"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grey80"</span>,<span class='st'>"grey60"</span>,
+                               <span class='st'>"grey40"</span>,<span class='st'>"gold2"</span>,<span class='st'>"orangered1"</span>,<span class='st'>"red3"</span>,<span class='st'>"red4"</span><span class='op'>)</span>,drop<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+
+
+  <span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span><span class='op'>(</span>filename<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"covid"</span>,<span class='va'>i</span>,<span class='st'>".png"</span><span class='op'>)</span>,width <span class='op'>=</span> <span class='fl'>800</span>,height <span class='op'>=</span> <span class='fl'>800</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>After saving all the images, we can use {magick}’s <code>image_write_gif</code> function to put them together and create our gif.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>magick</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/video.html'>image_write_gif</a></span><span class='op'>(</span><span class='fu'>magick</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='va'>img_frames</span><span class='op'>)</span>,
+                        path <span class='op'>=</span> <span class='st'>"covid.gif"</span>,
+                        delay <span class='op'>=</span> <span class='fl'>1</span><span class='op'>/</span><span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="closing-comments">Closing comments</h3>
+<ul>
+<li>I recently started putting the fuzzy matching functionality into a package. Check out the first version of {fuzzymatch} <a href="https://github.com/richardvogg/fuzzymatch">here</a>. The function <code>fuzzy_matches</code> performs the task of matching names from one datasource to another.</li>
+<li>The code behind this example was written with R and can be found <a href="https://github.com/richardvogg/30DayMapChallenge">here</a> (under Day 25 - COVID)</li>
+<li>I previously used fuzzy matching in an example from the banking world (matching company names) and talked about this in Latin-R 2019, you can find the presentation and the deck <a href="https://github.com/richardvogg/LatinR-2019-Fuzzy-merging">here</a>.</li>
+<li>If you wonder about what happened to the Berlin case in our example above, I did not take extra care of it. In practice one would have to sum up the cases and find an average incidence value to replace the values from different parts of the city. As this was not directly related to the fuzzy matching exercise, I omitted it.</li>
+<li>I am very curious if there are other applications for fuzzy matching in the GIS world, or if there are other methods to overcome a problem like this. Feel free to reach out to me.</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
