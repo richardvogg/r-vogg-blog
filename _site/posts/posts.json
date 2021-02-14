@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-02-12-select-points-on-maps/",
+    "title": "Select points on maps",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Richard Vogg",
+        "url": "https://github.com/richardvogg"
+      }
+    ],
+    "date": "2021-02-12",
+    "categories": [],
+    "contents": "\r\n\r\n# A tibble: 600 x 4\r\n     lon   lat month value     \r\n   <dbl> <dbl> <dbl> <variable>\r\n 1  12.3  53.6     1  46       \r\n 2  12.3  53.6     2  52       \r\n 3  12.3  53.6     3  62       \r\n 4  12.3  53.6     4  65       \r\n 5  12.3  53.6     5  73       \r\n 6  12.3  53.6     6  88       \r\n 7  12.3  53.6     7  87       \r\n 8  12.3  53.6     8  93       \r\n 9  12.3  53.6     9 100       \r\n10  12.3  53.6    10 102       \r\n# ... with 590 more rows\r\n\r\nQuick exploration\r\nLet’s see what we can do with this data. First, we can use borders to show a quick map.\r\n\r\n\r\n\r\nAs we want to be able to select points interactively, we want to display which points were selected. This is what the map would look like.\r\n\r\n\r\n\r\nLast, we want to show the temporal development for the selected points. This can be an easy line chart, for the filtered point.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nShiny applications not supported in static R Markdown documents\r\n\r\n\r\n\r\n\r\n",
+    "preview": "posts/2021-02-12-select-points-on-maps/select-points-on-maps_files/figure-html5/unnamed-chunk-2-1.png",
+    "last_modified": "2021-02-13T16:58:27+01:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-01-31-tracking-covid-in-germany/",
     "title": "Tracking COVID in Germany",
     "description": "Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.",

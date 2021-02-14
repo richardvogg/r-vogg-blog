@@ -1,0 +1,205 @@
+---
+title: "Select points on maps"
+description: |
+  When you want to show spatial data with additional information for each data point you can use shiny for interactive exploration.
+author:
+  - name: Richard Vogg
+    url: https://github.com/richardvogg
+date: 02-12-2021
+output:
+  distill::distill_article:
+    self_contained: false
+runtime: shiny-prerendered
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+
+library(dplyr)
+library(ggplot2)
+library(wakefield)
+```
+
+## The result
+
+This is what we want to achieve. The user can select one or more points on the map to see additional information for the position.
+
+
+```{r,echo=FALSE}
+
+plot_map <- function(df) {
+  df %>%
+    ggplot()+
+    geom_point(aes(x=lon,y=lat))+
+    borders(regions="Germany")+
+    coord_quickmap()+
+    theme_void()
+}
+
+plot_selected_point_in_map <- function(df,longi,lati) {
+  pts <- expand.grid(longi,lati) %>%
+    rename(lon=Var1,lat=Var2)
+  
+  plot_map(df)+
+    geom_point(data=pts,aes(x = lon, y= lat),color="red",size=3)
+  
+}
+
+
+
+show_detail <- function(df,longi,lati) {
+  
+  if(is.null(longi) & is.null(lati)) {
+    g <- ggplot(data=df,aes(x=month))
+  }
+    
+  else {
+    df_summ <- df %>%
+    filter(lon %in% longi, lat %in% lati) %>%
+    group_by(month) %>%
+    summarise(value = mean(value))
+  
+    g <- df_summ %>%
+      ggplot(aes(x=month,group=1))+
+      geom_line(aes(y=value),size=2)
+  }
+  
+  
+  
+  return(g)
+}
+```
+
+
+```{r, echo=FALSE}
+
+shinyApp(
+
+ui = fluidPage(
+
+    sidebarLayout(
+        sidebarPanel(
+            plotOutput("example_map", 
+                       click = "plot1_click",
+                       brush = "plot1_brush"
+            )
+        ),
+
+        mainPanel(
+            plotOutput("time_plot")
+        )
+    )
+),
+
+server = function(input, output) {
+    
+    vals <- reactiveValues(lat=NULL,
+                           lon=NULL,
+                           df=df,
+                           map=plot_map(df),
+                           time = NULL)
+    
+    output$example_map <- renderPlot({
+        return(vals$map)
+    })
+    
+    output$time_plot <- renderPlot({
+      return(vals$time)
+        
+    })
+    
+    observeEvent(input$plot1_click, {
+        point <- nearPoints(vals$df %>% distinct(lon,lat), input$plot1_click, addDist = FALSE)
+        if(length(point[[1]])==0) {} #happens when no point is selected
+        else {
+            vals$lon <- point[[1]]
+            vals$lat <- point[[2]]
+            vals$map <- plot_selected_point_in_map(vals$df,vals$lon,vals$lat)
+            vals$time <-  show_detail(vals$df,vals$lon,vals$lat)
+        }
+        
+    })
+    
+    observeEvent(input$plot1_brush, {
+        point <- brushedPoints(vals$df %>% distinct(lon,lat), input$plot1_brush)
+        if(length(point[[1]])==0) {} #happens when no point is selected
+        else {
+            vals$lon <- point[[1]]
+            vals$lat <- point[[2]]
+            vals$map <- plot_selected_point_in_map(vals$df,vals$lon,vals$lat)
+            vals$time <-  show_detail(vals$df,vals$lon,vals$lat)
+        }
+    })
+}
+
+)
+
+```
+
+## The data
+
+We will work with some example data, consisting in random points and for each of the points some temporal information.
+
+```{r, echo=F}
+
+df <- r_data_frame(
+  n=50,
+  lon = runif(), 
+  lat = runif(), 
+  r_series(age,j=12,integer=TRUE, relate = "+5_10", name="month")
+) %>%
+  mutate(lon=round(7.5+(12.5-7.5)*lon,1),
+         lat = round(48+(54-48)*lat,1))
+
+df
+
+
+
+```
+
+We first convert the data to be in tidy format (using `pivot_longer` from the {tidyr} package), i.e. we will have one column called month and one column containing the values.
+
+```{r}
+df <- df %>%
+  tidyr::pivot_longer(cols=starts_with("month"), names_to = "month",values_to="value") %>%
+  mutate(month=readr::parse_number(month))
+
+head(df, 8)
+```
+
+
+## Quick exploration
+
+Let's see what we can do with this data. First, we can use `borders` to show a quick map.
+
+```{r}
+map <- ggplot(df)+
+  geom_point(aes(x=lon,y=lat))+
+  borders(regions="Germany")+
+  coord_quickmap()+
+  theme_void()
+
+map
+```
+
+As we want to be able to select points interactively, we want to display which points were selected. This is what the map would look like.
+
+```{r}
+exmpl <- df %>% slice(1) %>% select(lon,lat)
+
+map + 
+  geom_point(data=exmpl,aes(x=lon,y=lat),size=3,col="red")
+```
+
+
+Last, we want to show the temporal development for the selected points. This can be an easy line chart, for the filtered point.
+
+```{r}
+df %>%
+  filter(lon == exmpl$lon,lat == exmpl$lat) %>%
+  mutate(month=factor(month.abb[month],levels=month.abb)) %>%
+    ggplot(aes(x=month,group=1))+
+    geom_line(aes(y=value),size=2)
+```
+
