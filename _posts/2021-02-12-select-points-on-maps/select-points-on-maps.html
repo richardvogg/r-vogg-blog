@@ -1454,55 +1454,155 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#the-result">The result</a></li>
 <li><a href="#the-data">The data</a></li>
 <li><a href="#quick-exploration">Quick exploration</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#shiny-app">Shiny App</a></li>
+<li><a href="#closing-comments">Closing comments</a></li>
 </ul>
 </nav>
 </div>
 <h2 id="the-result">The result</h2>
 <p>This is what we want to achieve. The user can select one or more points on the map to see additional information for the position.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="img/gif.gif" width="70%" /></p>
+<p><img src="img/gif.gif" width="100%" /></p>
 </div>
 <h2 id="the-data">The data</h2>
 <p>We will work with some example data, consisting in random points and for each of the points some temporal information.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code># A tibble: 50 x 14
-     lon   lat month_1 month_2 month_3 month_4 month_5 month_6 month_7
-   &lt;dbl&gt; &lt;dbl&gt; &lt;varia&gt; &lt;varia&gt; &lt;varia&gt; &lt;varia&gt; &lt;varia&gt; &lt;varia&gt; &lt;varia&gt;
- 1  10.4  49.7 55      56      59      67       74      66      57    
- 2   9.4  51.9 51      67      75      71       80      73      72    
- 3   7.9  51.6 28      39      46      45       44      48      42    
- 4  10.5  51.1 29      48      59      79       99      99     105    
- 5  12.5  51.7 57      76      76      85      105     103     101    
- 6  12.2  48.9 20      34      51      61       50      66      82    
- 7  12    52.3 64      80      82      93       96     108     113    
- 8  12.1  48.9 31      24      20      48       50      45      46    
- 9   7.6  50.8 43      55      48      50       51      64      75    
-10  12.5  50.4 18      12      25      18       31      34      24    
-# ... with 40 more rows, and 5 more variables: month_8 &lt;variable&gt;,
-#   month_9 &lt;variable&gt;, month_10 &lt;variable&gt;, month_11 &lt;variable&gt;,
-#   month_12 &lt;variable&gt;</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: right;">month_1</th>
+<th style="text-align: right;">month_2</th>
+<th style="text-align: right;">month_3</th>
+<th style="text-align: right;">month_4</th>
+<th style="text-align: right;">month_5</th>
+<th style="text-align: right;">month_6</th>
+<th style="text-align: right;">month_7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10.2</td>
+<td style="text-align: right;">52.7</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">139</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10.5</td>
+<td style="text-align: right;">51.0</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10.9</td>
+<td style="text-align: right;">50.1</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">114</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">151</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">50.5</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">117</td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>We first convert the data to be in tidy format (using <code>pivot_longer</code> from the {tidyr} package), i.e. we will have one column called month and one column containing the values.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>df</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>tidyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span>cols<span class='op'>=</span><span class='fu'>starts_with</span><span class='op'>(</span><span class='st'>"month"</span><span class='op'>)</span>, names_to <span class='op'>=</span> <span class='st'>"month"</span>,values_to<span class='op'>=</span><span class='st'>"value"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>mutate</span><span class='op'>(</span>month<span class='op'>=</span><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a href='https://readr.tidyverse.org/reference/parse_number.html'>parse_number</a></span><span class='op'>(</span><span class='va'>month</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fl'>8</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code># A tibble: 8 x 4
-    lon   lat month value     
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;variable&gt;
-1  10.4  49.7     1 55        
-2  10.4  49.7     2 56        
-3  10.4  49.7     3 59        
-4  10.4  49.7     4 67        
-5  10.4  49.7     5 74        
-6  10.4  49.7     6 66        
-7  10.4  49.7     7 57        
-8  10.4  49.7     8 64        </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: right;">month</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">54</td>
+</tr>
+</tbody>
+</table>
 </div>
 <h2 id="quick-exploration">Quick exploration</h2>
 <p>Let’s see what we can do with this data. First, we can use <code>borders</code> to show a quick map.</p>
@@ -1542,7 +1642,129 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><img src="select-points-on-maps_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="functions">Functions</h2>
+<p>To make the Shiny app short and concise, I will put the functionalities which create the three plots into functions.</p>
+<ul>
+<li><code>plot_map(df)</code>: Creates the map with the points.</li>
+<li><code>plot_selected_point_in_map(df,lon,lat)</code>: Creates the same map but highlighting the points in <code>lon</code> and <code>lat</code>.</li>
+<li><code>show_detail(df,lon,lat)</code>: Creates the line plot for selected points.</li>
+</ul>
+<h2 id="shiny-app">Shiny App</h2>
+<p>First, we will define the user interface. In this case we have a sidebar panel which contains the map and a main panel where the line plot will appear when points are selected.</p>
+<p>The important lines to notice are that in <code>plotOutput</code> for the map, we will add the parameters <code>click</code> and <code>brush</code>. Doing this, we can later define what happens when someone clicks on the points.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+
+    <span class='fu'>sidebarLayout</span><span class='op'>(</span>
+        <span class='fu'>sidebarPanel</span><span class='op'>(</span>
+          <span class='fu'>p</span><span class='op'>(</span><span class='st'>"Please select one or various points."</span><span class='op'>)</span>,
+            <span class='fu'>plotOutput</span><span class='op'>(</span><span class='st'>"example_map"</span>, 
+                       click <span class='op'>=</span> <span class='st'>"plot1_click"</span>,
+                       brush <span class='op'>=</span> <span class='st'>"plot1_brush"</span>
+            <span class='op'>)</span>
+        <span class='op'>)</span>,
+
+        <span class='fu'>mainPanel</span><span class='op'>(</span>
+            <span class='fu'>plotOutput</span><span class='op'>(</span><span class='st'>"time_plot"</span><span class='op'>)</span>
+        <span class='op'>)</span>
+    <span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Inside the server function, we have several steps, which I will explain one by one. First, we need some variables that will be updated when the user selects points. <code>lat</code>, <code>lon</code> and <code>time</code> are empty in the beginning. For map, we will plot the initial map which shows all points.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'>reactiveValues</span><span class='op'>(</span>lat<span class='op'>=</span><span class='cn'>NULL</span>,
+                       lon<span class='op'>=</span><span class='cn'>NULL</span>,
+                       map<span class='op'>=</span><span class='fu'>plot_map</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>, 
+                       time <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> 
+</code></pre>
+</div>
+</div>
+<p>For the two plot outputs it is easy, we will just return the respective variable of the reactive value, i.e. the map and the line chart.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>output</span><span class='op'>$</span><span class='va'>example_map</span> <span class='op'>&lt;-</span> <span class='fu'>renderPlot</span><span class='op'>(</span><span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>vals</span><span class='op'>$</span><span class='va'>map</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+    
+<span class='va'>output</span><span class='op'>$</span><span class='va'>time_plot</span> <span class='op'>&lt;-</span> <span class='fu'>renderPlot</span><span class='op'>(</span><span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>vals</span><span class='op'>$</span><span class='va'>time</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>The key for the triggered action is the process of selecting a point. Remember that in the <code>ui</code> part we specified another parameter for the map: <code>click = "plot1_click"</code>. Here we will specify what happens when someone clicks on the map.</p>
+<p>First, we will check if there is a close point to the click in the dataset <code>df</code>. If this is not the case, nothing happens. Otherwise, we will assign the coordinates of the selected point to <code>vals$lat</code> and <code>vals$lon</code> our reactive variables. Additional we will change the map from the standard map to the map with selected red points and will show the line plot for the selected points. As these are reactive values, our plots will be updated automatically.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>observeEvent</span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>plot1_click</span>, <span class='op'>{</span>
+    <span class='va'>point</span> <span class='op'>&lt;-</span> <span class='fu'>nearPoints</span><span class='op'>(</span><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>lon</span>,<span class='va'>lat</span><span class='op'>)</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>plot1_click</span>, addDist <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+    <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>point</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span> <span class='co'>#happens when no point is selected</span>
+    <span class='kw'>else</span> <span class='op'>{</span>
+        <span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span> <span class='op'>&lt;-</span> <span class='va'>point</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+        <span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span> <span class='op'>&lt;-</span> <span class='va'>point</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+        <span class='va'>vals</span><span class='op'>$</span><span class='va'>map</span> <span class='op'>&lt;-</span> <span class='fu'>plot_selected_point_in_map</span><span class='op'>(</span><span class='va'>df</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>)</span>
+        <span class='va'>vals</span><span class='op'>$</span><span class='va'>time</span> <span class='op'>&lt;-</span>  <span class='fu'>show_detail</span><span class='op'>(</span><span class='va'>df</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>)</span>
+    <span class='op'>}</span>
+    
+<span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>You will see that the brush option is very similar. Note, that there are two other options, <code>hover</code> and <code>dblclick</code> which can trigger actions when you just hover over a points or double click. This would be the complete <code>server</code> function when putting the steps together.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>server</span> <span class='op'>&lt;-</span>  <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+    
+    <span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'>reactiveValues</span><span class='op'>(</span>lat<span class='op'>=</span><span class='cn'>NULL</span>,
+                           lon<span class='op'>=</span><span class='cn'>NULL</span>,
+                           map<span class='op'>=</span><span class='fu'>plot_map</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>,
+                           time <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+    
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>example_map</span> <span class='op'>&lt;-</span> <span class='fu'>renderPlot</span><span class='op'>(</span><span class='op'>{</span>
+        <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>vals</span><span class='op'>$</span><span class='va'>map</span><span class='op'>)</span>
+    <span class='op'>}</span><span class='op'>)</span>
+    
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>time_plot</span> <span class='op'>&lt;-</span> <span class='fu'>renderPlot</span><span class='op'>(</span><span class='op'>{</span>
+      <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>vals</span><span class='op'>$</span><span class='va'>time</span><span class='op'>)</span>
+        
+    <span class='op'>}</span><span class='op'>)</span>
+    
+    <span class='fu'>observeEvent</span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>plot1_click</span>, <span class='op'>{</span>
+        <span class='va'>point</span> <span class='op'>&lt;-</span> <span class='fu'>nearPoints</span><span class='op'>(</span><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>lon</span>,<span class='va'>lat</span><span class='op'>)</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>plot1_click</span>, addDist <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+        <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>point</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span> <span class='co'>#happens when no point is selected</span>
+        <span class='kw'>else</span> <span class='op'>{</span>
+            <span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span> <span class='op'>&lt;-</span> <span class='va'>point</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+            <span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span> <span class='op'>&lt;-</span> <span class='va'>point</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+            <span class='va'>vals</span><span class='op'>$</span><span class='va'>map</span> <span class='op'>&lt;-</span> <span class='fu'>plot_selected_point_in_map</span><span class='op'>(</span><span class='va'>df</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>)</span>
+            <span class='va'>vals</span><span class='op'>$</span><span class='va'>time</span> <span class='op'>&lt;-</span>  <span class='fu'>show_detail</span><span class='op'>(</span><span class='va'>df</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>)</span>
+        <span class='op'>}</span>
+        
+    <span class='op'>}</span><span class='op'>)</span>
+    
+    <span class='fu'>observeEvent</span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>plot1_brush</span>, <span class='op'>{</span>
+        <span class='va'>point</span> <span class='op'>&lt;-</span> <span class='fu'>brushedPoints</span><span class='op'>(</span><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>lon</span>,<span class='va'>lat</span><span class='op'>)</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>plot1_brush</span><span class='op'>)</span>
+        <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>point</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span> <span class='co'>#happens when no point is selected</span>
+        <span class='kw'>else</span> <span class='op'>{</span>
+            <span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span> <span class='op'>&lt;-</span> <span class='va'>point</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+            <span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span> <span class='op'>&lt;-</span> <span class='va'>point</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+            <span class='va'>vals</span><span class='op'>$</span><span class='va'>map</span> <span class='op'>&lt;-</span> <span class='fu'>plot_selected_point_in_map</span><span class='op'>(</span><span class='va'>df</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>)</span>
+            <span class='va'>vals</span><span class='op'>$</span><span class='va'>time</span> <span class='op'>&lt;-</span>  <span class='fu'>show_detail</span><span class='op'>(</span><span class='va'>df</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lon</span>,<span class='va'>vals</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>)</span>
+        <span class='op'>}</span>
+    <span class='op'>}</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<h2 id="closing-comments">Closing comments</h2>
+<ul>
+<li>I used this functionality in a basic app which is exploring changes in temperature, precipitation and soil moisture in Chile in the last 10 years (compared to the 30 years average). The first draft can be found <a href="https://rvdatainsights.shinyapps.io/ChileClimate/">here</a>.</li>
+<li>Of course, this interactivity is not limited to maps, you can use this to make any type of plot more interactive and create very insightful Shiny apps.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
