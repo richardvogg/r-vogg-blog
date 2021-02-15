@@ -34,6 +34,17 @@ This is what we want to achieve. The user can select one or more points on the m
 knitr::include_graphics("img/gif.gif")
 ```
 
+## Packages
+
+To run the example successfully, I needed the following packages.
+
+```{r, eval=FALSE}
+library(shiny)
+library(dplyr)
+library(ggplot2)
+```
+
+
 ## The data
 
 We will work with some example data, consisting in random points and for each of the points some temporal information.
@@ -113,7 +124,6 @@ First, we will define the user interface. In this case we have a sidebar panel w
 The important lines to notice are that in `plotOutput` for the map, we will add the parameters `click` and `brush`. Doing this, we can later define what happens when someone clicks on the points.
 
 ```{r, eval=FALSE}
-
 ui <- fluidPage(
 
     sidebarLayout(
@@ -167,7 +177,6 @@ observeEvent(input$plot1_click, {
         vals$map <- plot_selected_point_in_map(df,vals$lon,vals$lat)
         vals$time <-  show_detail(df,vals$lon,vals$lat)
     }
-    
 })
 ```
 
@@ -175,7 +184,7 @@ You will see that the brush option is very similar. Note, that there are two oth
 
 ```{r, eval=FALSE}
 
-server <-  function(input, output) {
+server <- function(input, output) {
     
     vals <- reactiveValues(lat=NULL,
                            lon=NULL,
@@ -198,7 +207,7 @@ server <-  function(input, output) {
             vals$lon <- point[[1]]
             vals$lat <- point[[2]]
             vals$map <- plot_selected_point_in_map(df,vals$lon,vals$lat)
-            vals$time <-  show_detail(df,vals$lon,vals$lat)
+            vals$time <- show_detail(df,vals$lon,vals$lat)
         }
         
     })
@@ -210,7 +219,7 @@ server <-  function(input, output) {
             vals$lon <- point[[1]]
             vals$lat <- point[[2]]
             vals$map <- plot_selected_point_in_map(df,vals$lon,vals$lat)
-            vals$time <-  show_detail(df,vals$lon,vals$lat)
+            vals$time <- show_detail(df,vals$lon,vals$lat)
         }
     })
 }
@@ -220,3 +229,26 @@ server <-  function(input, output) {
 
 * I used this functionality in a basic app which is exploring changes in temperature, precipitation and soil moisture in Chile in the last 10 years (compared to the 30 years average). The first draft can be found [here](https://rvdatainsights.shinyapps.io/ChileClimate/).
 * Of course, this interactivity is not limited to maps, you can use this to make any type of plot more interactive and create very insightful Shiny apps.
+* In case you are interested in the data creation process for this example. I used the wakefield package which creates series of columns.
+
+```{r}
+library(wakefield)
+
+df <- r_data_frame(
+  n=50,
+  lon = runif(), 
+  lat = runif(), 
+  r_series(age,j=12,integer=TRUE, relate = "+5_10", name="month")
+) %>%
+  mutate(lon=round(7.5+(12.5-7.5)*lon,1),
+         lat = round(48+(54-48)*lat,1))
+
+```
+
+Later I transformed the data to long format.
+
+```{r}
+df <- df %>%
+  tidyr::pivot_longer(cols=starts_with("month"), names_to = "month",values_to="value") %>%
+  mutate(month=readr::parse_number(month))
+```
