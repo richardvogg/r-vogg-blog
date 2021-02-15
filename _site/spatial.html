@@ -105,7 +105,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Spatial data"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2021-01-28-30daymapchallenge","2021-01-31-tracking-covid-in-germany","2021-02-12-select-points-on-maps"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Spatial data"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2021-02-12-select-points-on-maps","2021-01-31-tracking-covid-in-germany","2021-01-28-30daymapchallenge"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2474,28 +2474,24 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Spatial data">Spatial data</h1>
-<a href="posts/2021-01-28-30daymapchallenge/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["spatial","rayshader","geogrid","sf","ggrepel","webglobe"]}</script>
+<a href="posts/2021-02-12-select-points-on-maps/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["shiny","spatial"]}</script>
 <div class="metadata">
-<div class="publishedDate">Jan. 28, 2021</div>
+<div class="publishedDate">Feb. 12, 2021</div>
 <div class="dt-authors">
 <div class="dt-author">Richard Vogg</div>
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/2021-01-28-30daymapchallenge/img/day30.png"/>
+<img src="posts/2021-02-12-select-points-on-maps/img/gif.gif"/>
 </div>
 <div class="description">
-<h2>What I learned: #30DayMapChallenge</h2>
+<h2>Select points on maps</h2>
 <div class="dt-tags">
+<div class="dt-tag">shiny</div>
 <div class="dt-tag">spatial</div>
-<div class="dt-tag">rayshader</div>
-<div class="dt-tag">geogrid</div>
-<div class="dt-tag">sf</div>
-<div class="dt-tag">ggrepel</div>
-<div class="dt-tag">webglobe</div>
 </div>
-<p>During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost.</p>
+<p>When you want to show spatial data with additional information for each data point you can use shiny for interactive exploration.</p>
 </div>
 </a>
 <a href="posts/2021-01-31-tracking-covid-in-germany/" class="post-preview">
@@ -2520,24 +2516,28 @@ function init_posts_list() {
 <p>Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.</p>
 </div>
 </a>
-<a href="posts/2021-02-12-select-points-on-maps/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["shiny","spatial"]}</script>
+<a href="posts/2021-01-28-30daymapchallenge/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["spatial","rayshader","geogrid","sf","ggrepel","webglobe"]}</script>
 <div class="metadata">
-<div class="publishedDate">Feb. 12, 2021</div>
+<div class="publishedDate">Jan. 28, 2021</div>
 <div class="dt-authors">
 <div class="dt-author">Richard Vogg</div>
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/2021-02-12-select-points-on-maps/img/gif.gif"/>
+<img src="posts/2021-01-28-30daymapchallenge/img/day30.png"/>
 </div>
 <div class="description">
-<h2>Select points on maps</h2>
+<h2>What I learned: #30DayMapChallenge</h2>
 <div class="dt-tags">
-<div class="dt-tag">shiny</div>
 <div class="dt-tag">spatial</div>
+<div class="dt-tag">rayshader</div>
+<div class="dt-tag">geogrid</div>
+<div class="dt-tag">sf</div>
+<div class="dt-tag">ggrepel</div>
+<div class="dt-tag">webglobe</div>
 </div>
-<p>When you want to show spatial data with additional information for each data point you can use shiny for interactive exploration.</p>
+<p>During November 2020 I participated in the 30DayMapChallenge, initiated by Topi Tjukanov. I created 30 maps according to the daily topics and want to summarise what I learned in this blogpost.</p>
 </div>
 </a>
 </div>
