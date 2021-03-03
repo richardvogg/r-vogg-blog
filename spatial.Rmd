@@ -3,6 +3,7 @@ title: "Spatial data"
 site: distill::distill_website
 listing:
   posts:
+    - 2021-03-03-the-fragile-state-index
     - 2021-02-12-select-points-on-maps
     - 2021-01-31-tracking-covid-in-germany
     - 2021-01-28-30daymapchallenge

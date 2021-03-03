@@ -1,0 +1,273 @@
+---
+title: "The Fragile State Index"
+description: |
+  The Fragile State Index is a project dedicated to measure risk and vulnerability in countries worldwide, assigning values to 12 indicators like economic inequality, demographic pressures and brain drain (the tendendy of intellectuals and politicians to leave the country). The project is powered by The Fund For Peace and the data is publicly available.
+author:
+  - name: Richard Vogg
+    url: https://github.com/richardvogg
+date: 03-03-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(readxl)
+library(rnaturalearth)
+library(widyr)
+library(ggraph)
+library(igraph)
+library(rgeos)
+
+
+df <- lapply(2006:2020,function(x) {
+  read_xlsx(paste0("data/fsi-",x,".xlsx")) %>%
+    select(1:16)
+}) %>% 
+  do.call(rbind,.) %>%
+  mutate(Year=format(Year,"%Y"))
+```
+
+## Introduction
+
+Last November, I participated in the 30DayMapChallenge. I learned a lot by making different maps with R and discovering some of the cool packages that are around for spatial data.
+
+But I also learned a ton by looking at other's results. One example is [\@sporella](https://twitter.com/sporella)'s contribution for Day 25. She worked with a very interesting dataset called The Fragile State Index and provided the link to their website. So I added it to my list of "datasets I want to explore sometime in the future". 
+
+```{r}
+tweetrmd::tweet_screenshot(tweetrmd::tweet_url("sporella", "1332263395190562817"))
+```
+
+The time has come and I had time to expore the Fragile State Index. For some visualizations I wanted to allow user input, so I wrote a very similar article on [shinyapps](https://rvdatainsights.shinyapps.io/FragileStateIndex_App/). In this blogpost I am just showing the static visuals.
+
+
+## The Fragile State Index
+
+The [Fragile State Index](https://fragilestatesindex.org/) is a project dedicated to measure risk and vulnerability in countries worldwide. It is powered by [The Fund For Peace](https://fundforpeace.org/) and the data is publicly available.
+
+It assigns a value between 1 and 10 to each country in each one of 12 categories:
+
+* Cohesion indicators
+  * Security Apparatus
+  * Factionalized Elites
+  * Group Grievance
+* Economic indicators
+  * Economy
+  * Economic Inequality
+  * Human Flight and Brain Drain
+* Political indicators
+  * State Legitimacy
+  * Public Services
+  * Human Rights and Rule of Law
+* Social indicators
+  * Demographic Pressures
+  * Refugees and IDPs
+  * External Intervention
+
+Behind each indicator many questions are asked for each country. A detailed description of the indicators can be found [here](https://fragilestatesindex.org/indicators/). It is recommended to read through the texts before analyzing the data.
+
+## The world map
+
+Plotting a world map does not show a lot of detail but it helps us to understand general trends. The vulnerability of countries worldwide is provoked by different factors in different countries. We will go into more detail in the next sections, but this helps to get a general overview.
+
+```{r}
+world <- ne_countries(scale = "small", returnclass = 'sf')
+
+df_long <- df %>%
+  tidyr::pivot_longer(cols = `C1: Security Apparatus`:`X1: External Intervention`,
+                      names_to="category")
+
+world_final <- world %>%
+  select(brk_name,geometry) %>%
+  filter(brk_name!="Antarctica") %>%
+  mutate(brk_name = case_when(
+    brk_name=="Democratic Republic of the Congo" ~ "Congo Democratic Republic",
+    brk_name=="Republic of the Congo" ~ "Congo Republic",
+    brk_name=="Central African Rep." ~ "Central African Republic",
+    brk_name=="Kyrgyzstan" ~ "Kyrgyz Republic",
+    brk_name=="Côte d'Ivoire" ~ "Cote d'Ivoire",
+    brk_name=="S. Sudan" ~ "South Sudan",
+    brk_name=="Republic of Korea" ~ "South Korea",
+    brk_name=="Dem. Rep. Korea" ~ "North Korea",
+    TRUE ~ brk_name
+  )) %>%
+  left_join(subset(df_long,Year==2020),by=c("brk_name"="Country")) %>%
+  filter(!is.na(value))
+```
+
+
+```{r,fig.width=12, fig.height=9, preview=TRUE}
+world_final %>%
+  ggplot()+
+  geom_sf(aes(fill=value),col=NA)+
+  scale_fill_binned(breaks=seq(from=1,to=10),low="#0C7BDC",high="#FFC20A",
+                    labels=c("","stable","","","","","","","unstable",""))+
+  facet_wrap(~category,ncol=3)+
+  labs(fill="")+
+  theme_void()+
+  theme(legend.position="bottom")
+
+```
+
+
+## The long-term trend
+
+It is interesting to look at long-term trends and see in which indicators countries improved / worsened between 2006 and 2020. Note, that a lower value means higher stability. 
+
+```{r}
+df_summ <- df %>%
+  summarise_at(vars(`C1: Security Apparatus`:`X1: External Intervention`),
+               function(x) x=mean(x)) %>%
+  tidyr::pivot_longer(cols = everything(),names_to = "category")
+
+df_long_summ <- df_long %>%
+  mutate(Year=as.numeric(Year)) %>%
+  group_by(Year,category) %>%
+  summarise(value=mean(value))
+```
+
+Looking at the worldwide average, we can see that most categories have improved slightly. Large improvements have been made in Economic Inequality and Demographic Pressures, while Factionalized Elites have made countries on average more unstable. 
+
+```{r, width=10, fig.height=5}
+df_long_summ %>%
+  ggplot(aes(x=as.numeric(Year),value))+
+  geom_line(col="blue",size=2)+
+  facet_wrap(~category,ncol=3)+
+  labs(x="",title="Average value for all countries worldwide between 2006 and 2020.",
+       subtitle="Lower values stand for more stability.")+
+  theme_light()
+```
+
+
+## First comparison between countries
+
+After looking at the world map we got a first intuition of the indicators. However, if we want to compare selected countries, it is easier to compare the exact values for 2020 in these countries with the average value for all countries.
+
+I try to read this as follows: Country X is doing good in Indicators I and J, but is not yet doing good in Indicator K. 
+
+
+```{r, fig.width=10,fig.height=6}
+
+years <- 2020
+  
+df_long %>%
+filter(Country %in% c("Germany","Chile","Burkina Faso"), as.numeric(Year) %in% years) %>%
+ggplot(aes(y=forcats::fct_rev(category),x=value))+
+geom_point(aes(col=Country,alpha=(as.numeric(Year) > 2019)),size=3)+
+geom_point(data=df_summ,size=5)+
+scale_alpha_manual(values=c(1,0.1),guide=FALSE)+
+scale_x_continuous(breaks=seq(0,10,by=2))+
+labs(title = "Comparisons of indicators for selected countries.",
+     subtitle = "Average value of all countries in 2020 is shown in black. Lower values indicate more stability",
+    x="Indicator value",
+    y="")
+```
+
+In the interactive version, users can also see the last years to compare how a certain country has changed compared to itself.
+
+```{r, fig.width=10,fig.height=6}
+
+years <- seq(2006,2020,by=2)
+  
+df_long %>%
+filter(Country %in% c("Germany","Chile","Burkina Faso"), as.numeric(Year) %in% years) %>%
+ggplot(aes(y=forcats::fct_rev(category),x=value))+
+geom_point(aes(col=Country,alpha=(as.numeric(Year) > 2019)),size=3)+
+geom_point(data=df_summ,size=5)+
+scale_alpha_manual(values=c(0.1,1),guide=FALSE)+
+scale_x_continuous(breaks=seq(0,10,by=2))+
+labs(title = "Comparisons of indicators for selected countries.",
+     subtitle = "Average value of all countries in 2020 is shown in black. Lower values indicate more stability",
+    x="Indicator value",
+    y="")
+```
+
+## Network graph
+
+A network graph can help to see connections between countries who have similar indicator values. We use the 2020 values for comparing two countries and draw lines between them if they are similar. The relative position of a country in the network does not have a meaning, it is self-arranging depending on the number of connections.
+
+In the interactive version you can brush a rectangle with your mouse over countries of interest to see their historical details.
+
+```{r}
+country_dist <- df_long %>%
+  filter(Year==2020) %>%
+  pairwise_dist(Country,category,value,upper=FALSE) %>%
+  arrange(distance)
+```
+
+
+```{r, fig.width=12,fig.height=9}
+set.seed(63)
+
+net <- country_dist %>%
+  filter(distance<=5) %>%
+  graph_from_data_frame() %>%
+  ggraph(layout="fr") +
+  geom_edge_link(aes(edge_alpha = distance)) +
+  geom_node_point(alpha=0.2) +
+  geom_node_text(aes(label=name),size=3,repel=TRUE)+
+  scale_edge_alpha(range=c(0.5,0.1))+
+  labs(title="Countries with similar values in all indicators are connected with lines.")+
+  theme_void() +
+  theme(legend.position="none")
+  
+net
+
+
+```
+
+
+Similar to the first country comparison plot, we can see how the indicators evolve over time for different countries. Long-term trends and jumps in the indicators are worth a google search. In the interactive version you can also check other countries of your interest.
+
+
+```{r, fig.height=5, fig.width=9}
+
+df_long %>%
+  mutate(Year=as.numeric(Year)) %>%
+  filter(Country %in% c("Chile","Germany","Burkina Faso")) %>%
+  ggplot(aes(x=Year,y=value))+
+  geom_line(aes(col=Country,group=Country),size=1)+
+  geom_line(data=df_long_summ,aes(group=1))+
+  scale_color_manual(values=scales::hue_pal()(3))+
+  facet_wrap(~category,ncol = 3)+
+  labs(y="lower values indicate more stability",
+       title="Comparing indicators for selected countries between 2006 and 2020")
+
+
+```
+
+## Final notes
+
+* In case of any questions or interest for discussion, feel free to reach out to me via mail (richard.vogg@web.de) or [Twitter](https://twitter.com/richard_vogg).
+
+* We live in a complex world. The work done by the Fragile State Index helps to understand in which areas countries are progressing. It is important to understand that despite of all the bad events and news that occur every day, progress and improvements are being made in many areas. (Side note: I recommend Hans Rosling's book Factfulness which is related to this topic.)
+
+* Data analysis is one powerful tool to find and communicate patterns and information. It is much more powerful to combine this information with knowledge about political and economic events in certain countries. I highly recommend reading some of the [articles](https://fragilestatesindex.org/category/fragile-states-index-2020/) on the website which tell the story behind the data for selected countries.
+
+* Creating the network was made super easy by David Robinson's [{widyr}](https://cran.r-project.org/web/packages/widyr/vignettes/intro.html) package to calculate pairwise distances between the countries and Thomas Lin Pedersen's [{ggraph}](https://www.data-imaginist.com/2017/ggraph-introduction-layouts/).
+
+* The Fragile State Index data is freely available at their [website](https://fragilestatesindex.org/excel/). After downloading the documents, I used the following cleaning script in R to combine everything in one dataframe.
+
+```{r, echo=TRUE, eval=FALSE}
+library(dplyr)
+library(tidyr)
+library(readxl)
+
+df <- lapply(2006:2020,function(x) {
+  read_xlsx(paste0("data/fsi-",x,".xlsx")) %>%
+    select(1:16)
+}) %>% 
+  do.call(rbind,.) %>%
+  mutate(Year=format(Year,"%Y"))
+
+df_long <- df %>%
+  tidyr::pivot_longer(cols = `C1: Security Apparatus`:`X1: External Intervention`,
+                      names_to="category")
+```
+
