@@ -1,7 +1,7 @@
 ---
 title: "The Fragile State Index"
 description: |
-  The Fragile State Index is a project dedicated to measure risk and vulnerability in countries worldwide, assigning values to 12 indicators like economic inequality, demographic pressures and brain drain (the tendendy of intellectuals and politicians to leave the country). The project is powered by The Fund For Peace and the data is publicly available.
+  One of the most interesting datasets I looked at recently is The Fragile State Index. It is a project dedicated to measure risk and vulnerability in countries worldwide, assigning values to 12 indicators like economic inequality, demographic pressures and brain drain (the tendendy of intellectuals and politicians to leave the country). The project is powered by The Fund For Peace and the data is publicly available.
 author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
@@ -84,7 +84,7 @@ df_long <- df %>%
                       names_to="category")
 
 world_final <- world %>%
-  select(brk_name,geometry) %>%
+  select(brk_name,continent,geometry) %>%
   filter(brk_name!="Antarctica") %>%
   mutate(brk_name = case_when(
     brk_name=="Democratic Republic of the Congo" ~ "Congo Democratic Republic",
@@ -207,21 +207,166 @@ set.seed(63)
 
 net <- country_dist %>%
   filter(distance<=5) %>%
-  graph_from_data_frame() %>%
+  graph_from_data_frame()
+
+test <- data.frame(name=names(V(net))) %>%
+  left_join(world_final %>% sf::st_drop_geometry() %>% distinct(brk_name,continent), by=c("name"="brk_name"))
+
+V(net)$continent <- test$continent
+
+net %>%
   ggraph(layout="fr") +
   geom_edge_link(aes(edge_alpha = distance)) +
-  geom_node_point(alpha=0.2) +
+  geom_node_point(aes(col=continent),size=2) +
   geom_node_text(aes(label=name),size=3,repel=TRUE)+
   scale_edge_alpha(range=c(0.5,0.1))+
-  labs(title="Countries with similar values in all indicators are connected with lines.")+
+  labs(title="Countries with similar values in all indicators are connected with lines.",
+       subtitle="Countries on the same continent share the same color.")+
   theme_void() +
   theme(legend.position="none")
-  
-net
 
 
 ```
 
+To get a better view, we can look at some continents separately.
+
+```{r}
+country_dist <- df_long %>%
+  left_join(world_final %>% sf::st_drop_geometry() %>% distinct(brk_name,continent), by=c("Country"="brk_name")) %>%
+  filter(Year==2020,continent=="Europe") %>%
+  pairwise_dist(Country,category,value,upper=FALSE) %>%
+  arrange(distance)
+```
+
+```{r}
+set.seed(63)
+
+net <- country_dist %>%
+  filter(distance<=5) %>%
+  graph_from_data_frame()
+
+
+net %>%
+  ggraph(layout="fr") +
+  geom_edge_link(aes(edge_alpha = distance)) +
+  geom_node_point(col="green",size=2) +
+  geom_node_text(aes(label=name),size=3,repel=TRUE)+
+  scale_edge_alpha(range=c(0.5,0.1))+
+  labs(title="Europe")+
+  theme_void() +
+  theme(legend.position="none")
+```
+
+
+```{r}
+country_dist <- df_long %>%
+  left_join(world_final %>% sf::st_drop_geometry() %>% distinct(brk_name,continent), by=c("Country"="brk_name")) %>%
+  filter(Year==2020,continent=="South America") %>%
+  pairwise_dist(Country,category,value,upper=FALSE) %>%
+  arrange(distance)
+```
+
+```{r}
+set.seed(63)
+
+net <- country_dist %>%
+  filter(distance<=7) %>%
+  graph_from_data_frame()
+
+
+net %>%
+  ggraph(layout="fr") +
+  geom_edge_link(aes(edge_alpha = distance)) +
+  geom_node_point(col="blue",size=2) +
+  geom_node_text(aes(label=name),size=3,repel=TRUE)+
+  scale_edge_alpha(range=c(0.5,0.1))+
+  labs(title="South America")+
+  theme_void() +
+  theme(legend.position="none")
+```
+
+```{r}
+country_dist <- df_long %>%
+  left_join(world_final %>% sf::st_drop_geometry() %>% distinct(brk_name,continent), by=c("Country"="brk_name")) %>%
+  filter(Year==2020,continent=="Africa") %>%
+  pairwise_dist(Country,category,value,upper=FALSE) %>%
+  arrange(distance)
+```
+
+```{r}
+set.seed(63)
+
+net <- country_dist %>%
+  filter(distance<=5) %>%
+  graph_from_data_frame()
+
+
+net %>%
+  ggraph(layout="fr") +
+  geom_edge_link(aes(edge_alpha = distance)) +
+  geom_node_point(col="goldenrod",size=2) +
+  geom_node_text(aes(label=name),size=3,repel=TRUE)+
+  scale_edge_alpha(range=c(0.5,0.1))+
+  labs(title="Africa")+
+  theme_void() +
+  theme(legend.position="none")
+```
+
+
+```{r}
+country_dist <- df_long %>%
+  left_join(world_final %>% sf::st_drop_geometry() %>% distinct(brk_name,continent), by=c("Country"="brk_name")) %>%
+  filter(Year==2020,continent=="North America") %>%
+  pairwise_dist(Country,category,value,upper=FALSE) %>%
+  arrange(distance)
+```
+
+```{r}
+set.seed(63)
+
+net <- country_dist %>%
+  filter(distance<=7.3) %>%
+  graph_from_data_frame()
+
+
+net %>%
+  ggraph(layout="fr") +
+  geom_edge_link(aes(edge_alpha = distance)) +
+  geom_node_point(col="red",size=2) +
+  geom_node_text(aes(label=name),size=3,repel=TRUE)+
+  scale_edge_alpha(range=c(0.5,0.1))+
+  labs(title="North and Central America")+
+  theme_void() +
+  theme(legend.position="none")
+```
+
+
+```{r}
+country_dist <- df_long %>%
+  left_join(world_final %>% sf::st_drop_geometry() %>% distinct(brk_name,continent), by=c("Country"="brk_name")) %>%
+  filter(Year==2020,continent=="Asia") %>%
+  pairwise_dist(Country,category,value,upper=FALSE) %>%
+  arrange(distance)
+```
+
+```{r}
+set.seed(63)
+
+net <- country_dist %>%
+  filter(distance<=5) %>%
+  graph_from_data_frame()
+
+
+net %>%
+  ggraph(layout="fr") +
+  geom_edge_link(aes(edge_alpha = distance)) +
+  geom_node_point(col="purple",size=2) +
+  geom_node_text(aes(label=name),size=3,repel=TRUE)+
+  scale_edge_alpha(range=c(0.5,0.1))+
+  labs(title="Asia")+
+  theme_void() +
+  theme(legend.position="none")
+```
 
 Similar to the first country comparison plot, we can see how the indicators evolve over time for different countries. Long-term trends and jumps in the indicators are worth a google search. In the interactive version you can also check other countries of your interest.
 
