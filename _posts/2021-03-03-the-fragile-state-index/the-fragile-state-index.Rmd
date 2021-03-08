@@ -9,6 +9,14 @@ date: 03-03-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc-float: false
+categories:
+  - data
+  - spatial
+  - widyr
+  - ggraph
+  - network
 ---
 
 
