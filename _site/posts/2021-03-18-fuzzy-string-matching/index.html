@@ -86,38 +86,38 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
   <!--radix_placeholder_meta_tags-->
-<title>R-Vogg-Blog: Fuzzy matching example with company names</title>
+<title>R-Vogg-Blog: The big picture: Fuzzy string matching</title>
 
-<meta property="description" itemprop="description" content="Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald&#39;s Company."/>
+<meta property="description" itemprop="description" content="An overview over fuzzy string matching problems and solutions. After reading this article you will know in which situations fuzzy string matching can be helpful, and know variations like fuzzy deduplication and record linkage."/>
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2020-10-09"/>
-<meta property="article:created" itemprop="dateCreated" content="2020-10-09"/>
+<meta property="article:published" itemprop="datePublished" content="2021-03-18"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-03-18"/>
 <meta name="article:author" content="Richard Vogg"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="R-Vogg-Blog: Fuzzy matching example with company names"/>
+<meta property="og:title" content="R-Vogg-Blog: The big picture: Fuzzy string matching"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald&#39;s Company."/>
+<meta property="og:description" content="An overview over fuzzy string matching problems and solutions. After reading this article you will know in which situations fuzzy string matching can be helpful, and know variations like fuzzy deduplication and record linkage."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="R-Vogg-Blog"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="R-Vogg-Blog: Fuzzy matching example with company names"/>
-<meta property="twitter:description" content="Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald&#39;s Company."/>
+<meta property="twitter:title" content="R-Vogg-Blog: The big picture: Fuzzy string matching"/>
+<meta property="twitter:description" content="An overview over fuzzy string matching problems and solutions. After reading this article you will know in which situations fuzzy string matching can be helpful, and know variations like fuzzy deduplication and record linkage."/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories"]}},"value":[{"type":"character","attributes":{},"value":["Fuzzy matching example with company names"]},{"type":"character","attributes":{},"value":["Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald's Company."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["10-09-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["img/puzzle.png"]},{"type":"character","attributes":{},"value":["text data","fuzzy matching","stringdist"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","categories"]}},"value":[{"type":"character","attributes":{},"value":["The big picture: Fuzzy string matching"]},{"type":"character","attributes":{},"value":["An overview over fuzzy string matching problems and solutions. After reading this article you will know in which situations fuzzy string matching can be helpful, and know variations like fuzzy deduplication and record linkage."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["03-18-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["img/fuzzy.png"]},{"type":"character","attributes":{},"value":["text data","fuzzy matching","stringdist"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/S&P500.csv","fuzzy-merging_files/anchor-4.2.2/anchor.min.js","fuzzy-merging_files/bowser-1.9.3/bowser.min.js","fuzzy-merging_files/distill-2.2.21/template.v2.js","fuzzy-merging_files/jquery-1.11.3/jquery.min.js","fuzzy-merging_files/webcomponents-2.0.0/webcomponents.js","img/puzzle.png"]}
+  {"type":"character","attributes":{},"value":["fuzzy-string-matching_files/anchor-4.2.2/anchor.min.js","fuzzy-string-matching_files/bowser-1.9.3/bowser.min.js","fuzzy-string-matching_files/distill-2.2.21/template.v2.js","fuzzy-string-matching_files/figure-html5/unnamed-chunk-3-1.png","fuzzy-string-matching_files/jquery-1.11.3/jquery.min.js","fuzzy-string-matching_files/webcomponents-2.0.0/webcomponents.js","img/Chopped.png","img/deschutes.png","img/fuzzy.png","img/list.JPG"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2327,7 +2327,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Fuzzy matching example with company names","description":"Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald's Company.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-10-09T00:00:00.000+02:00","citationText":"Vogg, 2020"}
+{"title":"The big picture: Fuzzy string matching","description":"An overview over fuzzy string matching problems and solutions. After reading this article you will know in which situations fuzzy string matching can be helpful, and know variations like fuzzy deduplication and record linkage.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-18T00:00:00.000+01:00","citationText":"Vogg, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2352,7 +2352,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Fuzzy matching example with company names</h1>
+<h1>The big picture: Fuzzy string matching</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
   <a href="../../index.html#category:text_data" class="dt-tag">text data</a>
@@ -2360,13 +2360,13 @@ d-appendix d-footnote-list a.footnote-backlink {
   <a href="../../index.html#category:stringdist" class="dt-tag">stringdist</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald’s Company.</p></p>
+<p><p>An overview over fuzzy string matching problems and solutions. After reading this article you will know in which situations fuzzy string matching can be helpful, and know variations like fuzzy deduplication and record linkage.</p></p>
 </div>
 
 <div class="d-byline">
   Richard Vogg <a href="https://github.com/richardvogg" class="uri">https://github.com/richardvogg</a> 
   
-<br/>10-09-2020
+<br/>03-18-2021
 </div>
 
 <div class="d-article">
@@ -2374,354 +2374,126 @@ d-appendix d-footnote-list a.footnote-backlink {
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#packages">Packages</a></li>
-<li><a href="#the-data">The data</a></li>
-<li><a href="#main-process">Main process</a></li>
-<li><a href="#results">Results</a></li>
-<li><a href="#next-steps-and-other-resources">Next Steps and other resources</a></li>
+<li><a href="#structuring-thoughts">Structuring thoughts</a></li>
+<li><a href="#when-to-use-fuzzy-string-matching">When to use fuzzy string matching</a></li>
+<li><a href="#imperfect-strings---how-to-find-the-perfect-version">Imperfect strings - how to find the “perfect” version</a></li>
+<li><a href="#cleaning">Cleaning</a></li>
+<li><a href="#the-string-comparison---the-core-of-fuzzy-string-matching">The string comparison - the core of fuzzy string matching</a></li>
+<li><a href="#check-results---false-positives-and-false-negatives">Check results - false positives and false negatives</a></li>
+<li><a href="#the-ignore-list">The ignore list</a></li>
+<li><a href="#one-column-matching-vs-several-column-matching">One column matching vs several column matching</a></li>
+<li><a href="#questions-to-ask-before-starting">Questions to ask before starting</a></li>
 </ul>
 </nav>
 </div>
-<h3 id="packages">Packages</h3>
-<p>The only packages you need are <code>dplyr</code> and <code>stringdist</code>.</p>
+<h2 id="structuring-thoughts">Structuring thoughts</h2>
+<p>I started drawing a map with <a href="https://app.diagrams.net/">draw.io</a> to show the structure of the ideas I want to write about. I want to keep this post on a conceptual level with examples. I plan to write about useful packages and how to use R to work with fuzzy string matching in future posts.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/markvanderloo/stringdist'>stringdist</a></span><span class='op'>)</span>
-</code></pre>
+<p><img src="img/fuzzy.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-</div>
-<h3 id="the-data">The data</h3>
-<p>This method requires as input two lists. To distinguish them, we will call the one that contains the handtyped input as the “dirty list”. The reference list will be called the “clean list”. In this blogpost I will create the dirty list by hand with a few made-up examples of alternative company names.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='va'>names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Haliburton"</span>, <span class='st'>"ExxonMobile"</span>,<span class='st'>"ABBOTT LABORATORIES"</span>,<span class='st'>"Marrriott"</span>,<span class='st'>"Self"</span>,<span class='st'>"Activision Blizzard"</span>,
-           <span class='st'>"Quest dianotstics"</span>,<span class='st'>"Unemployed"</span>,<span class='st'>"other company"</span>,<span class='st'>"burger king"</span>,
-           <span class='st'>"MARRIOT"</span>,<span class='st'>"wall mart"</span>, <span class='st'>"Illumin"</span>, <span class='st'>"3M"</span>,<span class='st'>"NORTHROP TRUMMON"</span>,<span class='st'>"MCCormicks"</span>,<span class='st'>"MARSH MCLEANNON"</span>,
-           <span class='st'>"FLO SERVE"</span>, <span class='st'>"Kansas City Southern Fed."</span>,<span class='st'>"MCDONALD'S"</span>,<span class='st'>"F5 Networks"</span>,
-           <span class='st'>"McDonalds"</span>,<span class='st'>"MacKindsey"</span>,<span class='st'>"Oracle"</span>,<span class='st'>"Self-employed"</span>,<span class='st'>"None"</span>,<span class='st'>"Retired"</span>,
-           <span class='st'>"f5 networks"</span>,<span class='st'>"Harley Davidson"</span>,<span class='st'>"Harly Davidson"</span>,<span class='st'>"HARLEY DAVIDSEN"</span>,<span class='st'>"DRHorton"</span>,<span class='st'>"D.R. Horten"</span>,
-           <span class='st'>"cincinati fin"</span>,<span class='st'>"cincinnatti financials"</span>,<span class='st'>"cincinnati financial"</span>,<span class='st'>"CINCINATTI FINANCE"</span>,
-           <span class='st'>"Mohaws Industry"</span>,<span class='st'>"Mowahk Industries"</span>,<span class='st'>"Mohawk Ind"</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>64</span><span class='op'>)</span>
-<span class='va'>dirty_list</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>names</span>,<span class='fl'>50000</span>,replace<span class='op'>=</span><span class='cn'>T</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">dirty_list</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Haliburton</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ExxonMobile</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ABBOTT LABORATORIES</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Marrriott</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Self</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Activision Blizzard</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Quest dianotstics</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Unemployed</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">other company</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">burger king</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>As a clean list we will use the list of S&amp;P500 companies. This can be downloaded or scraped from the internet.</p>
-<div class="layout-chunk" data-layout="l-body">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">clean_list</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">3M Company</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Abbott Laboratories</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AbbVie Inc.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ABIOMED Inc</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Accenture plc</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Activision Blizzard</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Adobe Systems Inc</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Advanced Micro Devices Inc</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Advance Auto Parts</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AES Corp</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Before we start, we will pre-process both lists, remove some common words and transform everything to lower case. If you prefer, you can also use the {stringr} package for this. One comment from my experience: Usually, the construction of the common words to remove is an iterative approach: You would check your final result and see which words are still causing problems. Then you add them to the cleaner function and run the process again until you are satisfied with the results.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='va'>cleaner</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>vec</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='va'>wordremove</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>" and "</span>,<span class='st'>" comp "</span>,<span class='st'>" company"</span>,<span class='st'>"companies"</span>,<span class='st'>" corp "</span>,<span class='st'>"corporation"</span>,<span class='st'>" inc "</span>,<span class='st'>"[.]com"</span><span class='op'>)</span>
-  <span class='va'>output</span> <span class='op'>&lt;-</span> <span class='va'>vec</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>tolower</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-    <span class='op'>{</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>wordremove</span>,collapse<span class='op'>=</span><span class='st'>'|'</span><span class='op'>)</span>,<span class='st'>""</span>,<span class='va'>.</span><span class='op'>)</span><span class='op'>}</span> <span class='op'>%&gt;%</span>
-    <span class='op'>{</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"[[:punct:]]"</span>,<span class='st'>""</span>,<span class='va'>.</span><span class='op'>)</span><span class='op'>}</span> <span class='op'>%&gt;%</span>
-    <span class='op'>{</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"[[:blank:]]"</span>,<span class='st'>""</span>,<span class='va'>.</span><span class='op'>)</span><span class='op'>}</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>output</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='va'>control</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>original<span class='op'>=</span><span class='va'>dirty_list</span><span class='op'>)</span>
-
-<span class='va'>clean_list_cl</span> <span class='op'>&lt;-</span> <span class='fu'>cleaner</span><span class='op'>(</span><span class='va'>clean_list</span><span class='op'>)</span>
-<span class='va'>dirty_list_cl</span> <span class='op'>&lt;-</span> <span class='fu'>cleaner</span><span class='op'>(</span><span class='va'>dirty_list</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<h3 id="main-process">Main process</h3>
-<p>We calculate a matrix of string distances. The {stringdist} package has a lot of different methods implemented which can be checked <a href="https://www.rdocumentation.org/packages/stringdist/versions/0.9.6/topics/stringdist">here</a>. After comparing some of the methods I decided to go with the Jaro-Winkler distance as it yields higher similarity for words which start with the same letters.</p>
-<h4 id="example">Example</h4>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='fu'><a href='https://rdrr.io/pkg/stringdist/man/stringdist.html'>stringdistmatrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"other"</span>,<span class='st'>"words"</span>,<span class='st'>"otherexample"</span>,<span class='st'>"exapmle"</span><span class='op'>)</span>,
-                 <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"example"</span>,<span class='st'>"other example"</span>,<span class='st'>"word"</span><span class='op'>)</span>,
-                 method<span class='op'>=</span><span class='st'>'jw'</span>,p<span class='op'>=</span><span class='fl'>0.1</span>,useNames<span class='op'>=</span><span class='st'>"strings"</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>                example other example      word
-other        1.00000000    0.12307692 0.5166667
-words        1.00000000    0.48205128 0.0400000
-otherexample 0.28174603    0.01538462 0.4444444
-exapmle      0.03333333    0.55799756 1.0000000</code></pre>
-</div>
-<p>Each row of the matrix of string distances is one string from the dirty list. We find the minimum in each row, which is equivalent to the best fit from the clean list.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='va'>distmatrix</span> <span class='op'>&lt;-</span> <span class='fu'>stringdist</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/stringdist/man/stringdist.html'>stringdistmatrix</a></span><span class='op'>(</span><span class='va'>dirty_list_cl</span>,<span class='va'>clean_list_cl</span>,method<span class='op'>=</span><span class='st'>'jw'</span>,p<span class='op'>=</span><span class='fl'>0.1</span><span class='op'>)</span>
-<span class='va'>best_fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>distmatrix</span>,<span class='fl'>1</span>,<span class='va'>which.min</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>similarity</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>distmatrix</span>,<span class='fl'>1</span>,<span class='va'>min</span><span class='op'>)</span>
-
-<span class='va'>control</span><span class='op'>$</span><span class='va'>best_fit</span> <span class='op'>&lt;-</span> <span class='va'>clean_list</span><span class='op'>[</span><span class='va'>best_fit</span><span class='op'>]</span>
-<span class='va'>control</span><span class='op'>$</span><span class='va'>distance</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>similarity</span>,<span class='fl'>3</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">original</th>
-<th style="text-align: left;">best_fit</th>
-<th style="text-align: right;">distance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Marrriott</td>
-<td style="text-align: left;">Marriott Int’l.</td>
-<td style="text-align: right;">0.089</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Retired</td>
-<td style="text-align: left;">ResMed</td>
-<td style="text-align: right;">0.203</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Self</td>
-<td style="text-align: left;">Sealed Air</td>
-<td style="text-align: right;">0.244</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Haliburton</td>
-<td style="text-align: left;">Halliburton Co.</td>
-<td style="text-align: right;">0.054</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">F5 Networks</td>
-<td style="text-align: left;">F5 Networks</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Marrriott</td>
-<td style="text-align: left;">Marriott Int’l.</td>
-<td style="text-align: right;">0.089</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Illumin</td>
-<td style="text-align: left;">Illumina Inc</td>
-<td style="text-align: right;">0.073</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mohaws Industry</td>
-<td style="text-align: left;">Mohawk Industries</td>
-<td style="text-align: right;">0.113</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">MARSH MCLEANNON</td>
-<td style="text-align: left;">Marsh &amp; McLennan</td>
-<td style="text-align: right;">0.030</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Self-employed</td>
-<td style="text-align: left;">Teleflex</td>
-<td style="text-align: right;">0.306</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="results">Results</h3>
-<p>When we order the control dataframe by similarity we can find a suitable cutoff value (in this example 0.12) to separate real matches from false positives. This cutoff value depends on the application.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class='va'>control</span><span class='op'>$</span><span class='va'>result</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>control</span><span class='op'>$</span><span class='va'>distance</span><span class='op'>&lt;=</span><span class='fl'>0.12</span>,<span class='va'>control</span><span class='op'>$</span><span class='va'>best_fit</span>,<span class='cn'>NA</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">original</th>
-<th style="text-align: left;">best_fit</th>
-<th style="text-align: right;">distance</th>
-<th style="text-align: left;">result</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Marrriott</td>
-<td style="text-align: left;">Marriott Int’l.</td>
-<td style="text-align: right;">0.089</td>
-<td style="text-align: left;">Marriott Int’l.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Retired</td>
-<td style="text-align: left;">ResMed</td>
-<td style="text-align: right;">0.203</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Self</td>
-<td style="text-align: left;">Sealed Air</td>
-<td style="text-align: right;">0.244</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Haliburton</td>
-<td style="text-align: left;">Halliburton Co.</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: left;">Halliburton Co.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">F5 Networks</td>
-<td style="text-align: left;">F5 Networks</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: left;">F5 Networks</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Illumin</td>
-<td style="text-align: left;">Illumina Inc</td>
-<td style="text-align: right;">0.073</td>
-<td style="text-align: left;">Illumina Inc</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mohaws Industry</td>
-<td style="text-align: left;">Mohawk Industries</td>
-<td style="text-align: right;">0.113</td>
-<td style="text-align: left;">Mohawk Industries</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MARSH MCLEANNON</td>
-<td style="text-align: left;">Marsh &amp; McLennan</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: left;">Marsh &amp; McLennan</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Self-employed</td>
-<td style="text-align: left;">Teleflex</td>
-<td style="text-align: right;">0.306</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mohawk Ind</td>
-<td style="text-align: left;">Mohawk Industries</td>
-<td style="text-align: right;">0.088</td>
-<td style="text-align: left;">Mohawk Industries</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mowahk Industries</td>
-<td style="text-align: left;">Mohawk Industries</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: left;">Mohawk Industries</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Harly Davidson</td>
-<td style="text-align: left;">Harley-Davidson</td>
-<td style="text-align: right;">0.014</td>
-<td style="text-align: left;">Harley-Davidson</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">f5 networks</td>
-<td style="text-align: left;">F5 Networks</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: left;">F5 Networks</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">3M</td>
-<td style="text-align: left;">3M Company</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: left;">3M Company</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Oracle</td>
-<td style="text-align: left;">Oracle Corp.</td>
-<td style="text-align: right;">0.080</td>
-<td style="text-align: left;">Oracle Corp.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="next-steps-and-other-resources">Next Steps and other resources</h3>
+<p>This map will serve as an outline for the post.</p>
+<h2 id="when-to-use-fuzzy-string-matching">When to use fuzzy string matching</h2>
+<p>Data Analysts and Data Scientists know how to work with different types of variables. Knowing if a variable is numeric, a (categorical) factor or a boolean is important for preprocessing, visualization and modeling. Fuzzy string matching is helpful when working with text input, specifically imperfect text input.</p>
+<p>In general, I would distiguish two different types of imperfection in the text variable.</p>
 <ul>
-<li>Improve performance for large datasets. On <a href="https://github.com/richardvogg/LatinR-2019-Fuzzy-merging/blob/master/Fuzzy.R">Github</a>, I have an implementation of this method with the parallel package which improves performance slightly. But there is definitely more room for improvement.</li>
-<li>There is an interesting video about performance improvement by not calculating the full matrix by Seth Verrinder and Kyle Putnam <a href="https://www.youtube.com/watch?v=s0YSKiFdj8Q">here</a>.</li>
-<li>Andrés Cruz created an Add-in which helps to fine-tune the final result, his slide from LatinR 2019 can be found <a href="https://arcruz0.github.io/extra/latinr2019/inexact_slides.html#1">here</a>.</li>
-<li>Check out David Robinson’s fuzzyjoin package <a href="https://github.com/dgrtwo/fuzzyjoin">here</a>.</li>
+<li>The data was typed in manually by a human (or many humans)
+<ul>
+<li>responses from forms or surveys</li>
+<li>data that was typed by hand into an Excel/text file</li>
+</ul></li>
+<li>The data comes from different sources or has several possible alternative names
+<ul>
+<li>country names: United States vs United States of America</li>
+<li>addresses: Main Street 123 vs 123 Main Street</li>
+<li>product descriptions: iPhone vs Apple iPhone</li>
+</ul></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>The problem with imperfection in text data is that analysis is not easily possible:</p>
+<ul>
+<li>If we are dealing with handtyped company names, we do not even receive a reliable answer when asking: “How many records do we have from company xyz?” (check this <a href="https://r-vogg-blog.netlify.app/posts/2020-10-09-fuzzy-merging/">blogpost</a>)</li>
+<li>We will see unfair rankings, because some records are not counted, like in this TidyTuesday example.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="img/Chopped.png" width="500" style="display: block; margin: auto;" /></p>
+</div>
+<ul>
+<li>We will have problems joining to other data sources, as described in this <a href="https://r-vogg-blog.netlify.app/posts/2021-01-31-tracking-covid-in-germany/">blogpost</a>.</li>
+</ul>
+<h2 id="imperfect-strings---how-to-find-the-perfect-version">Imperfect strings - how to find the “perfect” version</h2>
+<p>When we have a list of imperfect strings, there are two possibilities how to match them to their “perfect” counterparts.</p>
+<ul>
+<li>Either we have a list of correct names. This could be a dictionary, a list of official company names (like the S&amp;P 500), or a file which contains further information for every country.</li>
+<li>Or we want the data to find the correct names by itself. In this case we would need some criterion which names are more likely to be “correct” (e.g. word frequency). This is often called fuzzy deduplication.</li>
+</ul>
+<h2 id="cleaning">Cleaning</h2>
+<p>Many differences can already be removed by cleaning the data. This could be:</p>
+<ul>
+<li>converting all strings to lower case letters.</li>
+<li>removing leading and trailing white spaces - or maybe even removing all whitespaces.</li>
+<li>removing punctuation and control characters (%,&amp;,$,-)</li>
+<li>removing some words (more about this in the section “The ignore list”)</li>
+<li>turning extended characters to their basic form (e.g. ö to o, ñ to n).</li>
+<li>using string fingerprints (described for example <a href="https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth">here</a>).</li>
+</ul>
+<h2 id="the-string-comparison---the-core-of-fuzzy-string-matching">The string comparison - the core of fuzzy string matching</h2>
+<p>After all the initial steps, it comes down to the core of the matching algorithm. We take two words (either one from the imperfect list and one from the perfect list, or we compare words from the imperfect list in a pairwise manner) and compare them.</p>
+<p>We want to put a numerical value to the similarity of two strings (or alternatively to the distance, which is the opposite).</p>
+<p>Intuitively, we “know” or “feel” that the strings baseball and basketball are rather similar and that breakfast and hello are not very similar.</p>
+<p>What is the reasoning behind this feeling?</p>
+<ul>
+<li>How many letters do the words share?</li>
+<li>Are the letters they share in a similar position in the string?</li>
+<li>Are the strings approximately of the same length?</li>
+<li>Are parts of the words the same but in different order? (homework vs work-from-home)</li>
+</ul>
+<p>There are many algorithms which are used to measure similarity between strings. As always, too many choices can be intimidating, so I will name only two methods which I find useful for many applications.</p>
+<ul>
+<li><p>Jaro-Winkler: takes into account the length of the strings, the number of shared letters, the number of transpositions of shared letters (e.g. example and exampel would be 1 transposition), and the number of matching letters among the first four letters. Jaro-Winkler is strong in cases when the imperfections happen mainly at the end of the string, for example through additional words (Company ABC International vs Company ABC Int).</p></li>
+<li><p>Levenshtein distance: also known as Edit distance. This is the most famous and most used string distance. It counts, how many insertions, deletions and replacements of letters are needed to get from one string to the other.</p></li>
+</ul>
+<p>If you are interested in more details or more string distance measures, I recommend this <a href="https://www.joyofdata.de/blog/comparison-of-string-distance-algorithms/">blogpost</a>.</p>
+<p>Which string distance measure works best depends highly on the type of imperfection in the data. It would even be possible to calculate two distance measures and use them in combination to find a suitable threshold.</p>
+<h2 id="check-results---false-positives-and-false-negatives">Check results - false positives and false negatives</h2>
+<p>After making a lot of string-by-string comparisons, the fuzzy string matching process is almost over. For each imperfect string we will have a closest match or several closest matches and can review the process.</p>
+<p>To review the results I usually create a small data frame, containing the original string, the best fit, and the distance between both. In this data frame, I order the results by the distance.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="img/list.JPG" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<p>By scrolling through the complete ordered list, we will see many cases with small distance, i.e. almost perfect matches. In some applications, we will see that there are matches which should not be matches (false positives) - i.e. McDonnell and McDonald’s. Those strings are very similar but should not be matches.</p>
+<p>One chance to avoid false positives is to set a threshold, i.e. we would only consider a best-fit to be a match if it is similar enough. And this similarity threshold could be determined by eye (“at which level of similarity does the first false positive occur?”).</p>
+<p>Doing this, we will create a second problem: false negatives. By setting a very low threshold, we would potentially miss a lot of actual matches.</p>
+<p>This is a though challenge. We have to find a good compromise, between not being too strict and losing a lot of opportunities for matches and being too relaxed and replacing many strings by matches which are actually wrong. The decision depends a lot on the cost of false positives and false negatives.</p>
+<h2 id="the-ignore-list">The ignore list</h2>
+<p>In many applications you will not find a satisfying threshold from the beginning. You will see that there are some early false positives, but also many actual matches with lower similarity.</p>
+<p>One possibility to improve the result is to ignore some words which do not actually help to identify matches, and rather disturb the process of string similarity calculation.</p>
+<p>There is no golden rule about which words to ignore, but some guidelines:</p>
+<ul>
+<li>Ignore words that are applicable for almost all strings in the domain. If you are dealing with company names ignore “Company”, “Corporation”, “International”, “Ltd”.</li>
+<li>Ignore abbreviations of these words as well: “Comp”, “Corp”, “Int”.</li>
+<li>If you work with a list of “perfect” strings, you have to ignore the words in both lists. I usually include the words to ignore in the cleaning process.</li>
+<li>Creating the ignore list is often an iterative process. You run the matching process, and review the result. Then you notice how you can prevent many false negatives from happening because they contain certain types of words. You add those words to the ignore list and start again with the matching process.</li>
+</ul>
+<h2 id="one-column-matching-vs-several-column-matching">One column matching vs several column matching</h2>
+<p>So far, we have been looking at matching one variable. There are many applications where it is necessary to compare several columns.</p>
+<p>Record Linkage is a subtype of fuzzy string matching where you want to check the identity of a person by information coming from different systems. Banks have to make sure that their customers are who they claim to be, and invest a lot of money and efforts into KYC (Know your customer) systems.</p>
+<p>However, just checking the name will give tons of false positives (there are so many people who share the same name - i.e. that would be perfect matches). When you compare name, address and phone number, you can expect better results. Additional to the points we mentioned about cleaning and fuzzy matching, you would also have to put weights to different situations - what if name and address coincide and the phone number is missing in one source? What if the name is slightly similar and the address is the same?</p>
+<p>As before, there is some manual checking necessary to create a good fuzzy string matching system.</p>
+<h2 id="questions-to-ask-before-starting">Questions to ask before starting</h2>
+<ul>
+<li>Do I really need fuzzy matching? If your dataset only contains 10 values, it is much faster to manually find the matches. As with all automation tasks, you have to compare the time investment for developing the automation with the time savings.</li>
+<li>What is the source of imperfection in the strings? This influences:
+<ul>
+<li>How much cleaning is necessary before starting?</li>
+<li>Which stringdist algorithm is the best to find the correct matches?</li>
+</ul></li>
+<li>What is the “cost” of false positives and false negatives? This influences:
+<ul>
+<li>How much time do I have to invest in creating the ignore list.</li>
+</ul></li>
+<li>Do I want to match one column or several columns?</li>
+<li>Do I have a list of “correct” strings or do I want the data to find its “correct” candidates itself?</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

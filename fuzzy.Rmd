@@ -3,6 +3,7 @@ title: "Fuzzy string matching"
 site: distill::distill_website
 listing:
   posts:
+    - 2021-03-18-fuzzy-string-matching
     - 2020-10-09-fuzzy-merging
     - 2021-01-31-tracking-covid-in-germany
 ---

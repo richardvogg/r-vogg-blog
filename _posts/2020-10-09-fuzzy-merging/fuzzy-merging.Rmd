@@ -1,5 +1,5 @@
 ---
-title: "Fuzzy matching"
+title: "Fuzzy matching example with company names"
 description: |
   Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald's Company.
 author:
