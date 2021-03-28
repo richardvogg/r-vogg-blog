@@ -86,629 +86,39 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>R-Vogg-Blog: Fuzzy string matching</title>
+  <title>Fuzzy matching packages</title>
+  
+  <meta property="description" itemprop="description" content="Which packages help us with fuzzy matching? We are going to explore stringdist, tidystringdist, fuzzyjoin, inexact, refinr, fuzzywuzzyR, and lingmatch."/>
   
   
-  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-03-18"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-03-18"/>
+  <meta name="article:author" content="Richard Vogg"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="R-Vogg-Blog: Fuzzy string matching"/>
+  <meta property="og:title" content="Fuzzy matching packages"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Which packages help us with fuzzy matching? We are going to explore stringdist, tidystringdist, fuzzyjoin, inexact, refinr, fuzzywuzzyR, and lingmatch."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="R-Vogg-Blog"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="R-Vogg-Blog: Fuzzy string matching"/>
+  <meta property="twitter:title" content="Fuzzy matching packages"/>
+  <meta property="twitter:description" content="Which packages help us with fuzzy matching? We are going to explore stringdist, tidystringdist, fuzzyjoin, inexact, refinr, fuzzywuzzyR, and lingmatch."/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Fuzzy string matching"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2021-03-18-fuzzy-string-matching","2021-03-27-fuzzy-matching-packages","2020-10-09-fuzzy-merging","2021-01-31-tracking-covid-in-germany"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Fuzzy matching packages"]},{"type":"character","attributes":{},"value":["Which packages help us with fuzzy matching? We are going to explore stringdist, tidystringdist, fuzzyjoin, inexact, refinr, fuzzywuzzyR, and lingmatch.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["03-18-2021"]},{"type":"character","attributes":{},"value":["img/harry-potter.png"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["text data","fuzzy matching","stringdist"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["fuzzy-matching-packages_files/anchor-4.2.2/anchor.min.js","fuzzy-matching-packages_files/bowser-1.9.3/bowser.min.js","fuzzy-matching-packages_files/distill-2.2.21/template.v2.js","fuzzy-matching-packages_files/header-attrs-2.3/header-attrs.js","fuzzy-matching-packages_files/jquery-1.11.3/jquery.min.js","fuzzy-matching-packages_files/webcomponents-2.0.0/webcomponents.js","img/harry-potter.png","img/inexact.gif"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-  
-  <script type="application/javascript">
-  
-    window.headroom_prevent_pin = false;
-  
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-  
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-  
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-  
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-  
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-  
-  <style type="text/css">
-  
-  /* Theme (user-documented overrideables for nav appearance) */
-  
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-  
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  .distill-site-nav a:hover {
-    color: white;
-  }
-  
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-  
-  .distill-site-header {
-  
-  }
-  
-  .distill-site-footer {
-  
-  }
-  
-  
-  /* Site Header */
-  
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-  
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-  
-  
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-  
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-  
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-  
-  .distill-site-header .logo {
-    padding: 0;
-  }
-  
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-  
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-  
-  
-  
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-  
-  
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-  
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-  
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-  
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-  
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-dropdown-active {
-    display: block;
-  }
-  
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-  
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-  
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-  
-  /* Site Footer */
-  
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-  
-  /* Headroom */
-  
-  d-title {
-    padding-top: 6rem;
-  }
-  
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-  
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-  
-  .headroom--unpinned {
-    top: -100px;
-  }
-  
-  .headroom--pinned {
-    top: 0;
-  }
-  
-  </style>
-  
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-  
-  <script type="application/javascript">
-  
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-  
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-  
-  function createIndex() {
-    var options = {
-      keys: [
-        "title",
-        "categories",
-        "description",
-        "contents"
-      ]
-    };
-    return new window.Fuse([],options);
-  }
-  
-  function createFuseIndex() {
-  
-    // create fuse index
-    var options = { keys: ["title", "description", "contents"] };
-    var fuse = new window.Fuse([], options);
-  
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-  
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-  
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-  
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-  
-    createFuseIndex()
-      .then(function(fuse) {
-  
-        // make search box visible
-        searchEl.classList.remove('hidden');
-  
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-              keys: [
-                { name: 'title', weight: 20 },
-                { name: 'categories', weight: 15 },
-                { name: 'description', weight: 10 },
-                { name: 'contents', weight: 5 },
-              ],
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-              .filter(function(item) { return !!item.description; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description}
-                  </div>
-                  <div class="search-item-preview">
-                    <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  
-  });
-  
-  </script>
-  
-  <style type="text/css">
-  
-  /* Algolioa Autocomplete */
-  
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-  
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-  
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-  
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-  
-  </style>
-  
-  
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
   
@@ -1993,624 +1403,434 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   
   </script>
   
-  <style type="text/css">
-  /* base variables */
-  
-  /* Edit the CSS properties in this file to create a custom
-     Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
-     you may set its value to: unset
-     All rows must end with a semi-colon.                      */
-  
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-  
-  
-  
-  html {
-    /*-- Main font sizes --*/
-    --title-size:      50px;
-    --body-size:       1.06rem;
-    --code-size:       14px;
-    --aside-size:      12px;
-    --fig-cap-size:    13px;
-    /*-- Main font colors --*/
-    --title-color:     #000000;
-    --header-color:    rgba(0, 0, 0, 0.8);
-    --body-color:      rgba(0, 0, 0, 0.8);
-    --aside-color:     rgba(0, 0, 0, 0.6);
-    --fig-cap-color:   rgba(0, 0, 0, 0.6);
-    /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    sans-serif;
-    --mono-font:       monospace;
-    --body-font:       sans-serif;
-  }
-  
-  /*-- ARTICLE METADATA --*/
-  .d-byline {
-    --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
-    --body-size:       0.8rem;
-    --body-color:      rgba(0, 0, 0, 0.8);
-  }
-  
-  /*-- ARTICLE TABLE OF CONTENTS --*/
-  .d-contents {
-    --heading-size:    18px;
-    --contents-size:   13px;
-  }
-  
-  /*-- ARTICLE APPENDIX --*/
-  d-appendix {
-    --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
-    --text-size:       0.8em;
-    --text-color:      rgba(0, 0, 0, 0.5);
-  }
-  
-  /*-- WEBSITE HEADER + FOOTER --*/
-  /* These properties only apply to Distill sites and blogs  */
-  
-  .distill-site-header {
-    --title-size:       18px;
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }
-  
-  .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }</style>
-  <style type="text/css">
-  /* base variables */
-  
-  /* Edit the CSS properties in this file to create a custom
-     Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
-     you may set its value to: unset
-     All rows must end with a semi-colon.                      */
-  
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-  @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville");
-  
-  
-  
-  
-  html {
-    /*-- Main font sizes --*/
-    --title-size:      30px;
-    --body-size:       1.06rem;
-    --code-size:       14px;
-    --aside-size:      12px;
-    --fig-cap-size:    13px;
-    /*-- Main font colors --*/
-    --title-color:     #000000;
-    --header-color:    rgba(0, 0, 0, 0.8);
-    --body-color:      rgba(0, 0, 0, 0.8);
-    --aside-color:     rgba(0, 0, 0, 0.6);
-    --fig-cap-color:   rgba(0, 0, 0, 0.6);
-    /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    'Libre Baskerville';
-    --mono-font:       monospace;
-    --body-font:       sans-serif;
-  }
-  
-  /*-- ARTICLE METADATA --*/
-  .d-byline {
-    --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
-    --body-size:       0.8rem;
-    --body-color:      rgba(0, 0, 0, 0.8);
-  }
-  
-  /*-- ARTICLE TABLE OF CONTENTS --*/
-  .d-contents {
-    --heading-size:    18px;
-    --contents-size:   13px;
-  }
-  
-  /*-- ARTICLE APPENDIX --*/
-  d-appendix {
-    --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
-    --text-size:       0.8em;
-    --text-color:      rgba(0, 0, 0, 0.5);
-  }
-  
-  /*-- WEBSITE HEADER + FOOTER --*/
-  /* These properties only apply to Distill sites and blogs  */
-  
-  .distill-site-header {
-    --title-size:       20px;
-    --text-color:       rgba(0, 0, 0, 0.8);
-    --text-size:        18px;
-    --hover-color:      black;
-    --bkgd-color:       #FF8C00;
-  }
-  
-  .title {
-    font-family: 'Libre Baskerville';
-  }
-  
-  .posts-list .description h2 {
-    font-family: 'Libre Baskerville';
-  }
-  
-  .nav-right > a {
-    font-family: 'Libre Baskerville';
-  }
-  
-  
-  d-article h1 {
-    font-size: 28px;
-  }
-  
-  d-article h2 {
-    font-size: 24px;
-  }
-  
-  
-  .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }</style>
-  <style type="text/css">
-  /* base style */
-  
-  /* FONT FAMILIES */
-  
-  :root {
-    --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-    --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-  }
-  
-  body {
-    font-family: var(--body-font), var(--body-default);
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font), var(--heading-default);
-  }
-  
-  d-article div.sourceCode code,
-  d-article pre code {
-  	font-family: var(--mono-font), var(--mono-default);
-  }
-  
-  
-  /*-- TITLE --*/
-  d-title h1,
-  .posts-list > h1 {
-    color: var(--title-color, black);
-  }
-  
-  d-title h1 {
-    font-size: var(--title-size, 50px);
-  }
-  
-  /*-- HEADERS --*/
-  d-article h1,
-  d-article h2,
-  d-article h3,
-  d-article h4,
-  d-article h5,
-  d-article h6 {
-    color: var(--header-color, rgba(0, 0, 0, 0.8));
-  }
-  
-  /*-- BODY --*/
-  /* only text inside of <p> tags */
-  d-article > p {
-    color: var(--body-color, rgba(0, 0, 0, 0.8));
-    font-size: var(--body-size, 1.06rem);
-  }
-  
-  /*-- CODE --*/
-  d-article div.sourceCode code,
-  d-article pre code {
-  	font-size: var(--code-size, 14px);
-  }
-  
-  /*-- ASIDE --*/
-  d-article aside {
-  	font-size: var(--aside-size, 12px);
-  	color: var(--aside-color, rgba(0, 0, 0, 0.6));
-  }
-  
-  /*-- FIGURE CAPTIONS --*/
-  figure .caption,
-  figure figcaption,
-  .figure .caption {
-  	font-size: var(--fig-cap-size, 13px);
-  	color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
-  }
-  
-  /*-- METADATA --*/
-  d-byline h3 {
-  	font-size: var(--heading-size, 0.6rem);
-  	color: var(--heading-color, rgba(0, 0, 0, 0.5));
-  }
-  
-  d-byline {
-  	font-size: var(--body-size, 0.8rem);
-  	color: var(--body-color, rgba(0, 0, 0, 0.8));
-  }
-  
-  d-byline a,
-  d-article d-byline a {
-  	color: var(--body-color, rgba(0, 0, 0, 0.8));
-  }
-  
-  /*-- TABLE OF CONTENTS --*/
-  .d-contents nav h3 {
-  	font-size: var(--heading-size, 18px);
-  }
-  
-  .d-contents nav a {
-  	font-size: var(--contents-size, 13px);
-  }
-  
-  /*-- APPENDIX --*/
-  d-appendix h3 {
-    font-size: var(--heading-size, 15px);
-  	color: var(--heading-color, rgba(0, 0, 0, 0.65));
-  }
-  
-  d-appendix {
-    font-size: var(--text-size, 0.8em);
-  	color: var(--text-color, rgba(0, 0, 0, 0.5));
-  }
-  
-  d-appendix d-footnote-list a.footnote-backlink {
-  	color: var(--text-color, rgba(0, 0, 0, 0.5));
-  }
-  
-  /*-- WEBSITE HEADER + FOOTER --*/
-  .distill-site-header .title {
-  	font-size: var(--title-size, 18px);
-  }
-  
-  .distill-site-header {
-  	font-size: var(--text-size, 15px);
-  	color: var(--text-color, rgba(255, 255, 255, 0.8));
-  	background-color: var(--bkgd-color, #0F2E3D);
-  }
-  
-  .distill-site-header a:hover {
-  	color: var(--hover-color, white);
-  }
-  
-  .distill-site-footer {
-  	font-size: var(--text-size, 15px);
-  	color: var(--text-color, rgba(255, 255, 255, 0.8));
-  	background-color: var(--bkgd-color, #0F2E3D);
-  }
-  
-  .distill-site-footer a:hover {
-  	color: var(--hover-color, white);
-  }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="fuzzy-matching-packages_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="fuzzy-matching-packages_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="fuzzy-matching-packages_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="fuzzy-matching-packages_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="fuzzy-matching-packages_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Fuzzy string matching","authors":[]}
+{"title":"Fuzzy matching packages","description":"Which packages help us with fuzzy matching? We are going to explore stringdist, tidystringdist, fuzzyjoin, inexact, refinr, fuzzywuzzyR, and lingmatch.","authors":[{"author":"Richard Vogg","authorURL":"https://github.com/richardvogg","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-18T00:00:00.000+01:00","citationText":"Vogg, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">R-Vogg-Blog</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Welcome</a>
-<a href="composition.html">Data composition</a>
-<a href="fuzzy.html">Fuzzy string matching</a>
-<a href="spatial.html">Spatial data</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Fuzzy string matching">Fuzzy string matching</h1>
-<a href="posts/2021-03-18-fuzzy-string-matching/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["text data","fuzzy matching","stringdist"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 18, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Richard Vogg</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-03-18-fuzzy-string-matching/img/fuzzy.png"/>
-</div>
-<div class="description">
-<h2>The big picture: Fuzzy string matching</h2>
-<div class="dt-tags">
-<div class="dt-tag">text data</div>
-<div class="dt-tag">fuzzy matching</div>
-<div class="dt-tag">stringdist</div>
-</div>
-<p>An overview over fuzzy string matching problems and solutions. After reading this article you will know in which situations fuzzy string matching can be helpful, and know variations like fuzzy deduplication and record linkage.</p>
-</div>
-</a>
-<a href="posts/2021-03-27-fuzzy-matching-packages/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["text data","fuzzy matching","stringdist"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 18, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Richard Vogg</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-03-27-fuzzy-matching-packages/img/harry-potter.png"/>
-</div>
-<div class="description">
-<h2>Fuzzy matching packages</h2>
-<div class="dt-tags">
-<div class="dt-tag">text data</div>
-<div class="dt-tag">fuzzy matching</div>
-<div class="dt-tag">stringdist</div>
-</div>
-<p>Which packages help us with fuzzy matching? We are going to explore stringdist, tidystringdist, fuzzyjoin, inexact, refinr, fuzzywuzzyR, and lingmatch.</p>
-</div>
-</a>
-<a href="posts/2020-10-09-fuzzy-merging/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["text data","fuzzy matching","stringdist"]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 9, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Richard Vogg</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2020-10-09-fuzzy-merging/img/puzzle.png"/>
-</div>
-<div class="description">
-<h2>Fuzzy matching example with company names</h2>
-<div class="dt-tags">
-<div class="dt-tag">text data</div>
-<div class="dt-tag">fuzzy matching</div>
-<div class="dt-tag">stringdist</div>
-</div>
-<p>Whenever you have text data that was input manually by a human, there is a chance that it contains errors: Typos, abbreviations or different ways of writing can be challenges for your analysis. Fuzzy matching is a way to find inexact matches that mean the same thing like mcdonalds, McDonalds and McDonald's Company.</p>
-</div>
-</a>
-<a href="posts/2021-01-31-tracking-covid-in-germany/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["covid","germany","fuzzy matching","spatial"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 31, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Richard Vogg</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-01-31-tracking-covid-in-germany/img/covid.gif"/>
-</div>
-<div class="description">
-<h2>Tracking COVID in Germany</h2>
-<div class="dt-tags">
-<div class="dt-tag">covid</div>
-<div class="dt-tag">germany</div>
-<div class="dt-tag">fuzzy matching</div>
-<div class="dt-tag">spatial</div>
-</div>
-<p>Animations can help to show events over time. I found data from the RKI about daily COVID cases in Germany and want to describe the process of creating the animation. It involves fuzzy matching, as the names of the counties (Landkreise) are not identical in the RKI data and the shapefile I used.</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:articles">articles</a>
-<span class="category-count">(4)</span>
-</li>
-<li>
-<a href="#category:covid">covid</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:fuzzy_matching">fuzzy matching</a>
-<span class="category-count">(4)</span>
-</li>
-<li>
-<a href="#category:germany">germany</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:spatial">spatial</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:stringdist">stringdist</a>
-<span class="category-count">(3)</span>
-</li>
-<li>
-<a href="#category:text_data">text data</a>
-<span class="category-count">(3)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Fuzzy string matching</h1>
+<h1>Fuzzy matching packages</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">text data</div>
+<div class="dt=tag">fuzzy matching</div>
+<div class="dt=tag">stringdist</div>
+</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>Which packages help us with fuzzy matching? We are going to explore stringdist, tidystringdist, fuzzyjoin, inexact, refinr, fuzzywuzzyR, and lingmatch.</p></p>
 </div>
 
+<div class="d-byline">
+  Richard Vogg <a href="https://github.com/richardvogg" class="uri">https://github.com/richardvogg</a> 
+  
+<br/>03-18-2021
+</div>
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#the-data">The data</a></li>
+<li><a href="#stringdist">stringdist</a></li>
+<li><a href="#tidystringdist">tidystringdist</a></li>
+<li><a href="#fuzzyjoin">fuzzyjoin</a></li>
+<li><a href="#inexact">inexact</a></li>
+<li><a href="#refinr">refinr</a></li>
+<li><a href="#fuzzywuzzyr">fuzzywuzzyR</a></li>
+<li><a href="#lingmatch">lingmatch</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</nav>
+</div>
+<h2 id="intro">Intro</h2>
+<p>Before starting to write a package which helps with fuzzy matching I wanted to do a small research and explore the packages which are already out there.</p>
+<p>I am loading {dplyr} as it is always helpful when working with data.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="the-data">The data</h2>
+<p>It is very hard to come up with a realistic example which is perfect for all types of fuzzy matching algorithms. I will do a Harry Potter example and modify it along the way.</p>
+<p>Assume that we want to find all occurrences of Harry Potter and Voldemort. As a human it is easy to see them directly, but the computer would have some problems with these examples, due to different types of spelling and typos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>input</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"harry j potter"</span>, <span class='st'>"harrypotter"</span>, <span class='st'>"Voldemort"</span>, 
+           <span class='st'>"Harry POTTER"</span>, <span class='st'>"Harrry Potter"</span>, <span class='st'>"Ron Weasley"</span><span class='op'>)</span>
+
+<span class='va'>compare</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Harry Potter"</span>, <span class='st'>"Voldemort"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="stringdist">stringdist</h2>
+<p>The <a href="https://github.com/markvanderloo/stringdist">{stringdist}</a> package by Mark van der Loo is super useful for comparing strings. And as comparison of strings is the core of the fuzzy string matching process {stringdist} is maybe the most important package to look at.</p>
+<p>The package contains a function with the same name <code>stringdist</code> which calculates the distance between input and compare string. The most known method to calculate string distances is probably the Levenshtein distance which checks how many letters would have to be inserted, deleted or replaced to get from the input the the compare string.</p>
+<p>Here, we see the distance of all input strings to the first compare string “Harry Potter”. We get six values, because our input contained six strings.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/markvanderloo/stringdist'>stringdist</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/stringdist/man/stringdist.html'>stringdist</a></span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>compare</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, method <span class='op'>=</span> <span class='st'>'lv'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1]  4  3 10  5  1 11</code></pre>
+</div>
+<p>You can also use the string comparison method of your choice, e.g. Jaro-Winkler. To see the whole list of available methods use the <code>help</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'>#help(`stringdist-metrics`)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/stringdist/man/stringdist.html'>stringdist</a></span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>compare</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, 
+           method <span class='op'>=</span> <span class='st'>"jw"</span>, p <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.15079365 0.14393939 0.58333333 0.16666667 0.01538462 0.65909091</code></pre>
+</div>
+<p>We observe that the values are rather low if strings are similar, and higher if they are different.</p>
+<p>So far, we have only compared the input with one of the strings (namely “Harry Potter” the first one of the compare strings).</p>
+<p>If we would like to test all possible combinations, we can use <code>stringdistmatrix</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/pkg/stringdist/man/stringdist.html'>stringdistmatrix</a></span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>compare</span>, 
+                 method <span class='op'>=</span> <span class='st'>"cosine"</span>, useNames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>               Harry Potter Voldemort
+harry j potter   0.13277262 0.5076340
+harrypotter      0.12791840 0.4466284
+Voldemort        0.46064011 0.0000000
+Harry POTTER     0.38508131 0.8492443
+Harrry Potter    0.01023759 0.4777670
+Ron Weasley      0.62789580 0.5818790</code></pre>
+</div>
+<h2 id="tidystringdist">tidystringdist</h2>
+<p>If you are a fan of tidy data, you might want to have a look at Colin Fay’s <a href="https://github.com/ColinFay/tidystringdist">{tidystringdist}</a> which was built on top of {stringdist}. The <code>tidy_comb</code> function creates a dataframe with all comparisons and then <code>tidy_stringdist</code> calculates the distance measures.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>tidystringdist</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tidystringdist/man/tidy_comb.html'>tidy_comb</a></span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>compare</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 2
+  V1           V2            
+* &lt;chr&gt;        &lt;chr&gt;         
+1 Harry Potter harry j potter
+2 Voldemort    harrypotter   
+3 Harry Potter Voldemort     
+4 Voldemort    Harry POTTER  
+5 Harry Potter Harrry Potter 
+6 Voldemort    Ron Weasley   </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/pkg/tidystringdist/man/tidy_comb.html'>tidy_comb</a></span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>compare</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidystringdist/man/tidy_stringdist.html'>tidy_stringdist</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"jw"</span>, <span class='st'>"lv"</span>, <span class='st'>"cosine"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 5
+  V1           V2                 jw    lv cosine
+* &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1 Harry Potter harry j potter 0.151      4 0.133 
+2 Voldemort    harrypotter    0.576      9 0.447 
+3 Harry Potter Voldemort      0.583     10 0.461 
+4 Voldemort    Harry POTTER   0.602     12 0.849 
+5 Harry Potter Harrry Potter  0.0256     1 0.0102
+6 Voldemort    Ron Weasley    0.532      9 0.582 </code></pre>
+</div>
+<h2 id="fuzzyjoin">fuzzyjoin</h2>
+<p>David Robinson’s <a href="https://github.com/dgrtwo/fuzzyjoin">{fuzzyjoin}</a> package is useful for so many applications. As the name already says, we are looking at joins / merges of tables here. It is the fuzzy version of left join / inner join / full outer join etc.</p>
+<p>We will look at a small variation of our example to show how fuzzy join works. Assume that we have some extra information coming along with the compare vector, e.g. how often they use bad spells. We are working with the input, and want to add this information to our analysis. As a direct join is not possible (due to the different spellings), we can use the <code>stringdist_join</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/dgrtwo/fuzzyjoin'>fuzzyjoin</a></span><span class='op'>)</span>
+
+<span class='va'>df1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"harry j potter"</span>, <span class='st'>"harrypotter"</span>, <span class='st'>"Voldemort"</span>, 
+           <span class='st'>"Harry POTTER"</span>, <span class='st'>"Harrry Potter"</span>, <span class='st'>"Ron Weasley"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>df2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Harry Potter"</span>, <span class='st'>"Voldemort"</span><span class='op'>)</span>, 
+                  bad_spells_index <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.02</span>,<span class='fl'>0.87</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/fuzzyjoin/man/stringdist_join.html'>stringdist_join</a></span><span class='op'>(</span><span class='va'>df1</span>, <span class='va'>df2</span>, 
+                mode <span class='op'>=</span> <span class='st'>"inner"</span>,
+                by <span class='op'>=</span> <span class='st'>"name"</span>,
+                max_dist <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>          name.x       name.y bad_spells_index
+1 harry j potter Harry Potter             0.02
+2    harrypotter Harry Potter             0.02
+3      Voldemort    Voldemort             0.87
+4   Harry POTTER Harry Potter             0.02
+5  Harrry Potter Harry Potter             0.02</code></pre>
+</div>
+<p>Note that with larger datasets you will have to be careful with <code>max_dist</code>. It is the threshold of the maximal allowable string distance. If you select it too high, some names from the input will have several matches.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/pkg/fuzzyjoin/man/stringdist_join.html'>stringdist_join</a></span><span class='op'>(</span><span class='va'>df1</span>, <span class='va'>df2</span>,
+                mode <span class='op'>=</span> <span class='st'>"inner"</span>,
+                by <span class='op'>=</span> <span class='st'>"name"</span>,
+                max_dist <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>          name.x       name.y bad_spells_index
+1 harry j potter Harry Potter             0.02
+2    harrypotter Harry Potter             0.02
+3    harrypotter    Voldemort             0.87
+4      Voldemort Harry Potter             0.02
+5      Voldemort    Voldemort             0.87
+6   Harry POTTER Harry Potter             0.02
+7  Harrry Potter Harry Potter             0.02
+8    Ron Weasley    Voldemort             0.87</code></pre>
+</div>
+<p>And you can actually use any method from the {stringdist} package. This small paragraph is not enough to showcase the flexibility of {fuzzyjoin}. You can also do joins based on regular expressions, spatial locations and many more.</p>
+<h2 id="inexact">inexact</h2>
+<p>The RStudio addin {inexact} by Andrés Cruz helps to manually improve your fuzzy string matching process.</p>
+<p>It is still under development but you can install it from Github.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>remotes</span><span class='fu'>::</span><span class='fu'><a href='https://remotes.r-lib.org/reference/install_github.html'>install_github</a></span><span class='op'>(</span><span class='st'>"arcruz0/inexact"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>It helps if there are some matches which are hard to be found automatically by the program, but can be performed manually by us.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>input_strings</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Harry J. Potter"</span>,<span class='st'>"Voldemort"</span>,<span class='st'>"Lord Voldemort"</span>,<span class='st'>"Tom Riddle"</span><span class='op'>)</span>, 
+                    appearances <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span>,<span class='fl'>30</span>,<span class='fl'>20</span>,<span class='fl'>2</span><span class='op'>)</span>, stringsAsFactors <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span>
+
+
+<span class='va'>compare_strings</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Harry Potter"</span>,<span class='st'>"Voldemort"</span>,<span class='st'>"Ted Tonks"</span><span class='op'>)</span>, 
+                      bad_spells <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.05</span>,<span class='fl'>0.87</span>,<span class='fl'>0.03</span><span class='op'>)</span>, stringsAsFactors <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>You can now either open in from the Addins panel on top of your Rstudio window, or run:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>inexact</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/inexact/man/inexact_addin.html'>inexact_addin</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>This opens a window which helps to fix matches manually.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_graphics.html'>include_graphics</a></span><span class='op'>(</span><span class='st'>"img/inexact.gif"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="img/inexact.gif" width="70%" /></p>
+</div>
+<p>You can copy the code in the third stage of the addin to perform the join.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'># You added custom matches:</span>
+<span class='fu'>inexact</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/inexact/man/inexact_join.html'>inexact_join</a></span><span class='op'>(</span>
+  x  <span class='op'>=</span> <span class='va'>input_strings</span>,
+  y  <span class='op'>=</span> <span class='va'>compare_strings</span>,
+  by <span class='op'>=</span> <span class='st'>'name'</span>,
+  method <span class='op'>=</span> <span class='st'>'osa'</span>,
+  mode <span class='op'>=</span> <span class='st'>'left'</span>,
+  custom_match <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+   <span class='st'>'Tom Riddle'</span> <span class='op'>=</span> <span class='st'>'Voldemort'</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>              name appearances bad_spells
+1: Harry J. Potter          50       0.05
+2:       Voldemort          30       0.87
+3:  Lord Voldemort          20       0.87
+4:      Tom Riddle           2       0.87</code></pre>
+</div>
+<h2 id="refinr">refinr</h2>
+<p>The <a href="https://cran.r-project.org/web/packages/refinr/vignettes/refinr-vignette.html">{refinr}</a> package works with string fingerprints (very good explanation of the topic <a href="https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth">here</a>). There are different types of fingerprints, for example the 2-gram fingerprint of Harry is arharrry and the 1-gram fingerprint is ahrry.</p>
+<p>Remember that we had one example “harry j potter”, to get the same fingerprint, we will ignore the j. I like that the compare strings are called <code>dict</code>, as they serve as some sort of dictionary - the ultimate truth of spelling.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/ChrisMuir/refinr'>refinr</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/refinr/man/key_collision_merge.html'>key_collision_merge</a></span><span class='op'>(</span><span class='va'>input</span>, dict<span class='op'>=</span><span class='va'>compare</span>, ignore_strings <span class='op'>=</span> <span class='st'>"j"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Harry Potter&quot;  &quot;harrypotter&quot;   &quot;Voldemort&quot;     &quot;Harry Potter&quot; 
+[5] &quot;Harrry Potter&quot; &quot;Ron Weasley&quot;  </code></pre>
+</div>
+<p>After this cleaning, we can use the <code>n_gram_merge</code> to replace the occurrences of Harry Potter. This method is also based on the {stringdist} package and allows for usage of other string matching methods.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>input</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/refinr/man/key_collision_merge.html'>key_collision_merge</a></span><span class='op'>(</span>dict<span class='op'>=</span><span class='va'>compare</span>,ignore_strings <span class='op'>=</span> <span class='st'>"j"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/refinr/man/n_gram_merge.html'>n_gram_merge</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Harry Potter&quot; &quot;Harry Potter&quot; &quot;Voldemort&quot;    &quot;Harry Potter&quot;
+[5] &quot;Harry Potter&quot; &quot;Ron Weasley&quot; </code></pre>
+</div>
+<h2 id="fuzzywuzzyr">fuzzywuzzyR</h2>
+<p>When you google fuzzy string matching, you will see tons of Python articles. Most of them use the fuzzywuzzy library. The <a href="https://github.com/mlampros/fuzzywuzzyR">{fuzzywuzzyR}</a> package ports this functionality to R. As far as I have seen, it only works with the Levenshtein distance.</p>
+<p>You need to have the {reticulate} package installed which helps with the Python connection. I had some problems getting the example to work. Issues on github advice to install fuzzywuzzy and Levenshtein in Python (with pip install fuzzywuzzy) and then call <code>reticulate::py_discover_config(required_module = 'fuzzywuzzy')</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
+
+<span class='co'># Processor</span>
+<span class='va'>init_proc</span> <span class='op'>&lt;-</span> <span class='va'><a href='https://rdrr.io/pkg/fuzzywuzzyR/man/FuzzUtils.html'>FuzzUtils</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>PROC</span> <span class='op'>&lt;-</span> <span class='va'>init_proc</span><span class='op'>$</span><span class='va'>Full_process</span>
+
+<span class='co'># Scorer</span>
+<span class='va'>init_scor</span> <span class='op'>&lt;-</span> <span class='va'><a href='https://rdrr.io/pkg/fuzzywuzzyR/man/FuzzMatcher.html'>FuzzMatcher</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>SCOR</span> <span class='op'>&lt;-</span> <span class='va'>init_scor</span><span class='op'>$</span><span class='va'>WRATIO</span> <span class='co'>#scorer function</span>
+
+<span class='va'>init</span> <span class='op'>&lt;-</span> <span class='va'><a href='https://rdrr.io/pkg/fuzzywuzzyR/man/FuzzExtract.html'>FuzzExtract</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>init</span><span class='op'>$</span><span class='fu'>Extract</span><span class='op'>(</span>string <span class='op'>=</span> <span class='st'>"harry Potter"</span>, sequence_strings <span class='op'>=</span> <span class='va'>compare</span>, 
+             processor <span class='op'>=</span> <span class='va'>PROC</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[[1]][[1]]
+[1] &quot;Harry Potter&quot;
+
+[[1]][[2]]
+[1] 100
+
+
+[[2]]
+[[2]][[1]]
+[1] &quot;Voldemort&quot;
+
+[[2]][[2]]
+[1] 29</code></pre>
+</div>
+<p>We can also try to find the best fit (or best fits - depending on the <code>limit</code> input) for every word.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractBests</span><span class='op'>(</span>string <span class='op'>=</span> <span class='st'>"harry j potter"</span>, sequence_strings <span class='op'>=</span> <span class='va'>compare</span>,
+                  processor <span class='op'>=</span> <span class='va'>PROC</span>,
+                  scorer <span class='op'>=</span> <span class='va'>SCOR</span>, limit <span class='op'>=</span> <span class='fl'>1L</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[[1]][[1]]
+[1] &quot;Harry Potter&quot;
+
+[[1]][[2]]
+[1] 95</code></pre>
+</div>
+<p>{fuzzywuzzyR} also has a deduplication functionality. Let’s try this with our initial input.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>init</span><span class='op'>$</span><span class='fu'>Dedupe</span><span class='op'>(</span>contains_dupes <span class='op'>=</span> <span class='va'>input</span>, threshold <span class='op'>=</span> <span class='fl'>70L</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>dict_keys([&#39;harry j potter&#39;, &#39;Voldemort&#39;, &#39;Ron Weasley&#39;])</code></pre>
+</div>
+<p>We see no duplicates. However, the algorithm chose the first appearance “harry j potter” and adapted all the others. It would be great to have “Harry Potter” instead.</p>
+<p>Check the <a href="https://cran.r-project.org/web/packages/fuzzywuzzyR/vignettes/functionality_of_fuzzywuzzyR_package.html">vignette</a> for more functionality and examples.</p>
+<h2 id="lingmatch">lingmatch</h2>
+<p>The <a href="https://github.com/miserman/lingmatch">{lingmatch}</a> package does not directly work with characters but with words.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/miserman/lingmatch'>lingmatch</a></span><span class='op'>)</span> 
+
+<span class='va'>matches</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/lingmatch/man/lingmatch.html'>lingmatch</a></span><span class='op'>(</span><span class='st'>"Harry Potter and Voldemort are enemies"</span>, <span class='st'>"Harry Potter does not like Voldemort"</span><span class='op'>)</span>
+
+<span class='va'>matches</span><span class='op'>$</span><span class='va'>dtm</span>
+</code></pre>
+</div>
+<pre><code>2 x 9 sparse Matrix of class &quot;dgCMatrix&quot;
+     and are does enemies harry like not potter voldemort
+[1,]   .   .    1       .     1    1   1      1         1
+[2,]   1   1    .       1     1    .   .      1         1</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>matches</span><span class='op'>$</span><span class='va'>sim</span>
+</code></pre>
+</div>
+<pre><code>cosine 
+   0.5 
+attr(,&quot;time&quot;)
+simets 
+     0 </code></pre>
+</div>
+<p>There could be a potential value in fuzzy string matching if we decompose our input strings into ngrams (for example with the {quanteda} package) and use {lingmatch} with ngrams instead of words.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://quanteda.io'>quanteda</a></span><span class='op'>)</span> <span class='co'># for the n gram decomposition</span>
+
+<span class='va'>input1</span> <span class='op'>&lt;-</span> <span class='st'>"harry potter"</span>
+
+<span class='va'>input2</span> <span class='op'>&lt;-</span> <span class='st'>"harry james potter"</span>
+
+<span class='va'>input1_ngram</span> <span class='op'>&lt;-</span> <span class='va'>input1</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://quanteda.io/reference/tokens.html'>tokens</a></span><span class='op'>(</span><span class='st'>"character"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://quanteda.io/reference/tokens_ngrams.html'>char_ngrams</a></span><span class='op'>(</span>concatenator <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span>collapse <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
+
+<span class='va'>input2_ngram</span> <span class='op'>&lt;-</span> <span class='va'>input2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://quanteda.io/reference/tokens.html'>tokens</a></span><span class='op'>(</span><span class='st'>"character"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://quanteda.io/reference/tokens_ngrams.html'>char_ngrams</a></span><span class='op'>(</span>concatenator <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span>collapse <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/lingmatch/man/lingmatch.html'>lingmatch</a></span><span class='op'>(</span><span class='va'>input1_ngram</span>,<span class='va'>input2_ngram</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$dtm
+2 x 16 sparse Matrix of class &quot;dgCMatrix&quot;
+                                    
+[1,] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 .
+[2,] . 1 1 . 1 . . 1 1 1 1 . 1 1 . 1
+
+$processed
+1 x 16 sparse Matrix of class &quot;dgCMatrix&quot;
+                                    
+[1,] . 1 1 . 1 . . 1 1 1 1 . 1 1 . 1
+
+$comp.type
+[1] &quot;text&quot;
+
+$comp
+am ar er es ha ja me ot po rr ry sp te tt yj yp 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  0 
+
+$group
+NULL
+
+$sim
+   cosine 
+0.7348469 
+attr(,&quot;time&quot;)
+simets 
+     0 </code></pre>
+</div>
+<p>We see that the cosine similarity of the words is 0.735.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>There are already some great packages available to make the task of fuzzy string matching easier. It depends on the application which one or which combination of functionalities suits your needs best. As always, I am very interested in feedback and discussion: Did you already work with any of these packages? What has your experience been? What do you feel is missing to make fuzzy matching easier and better?</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
