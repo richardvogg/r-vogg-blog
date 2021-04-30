@@ -1,0 +1,213 @@
+---
+title: "What I learned: #30DayChartChallenge"
+description: |
+  During the whole month of April I participated in the #30DayChartChallenge, organized by Cédric Scherer and Dominic Royé. Looking for suitable data, pre-processing, choosing a type of visualization and finally trying to make it as beautiful as possible - for 30 days, every day. I learned so many new cool things and would like to share a few of them here.
+author:
+  - name: Richard Vogg
+    url: https://github.com/richardvogg
+date: 04-27-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(dplyr)
+library(ggplot2)
+library(ggfx)
+```
+
+If you don't feel like reading today and would just like to see all my results in a gallery, please visit [this GitHub repository](https://github.com/richardvogg/30DayChartChallenge).
+
+## The challenge
+
+The idea of the challenge is to create one plot every day. There were five topics and a subtopic for every day. Ideally each chart should be touching the topic and the subtopic, but the rules are not too strict - it is mainly about learning and producing charts.
+
+![](img/topics.png)
+
+I would like to structure my learning into three categories:
+
+- Which new data sources did I get to know?
+- Which packages did I find most useful?
+- What else did I learn?
+
+## Data sources
+
+I had a few frustrating moments during the challenge, and they were almost all related to datasets. Sometimes I did not have a great inspiration or a dataset at hand, so I spent a lot of time browsing through Kaggle and looking on Google for interesting datasets, while I felt that I was using the time I should actually spend on the visualization.
+
+It helped that I had already worked with data in the past (TidyTuesdays, Kaggle). And just as Alex Cookson said in his great rstudio::global(2021) talk [The Power of Great Datasets](https://www.rstudio.com/resources/rstudioglobal-2021/the-power-of-great-datasets/), you will be much more motivated if you have data that is interesting to you. So I looked on Kaggle and Google for things that I find interesting. I experienced that looking for data before knowing the topic can be easier, because in this case all that matters is if the dataset seems interesting. When you see the topic for the day, you can then decide whether your new dataset fits or not.
+
+Here are some of my favorite datasets I used during the challenge:
+
+### The Big 5 personality test
+
+This is a giant dataset from Kaggle (datasource: Open Psychometrics) of over 1 million answer sets of the famous Big 5 personality test. Participants have to rate how much they agree to 50 affirmations like:
+
+- I feel comfortable around people.
+- I get easily stressed out.
+- I spend time reflecting on things.
+
+You also get country data and response times for each question, so there is a lot to discover and many stories to be told. You can download the dataset [here](https://www.kaggle.com/tunguz/big-five-personality-test). If you want to get started and jump the process of data cleaning a little bit, get the questions and code from [this repository](https://github.com/richardvogg/30DayChartChallenge/tree/main/day12_strip).
+
+### Global Health Data
+
+I discovered this data relatively late in the challenge and will definitely explore it further in the nearer future. It is about death causes in different countries with a lot (really a lot!) of detail. You can also see historical data for many of the last years. And it is completely customizable: You can select which aggregation level you wish and will get a link to download the desired data. (Be aware: If you select All countries, you will get All countries aggregated, so to get the data for all countries, you actually have to select all of them individually. Same with all causes, all genders etc.).
+
+![](img/health.png)
+
+### International soccer matches
+
+A dataset containing all official international soccer matches and results between 1872 and 2021. If you like soccer, this one is definitely worth taking a look at. It will bring back some memories.
+
+You can find it [here](https://www.kaggle.com/martj42/international-football-results-from-1872-to-2017) on Kaggle.
+
+### Your own data
+
+For me, working with my own data is the best. I used carbon dioxide measurements I did when I was at high school to show the strong influence of vegetation and photosynthesis on the CO2 concentration over the course of a day. This data feels so heartwarming because I remember how I got up at 3 am just to make a measurement, so each data point actually means something to me.
+
+![](img/own.png)
+
+Similarly, I downloaded the recycling data from an app I was using in Chile which tracked how many plastic bottles and metal cans I recycled over the course of little more than a year.
+
+And also a Twitter analysis feels more interesting when it is your own data you are looking at.
+
+### The Fragile State Index
+
+The Fragile State Index is one of my currently favorite datasets. I already explored it in [this blogpost](https://r-vogg-blog.netlify.app/posts/2021-03-03-the-fragile-state-index/) but there is so much more to discover that I used it in three visualizations.
+
+![](img/fragile.png)
+
+
+## Packages
+
+### ggfx
+
+On March 31, one day before the challenge started, Thomas Lin Pedersen [announced](https://www.data-imaginist.com/2021/say-goodbye-to-good-taste/) a new package: ggfx.  It allows to apply filters (like glow, blur or shadows) to any part of your ggplot or to the whole plot.
+
+I counted that I used this package in every second submission! Two nice effects:
+
+- `with_inner_glow()` makes round shapes look 3-dimensional. Apply this to a round flag, and it looks almost like a button.
+
+- `with_outer_glow()` makes lines look straight. In my opinion, it make a huge difference if you use the standard ggplot2 lines or apply a filter to it.
+
+
+```{r, fig.show="hold", out.width="30%"}
+
+library(ggfx)
+
+df1 <- tibble(x = 1:10, y = rnorm(10))
+
+ggplot(df1, aes(x, y, group = 1)) + 
+  geom_line()
+
+ggplot(df1, aes(x, y, group = 1))  + 
+  with_outer_glow(geom_line())
+
+ggplot(df1, aes(x, y, group = 1))  + 
+  with_outer_glow(geom_line(), colour = "grey")
+```
+
+
+
+### ggstream
+
+David Sjoberg is the author of many amazing ggplot extension packages and they were widely used by many participants during the chart challenge. I used [ggstream](https://github.com/davidsjoberg/ggstream) and it makes beautiful data visualization extremely easy!
+
+![](img/ggstream.png)
+
+Also, check his latest package [ggsankey](https://github.com/davidsjoberg/ggsankey) for making sankey charts with ggplot.
+
+### ggtext
+
+Claus Wilke's {ggtext} package also helped enormously with making plots better and easier to understand. It contains many cool text-related features, but the one I used most was to color the title or the subtitle of the plot. This helps to replace a legend or tell the story more efficiently.
+
+```{r, eval = FALSE}
+library(ggtext)
+
+ggplot(data = example, aes(x = x, y = y)) +
+  geom_point() +
+  labs(title = "The last word will be colored <span style='color:red;'>red</span>") +
+  theme(plot.title = element_markdown())
+```
+
+
+### corrmorant
+
+When visualizing correlations between several variables it is good to have an overview. Roman Link created [corrmorant](https://github.com/r-link/corrmorant) which help with creating customized corrplots/pairplots in ggplot logic and style.
+
+![](img/day12_corrmorant.png)
+
+
+### patchwork
+
+This package by Thomas Lin Pedersen is awesome when it comes to assembling plots. Whether you want to put them side by side or on top of each other, you can achieve they layout you want with very easy syntax.
+
+If the layout is getting somewhat more complex, it also has this beautiful option of describing it with letters (of course, you have to create the plots first, but assembling them is as easy as this with patchwork):
+
+```{r, eval = FALSE}
+layout <- "
+ACCCD
+BCCCD
+BCCCD
+BEEEF
+"
+
+guide_area() + map + tiles + months + years + plot_spacer() + 
+         plot_layout(design = layout, guides = "collect")
+```
+
+And this is the result of above's code (after adding title and other annotations):
+
+![](img/patchwork.png)
+
+I used this package in many submissions, for example when looking at Precipitation in Chile.
+
+
+## Other tips
+
+### Pictogram
+
+Pictograms can be a great way to show proportions, given that there are so many emojis to almost any topic. Using the [waffle](https://github.com/hrbrmstr/waffle) package, this is quite easy. However, I faced some difficulties to get the fonts set up correctly and also saw that others tweeted about this. In case that you would like to play around with pictograms and want to get set up, step by step, follow [this](https://www.listendata.com/2019/06/create-infographics-with-r.html) tutorial for using icons in waffle.
+
+![](img/pictogram.png)
+
+
+### Fonts
+
+For a very long time I have wondered, how people make great visualizations with non-standard ggplot fonts. While doing Tidy Tuesdays in the past I have already learned how to use a font from Google Fonts - for example with this [blog](https://r-coder.com/custom-fonts-r/), but during this challenge I used this knowledge a lot more. 
+
+Once you have the packages installed, it is basically just going to [Google Fonts](https://fonts.google.com/), selecting a font you like (for this example "Indie Flower" - the font I used in the Harry Potter magical spells example above) and then adding these two lines to your code.
+
+```{r, eval = FALSE}
+sysfonts::font_add_google(name = "Indie Flower", "Indie")
+showtext::showtext_auto()
+```
+
+And later you call specify in your ggplot theme that you want this font to be used, either one by one for `plot.title`, `legend.text` etc. or for all texts:
+
+```{r, eval = FALSE}
+ggplot(data = example, aes(x = x, y = y)) +
+  geom_point() +
+  labs(title = "Example title") +
+  theme(text = element_text(family = "Indie"))
+```
+
+Nice and easy and opens so many new options to make visualizations look better. 
+
+### Harry Potter
+
+There are two packages with the same name on GitHub, I used them both and found both very helpful.
+
+[Beautiful Harry Potter Color Palettes](https://github.com/aljrico/harrypotter/)
+
+[All texts](https://github.com/bradleyboehmke/harrypotter) from the Harry Potter books.
+
+
+### Community
+
+So far, I have only talked about learning by doing. But during the challenge I also learned many tricks by looking at other participants' submissions and codes. The creativity and visualization capabilities of the others for each one of these topics was outstanding and looking for #30DayChartChallenge on Twitter will be worth a visit.
+
+A big thank you to [Cédric Scherer](https://twitter.com/CedScherer) and [Dominic Royé](https://twitter.com/dr_xeo) for organizing this challenge and to congratulations to all participants!
