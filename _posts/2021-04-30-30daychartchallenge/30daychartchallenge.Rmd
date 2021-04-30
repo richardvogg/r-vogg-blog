@@ -5,7 +5,7 @@ description: |
 author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
-date: 04-27-2021
+date: 04-30-2021
 output:
   distill::distill_article:
     self_contained: false
@@ -13,7 +13,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
 library(ggplot2)
@@ -138,7 +138,7 @@ ggplot(data = example, aes(x = x, y = y)) +
 
 When visualizing correlations between several variables it is good to have an overview. Roman Link created [corrmorant](https://github.com/r-link/corrmorant) which help with creating customized corrplots/pairplots in ggplot logic and style.
 
-![](img/day12_corrmorant.png)
+![](img/corrmorant.png)
 
 
 ### patchwork

@@ -12,7 +12,7 @@ navbar:
       href: composition.html
     - text: "Fuzzy string matching"
       href: fuzzy.html
-    - text: "Spatial data"
+    - text: "Data visualization"
       href: spatial.html
 
 output: distill::distill_article
