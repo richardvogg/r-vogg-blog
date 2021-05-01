@@ -1492,19 +1492,16 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <li>What else did I learn?</li>
 </ul>
 <h2 id="data-sources">Data sources</h2>
-<p>I had a few frustrating moments during the challenge, and they were almost all related to datasets. Sometimes I did not have a great inspiration or a dataset at hand, so I spent a lot of time browsing through Kaggle and looking on Google for interesting datasets, while I felt that I was using the time I should actually spend on the visualization.</p>
+<p>The only few frustrating moments were almost all related to datasets. Sometimes I did not have a great inspiration or a dataset at hand, so I spent a lot of time browsing through Kaggle and looking on Google for interesting datasets, while I felt that I was using the time I should actually spend on the visualization.</p>
 <p>It helped that I had already worked with data in the past (TidyTuesdays, Kaggle). And just as Alex Cookson said in his great rstudio::global(2021) talk <a href="https://www.rstudio.com/resources/rstudioglobal-2021/the-power-of-great-datasets/">The Power of Great Datasets</a>, you will be much more motivated if you have data that is interesting to you. So I looked on Kaggle and Google for things that I find interesting. I experienced that looking for data before knowing the topic can be easier, because in this case all that matters is if the dataset seems interesting. When you see the topic for the day, you can then decide whether your new dataset fits or not.</p>
 <p>Here are some of my favorite datasets I used during the challenge:</p>
 <h3 id="the-big-5-personality-test">The Big 5 personality test</h3>
-<p>This is a giant dataset from Kaggle (datasource: Open Psychometrics) of over 1 million answer sets of the famous Big 5 personality test. Participants have to rate how much they agree to 50 affirmations like:</p>
-<ul>
-<li>I feel comfortable around people.</li>
-<li>I get easily stressed out.</li>
-<li>I spend time reflecting on things.</li>
-</ul>
+<p>This is a giant dataset from Kaggle (datasource: Open Psychometrics) of over 1 million answer sets of the famous Big 5 personality test. Participants have to rate how much they agree to the following 50 affirmations:</p>
+<p><img src="img/big5.png" /></p>
 <p>You also get country data and response times for each question, so there is a lot to discover and many stories to be told. You can download the dataset <a href="https://www.kaggle.com/tunguz/big-five-personality-test">here</a>. If you want to get started and jump the process of data cleaning a little bit, get the questions and code from <a href="https://github.com/richardvogg/30DayChartChallenge/tree/main/day12_strip">this repository</a>.</p>
 <h3 id="global-health-data">Global Health Data</h3>
 <p>I discovered this data relatively late in the challenge and will definitely explore it further in the nearer future. It is about death causes in different countries with a lot (really a lot!) of detail. You can also see historical data for many of the last years. And it is completely customizable: You can select which aggregation level you wish and will get a link to download the desired data. (Be aware: If you select All countries, you will get All countries aggregated, so to get the data for all countries, you actually have to select all of them individually. Same with all causes, all genders etc.).</p>
+<p>You can get your own data for non-commercial use <a href="http://ghdx.healthdata.org/gbd-results-tool">here</a>.</p>
 <p><img src="img/health.png" /></p>
 <h3 id="international-soccer-matches">International soccer matches</h3>
 <p>A dataset containing all official international soccer matches and results between 1872 and 2021. If you like soccer, this one is definitely worth taking a look at. It will bring back some memories.</p>
@@ -1515,15 +1512,18 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <p>Similarly, I downloaded the recycling data from an app I was using in Chile which tracked how many plastic bottles and metal cans I recycled over the course of little more than a year.</p>
 <p>And also a Twitter analysis feels more interesting when it is your own data you are looking at.</p>
 <h3 id="the-fragile-state-index">The Fragile State Index</h3>
-<p>The Fragile State Index is one of my currently favorite datasets. I already explored it in <a href="https://r-vogg-blog.netlify.app/posts/2021-03-03-the-fragile-state-index/">this blogpost</a> but there is so much more to discover that I used it in three visualizations.</p>
+<p>The <a href="https://fragilestatesindex.org/excel/">Fragile State Index</a> is one of my currently favorite datasets. I already explored it in <a href="https://r-vogg-blog.netlify.app/posts/2021-03-03-the-fragile-state-index/">this blogpost</a> but there is so much more to discover that I used it in three visualizations.</p>
 <p><img src="img/fragile.png" /></p>
 <h2 id="packages">Packages</h2>
 <h3 id="ggfx">ggfx</h3>
 <p>On March 31, one day before the challenge started, Thomas Lin Pedersen <a href="https://www.data-imaginist.com/2021/say-goodbye-to-good-taste/">announced</a> a new package: ggfx. It allows to apply filters (like glow, blur or shadows) to any part of your ggplot or to the whole plot.</p>
 <p>I counted that I used this package in every second submission! Two nice effects:</p>
 <ul>
-<li><p><code>with_inner_glow()</code> makes round shapes look 3-dimensional. Apply this to a round flag, and it looks almost like a button.</p></li>
-<li><p><code>with_outer_glow()</code> makes lines look straight. In my opinion, it make a huge difference if you use the standard ggplot2 lines or apply a filter to it.</p></li>
+<li><code>with_inner_glow()</code> makes round shapes look 3-dimensional. Apply this to a round flag, and it looks almost like a button.</li>
+</ul>
+<p><img src="img/flags.png" /></p>
+<ul>
+<li><code>with_outer_glow()</code> makes lines look straight. In my opinion, it make a huge difference if you use the standard ggplot2 lines or apply a filter to it.</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1548,7 +1548,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="img/ggstream.png" /></p>
 <p>Also, check his latest package <a href="https://github.com/davidsjoberg/ggsankey">ggsankey</a> for making sankey charts with ggplot.</p>
 <h3 id="ggtext">ggtext</h3>
-<p>Claus Wilke’s {ggtext} package also helped enormously with making plots better and easier to understand. It contains many cool text-related features, but the one I used most was to color the title or the subtitle of the plot. This helps to replace a legend or tell the story more efficiently.</p>
+<p>Claus Wilke’s <a href="https://github.com/wilkelab/ggtext">ggtext</a> package also helped enormously with making plots better and easier to understand. It contains many cool text-related features, but the one I used most was to color the title or the subtitle of the plot. This helps to replace a legend or tell the story more efficiently.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wilkelab.org/ggtext'>ggtext</a></span><span class='op'>)</span>
@@ -1564,7 +1564,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <p>When visualizing correlations between several variables it is good to have an overview. Roman Link created <a href="https://github.com/r-link/corrmorant">corrmorant</a> which help with creating customized corrplots/pairplots in ggplot logic and style.</p>
 <p><img src="img/corrmorant.png" /></p>
 <h3 id="patchwork">patchwork</h3>
-<p>This package by Thomas Lin Pedersen is awesome when it comes to assembling plots. Whether you want to put them side by side or on top of each other, you can achieve they layout you want with very easy syntax.</p>
+<p><a href="https://patchwork.data-imaginist.com/articles/guides/layout.html">This package</a> by Thomas Lin Pedersen is awesome when it comes to assembling plots. Whether you want to put them side by side or on top of each other, you can achieve they layout you want with very easy syntax.</p>
 <p>If the layout is getting somewhat more complex, it also has this beautiful option of describing it with letters (of course, you have to create the plots first, but assembling them is as easy as this with patchwork):</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1582,7 +1582,6 @@ BEEEF
 </div>
 <p>And this is the result of above’s code (after adding title and other annotations):</p>
 <p><img src="img/patchwork.png" /></p>
-<p>I used this package in many submissions, for example when looking at Precipitation in Chile.</p>
 <h2 id="other-tips">Other tips</h2>
 <h3 id="pictogram">Pictogram</h3>
 <p>Pictograms can be a great way to show proportions, given that there are so many emojis to almost any topic. Using the <a href="https://github.com/hrbrmstr/waffle">waffle</a> package, this is quite easy. However, I faced some difficulties to get the fonts set up correctly and also saw that others tweeted about this. In case that you would like to play around with pictograms and want to get set up, step by step, follow <a href="https://www.listendata.com/2019/06/create-infographics-with-r.html">this</a> tutorial for using icons in waffle.</p>

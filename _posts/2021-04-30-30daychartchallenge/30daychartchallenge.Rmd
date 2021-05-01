@@ -48,7 +48,7 @@ I would like to structure my learning into three categories:
 
 ## Data sources
 
-I had a few frustrating moments during the challenge, and they were almost all related to datasets. Sometimes I did not have a great inspiration or a dataset at hand, so I spent a lot of time browsing through Kaggle and looking on Google for interesting datasets, while I felt that I was using the time I should actually spend on the visualization.
+The only few frustrating moments were almost all related to datasets. Sometimes I did not have a great inspiration or a dataset at hand, so I spent a lot of time browsing through Kaggle and looking on Google for interesting datasets, while I felt that I was using the time I should actually spend on the visualization.
 
 It helped that I had already worked with data in the past (TidyTuesdays, Kaggle). And just as Alex Cookson said in his great rstudio::global(2021) talk [The Power of Great Datasets](https://www.rstudio.com/resources/rstudioglobal-2021/the-power-of-great-datasets/), you will be much more motivated if you have data that is interesting to you. So I looked on Kaggle and Google for things that I find interesting. I experienced that looking for data before knowing the topic can be easier, because in this case all that matters is if the dataset seems interesting. When you see the topic for the day, you can then decide whether your new dataset fits or not.
 
@@ -56,17 +56,17 @@ Here are some of my favorite datasets I used during the challenge:
 
 ### The Big 5 personality test
 
-This is a giant dataset from Kaggle (datasource: Open Psychometrics) of over 1 million answer sets of the famous Big 5 personality test. Participants have to rate how much they agree to 50 affirmations like:
+This is a giant dataset from Kaggle (datasource: Open Psychometrics) of over 1 million answer sets of the famous Big 5 personality test. Participants have to rate how much they agree to the following 50 affirmations:
 
-- I feel comfortable around people.
-- I get easily stressed out.
-- I spend time reflecting on things.
+![](img/big5.png)
 
 You also get country data and response times for each question, so there is a lot to discover and many stories to be told. You can download the dataset [here](https://www.kaggle.com/tunguz/big-five-personality-test). If you want to get started and jump the process of data cleaning a little bit, get the questions and code from [this repository](https://github.com/richardvogg/30DayChartChallenge/tree/main/day12_strip).
 
 ### Global Health Data
 
 I discovered this data relatively late in the challenge and will definitely explore it further in the nearer future. It is about death causes in different countries with a lot (really a lot!) of detail. You can also see historical data for many of the last years. And it is completely customizable: You can select which aggregation level you wish and will get a link to download the desired data. (Be aware: If you select All countries, you will get All countries aggregated, so to get the data for all countries, you actually have to select all of them individually. Same with all causes, all genders etc.).
+
+You can get your own data for non-commercial use [here](http://ghdx.healthdata.org/gbd-results-tool).
 
 ![](img/health.png)
 
@@ -88,7 +88,7 @@ And also a Twitter analysis feels more interesting when it is your own data you 
 
 ### The Fragile State Index
 
-The Fragile State Index is one of my currently favorite datasets. I already explored it in [this blogpost](https://r-vogg-blog.netlify.app/posts/2021-03-03-the-fragile-state-index/) but there is so much more to discover that I used it in three visualizations.
+The [Fragile State Index](https://fragilestatesindex.org/excel/) is one of my currently favorite datasets. I already explored it in [this blogpost](https://r-vogg-blog.netlify.app/posts/2021-03-03-the-fragile-state-index/) but there is so much more to discover that I used it in three visualizations.
 
 ![](img/fragile.png)
 
@@ -102,6 +102,8 @@ On March 31, one day before the challenge started, Thomas Lin Pedersen [announce
 I counted that I used this package in every second submission! Two nice effects:
 
 - `with_inner_glow()` makes round shapes look 3-dimensional. Apply this to a round flag, and it looks almost like a button.
+
+![](img/flags.png)
 
 - `with_outer_glow()` makes lines look straight. In my opinion, it make a huge difference if you use the standard ggplot2 lines or apply a filter to it.
 
@@ -134,7 +136,7 @@ Also, check his latest package [ggsankey](https://github.com/davidsjoberg/ggsank
 
 ### ggtext
 
-Claus Wilke's {ggtext} package also helped enormously with making plots better and easier to understand. It contains many cool text-related features, but the one I used most was to color the title or the subtitle of the plot. This helps to replace a legend or tell the story more efficiently.
+Claus Wilke's [ggtext](https://github.com/wilkelab/ggtext) package also helped enormously with making plots better and easier to understand. It contains many cool text-related features, but the one I used most was to color the title or the subtitle of the plot. This helps to replace a legend or tell the story more efficiently.
 
 ```{r, eval = FALSE}
 library(ggtext)
@@ -155,7 +157,7 @@ When visualizing correlations between several variables it is good to have an ov
 
 ### patchwork
 
-This package by Thomas Lin Pedersen is awesome when it comes to assembling plots. Whether you want to put them side by side or on top of each other, you can achieve they layout you want with very easy syntax.
+[This package](https://patchwork.data-imaginist.com/articles/guides/layout.html) by Thomas Lin Pedersen is awesome when it comes to assembling plots. Whether you want to put them side by side or on top of each other, you can achieve they layout you want with very easy syntax.
 
 If the layout is getting somewhat more complex, it also has this beautiful option of describing it with letters (of course, you have to create the plots first, but assembling them is as easy as this with patchwork):
 
@@ -175,7 +177,6 @@ And this is the result of above's code (after adding title and other annotations
 
 ![](img/patchwork.png)
 
-I used this package in many submissions, for example when looking at Precipitation in Chile.
 
 
 ## Other tips
