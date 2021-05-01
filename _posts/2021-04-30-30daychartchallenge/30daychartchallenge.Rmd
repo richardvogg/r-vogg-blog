@@ -58,9 +58,12 @@ Here are some of my favorite datasets I used during the challenge:
 
 This is a giant dataset from Kaggle (datasource: Open Psychometrics) of over 1 million answer sets of the famous Big 5 personality test. Participants have to rate how much they agree to the following 50 affirmations:
 
-![](img/big5.png)
+```{r, out.width="80%", echo = FALSE}
+knitr::include_graphics("img/big5.png")
+```
 
-You also get country data and response times for each question, so there is a lot to discover and many stories to be told. You can download the dataset [here](https://www.kaggle.com/tunguz/big-five-personality-test). If you want to get started and jump the process of data cleaning a little bit, get the questions and code from [this repository](https://github.com/richardvogg/30DayChartChallenge/tree/main/day12_strip).
+
+You also get country data and response times for each question, so there is a lot to discover and many stories to be told. You can download the dataset [here](https://www.kaggle.com/tunguz/big-five-personality-test). If you want to get started and skip the process of data cleaning a little bit, get the questions and code from [this repository](https://github.com/richardvogg/30DayChartChallenge/tree/main/day12_strip).
 
 ### Global Health Data
 
@@ -111,7 +114,7 @@ knitr::include_graphics("img/flags.png")
 - `with_outer_glow()` makes lines look straight. In my opinion, it make a huge difference if you use the standard ggplot2 lines or apply a filter to it.
 
 
-```{r, fig.show="hold", out.width="50%"}
+```{r, fig.show="hold", out.width="50%", fig.height = 6}
 
 library(ggfx)
 
