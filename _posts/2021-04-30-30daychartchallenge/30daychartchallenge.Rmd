@@ -103,12 +103,15 @@ I counted that I used this package in every second submission! Two nice effects:
 
 - `with_inner_glow()` makes round shapes look 3-dimensional. Apply this to a round flag, and it looks almost like a button.
 
-![](img/flags.png)
+```{r, out.width = "70%", echo = FALSE}
+knitr::include_graphics("img/flags.png")
+```
+
 
 - `with_outer_glow()` makes lines look straight. In my opinion, it make a huge difference if you use the standard ggplot2 lines or apply a filter to it.
 
 
-```{r, fig.show="hold", out.width="30%"}
+```{r, fig.show="hold", out.width="50%"}
 
 library(ggfx)
 
@@ -120,8 +123,6 @@ ggplot(df1, aes(x, y, group = 1)) +
 ggplot(df1, aes(x, y, group = 1))  + 
   with_outer_glow(geom_line())
 
-ggplot(df1, aes(x, y, group = 1))  + 
-  with_outer_glow(geom_line(), colour = "grey")
 ```
 
 
@@ -152,8 +153,9 @@ ggplot(data = example, aes(x = x, y = y)) +
 
 When visualizing correlations between several variables it is good to have an overview. Roman Link created [corrmorant](https://github.com/r-link/corrmorant) which help with creating customized corrplots/pairplots in ggplot logic and style.
 
-![](img/corrmorant.png)
-
+```{r, out.width = "80%", echo = FALSE}
+knitr::include_graphics("img/corrmorant.png")
+```
 
 ### patchwork
 
@@ -185,7 +187,9 @@ And this is the result of above's code (after adding title and other annotations
 
 Pictograms can be a great way to show proportions, given that there are so many emojis to almost any topic. Using the [waffle](https://github.com/hrbrmstr/waffle) package, this is quite easy. However, I faced some difficulties to get the fonts set up correctly and also saw that others tweeted about this. In case that you would like to play around with pictograms and want to get set up, step by step, follow [this](https://www.listendata.com/2019/06/create-infographics-with-r.html) tutorial for using icons in waffle.
 
-![](img/pictogram.png)
+```{r, out.width="60%", echo = FALSE}
+knitr::include_graphics("img/pictogram.png")
+```
 
 
 ### Fonts
