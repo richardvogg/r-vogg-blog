@@ -6,9 +6,21 @@ author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
 date: 04-30-2021
+preview: img/ggstream.png
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc-float: false
+categories:
+  - ggplot2
+  - ggstream
+  - corrmorant
+  - patchwork
+  - ggfx
+  - ggtext
+  - waffle
+  - harrypotter
 ---
 
 

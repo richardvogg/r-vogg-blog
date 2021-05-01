@@ -111,12 +111,12 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["What I learned: #30DayChartChallenge"]},{"type":"character","attributes":{},"value":["During the whole month of April I participated in the #30DayChartChallenge, organized by Cédric Scherer and Dominic Royé. Looking for suitable data, pre-processing, choosing a type of visualization and finally trying to make it as beautiful as possible - for 30 days, every day. I learned so many new cool things and would like to share a few of them here.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["04-30-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["What I learned: #30DayChartChallenge"]},{"type":"character","attributes":{},"value":["During the whole month of April I participated in the #30DayChartChallenge, organized by Cédric Scherer and Dominic Royé. Looking for suitable data, pre-processing, choosing a type of visualization and finally trying to make it as beautiful as possible - for 30 days, every day. I learned so many new cool things and would like to share a few of them here.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["04-30-2021"]},{"type":"character","attributes":{},"value":["img/ggstream.png"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["ggplot2","ggstream","corrmorant","patchwork","ggfx","ggtext","waffle","harrypotter"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["30daychartchallenge_files/figure-html5/unnamed-chunk-1-1.png","30daychartchallenge_files/figure-html5/unnamed-chunk-1-2.png","30daychartchallenge_files/figure-html5/unnamed-chunk-1-3.png"]}
+  {"type":"character","attributes":{},"value":["30daychartchallenge_files/anchor-4.2.2/anchor.min.js","30daychartchallenge_files/bowser-1.9.3/bowser.min.js","30daychartchallenge_files/distill-2.2.21/template.v2.js","30daychartchallenge_files/figure-html5/unnamed-chunk-1-1.png","30daychartchallenge_files/figure-html5/unnamed-chunk-1-2.png","30daychartchallenge_files/figure-html5/unnamed-chunk-1-3.png","30daychartchallenge_files/jquery-1.11.3/jquery.min.js","30daychartchallenge_files/webcomponents-2.0.0/webcomponents.js","img/beta.png","img/big5.png","img/corrmorant.png","img/flags.png","img/fragile.png","img/ggstream.png","img/health.png","img/own.png","img/patchwork.png","img/pictogram.png","img/topics.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1432,6 +1432,16 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <div class="d-title">
 <h1>What I learned: #30DayChartChallenge</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">ggplot2</div>
+<div class="dt=tag">ggstream</div>
+<div class="dt=tag">corrmorant</div>
+<div class="dt=tag">patchwork</div>
+<div class="dt=tag">ggfx</div>
+<div class="dt=tag">ggtext</div>
+<div class="dt=tag">waffle</div>
+<div class="dt=tag">harrypotter</div>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>During the whole month of April I participated in the #30DayChartChallenge, organized by Cédric Scherer and Dominic Royé. Looking for suitable data, pre-processing, choosing a type of visualization and finally trying to make it as beautiful as possible - for 30 days, every day. I learned so many new cool things and would like to share a few of them here.</p></p>
 </div>
@@ -1443,6 +1453,34 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#the-challenge">The challenge</a></li>
+<li><a href="#data-sources">Data sources</a><ul>
+<li><a href="#the-big-5-personality-test">The Big 5 personality test</a></li>
+<li><a href="#global-health-data">Global Health Data</a></li>
+<li><a href="#international-soccer-matches">International soccer matches</a></li>
+<li><a href="#your-own-data">Your own data</a></li>
+<li><a href="#the-fragile-state-index">The Fragile State Index</a></li>
+</ul></li>
+<li><a href="#packages">Packages</a><ul>
+<li><a href="#ggfx">ggfx</a></li>
+<li><a href="#ggstream">ggstream</a></li>
+<li><a href="#ggtext">ggtext</a></li>
+<li><a href="#corrmorant">corrmorant</a></li>
+<li><a href="#patchwork">patchwork</a></li>
+</ul></li>
+<li><a href="#other-tips">Other tips</a><ul>
+<li><a href="#pictogram">Pictogram</a></li>
+<li><a href="#fonts">Fonts</a></li>
+<li><a href="#harry-potter">Harry Potter</a></li>
+<li><a href="#community">Community</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 <p>If you don’t feel like reading today and would just like to see all my results in a gallery, please visit <a href="https://github.com/richardvogg/30DayChartChallenge">this GitHub repository</a>.</p>
 <h2 id="the-challenge">The challenge</h2>
 <p>The idea of the challenge is to create one plot every day. There were five topics and a subtopic for every day. Ideally each chart should be touching the topic and the subtopic, but the rules are not too strict - it is mainly about learning and producing charts.</p>
