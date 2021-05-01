@@ -12,6 +12,9 @@ output:
     self_contained: false
     toc: true
     toc-float: false
+twitter:
+  site: "@richard_vogg"
+  creator: "@richard_vogg"
 categories:
   - ggplot2
   - ggstream
