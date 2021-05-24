@@ -1,5 +1,5 @@
 ---
-title: "ggraph"
+title: "First steps with ggraph"
 description: |
   The {ggraph} packages allows to visualize networks and hierarchical data in beautiful ways. In this post I would like to show in which format your data has to be so that ggraph does what you want it to do.
 author:
@@ -9,6 +9,7 @@ date: 05-24-2021
 output:
   distill::distill_article:
     self_contained: false
+    code_folding: show
 ---
 
 
@@ -32,7 +33,8 @@ graph <- graph_from_data_frame(highschool)
 # Not specifying the layout - defaults to "auto"
 p1 <- ggraph(graph) + 
     geom_edge_link(aes(colour = factor(year))) + 
-    geom_node_point()
+    geom_node_point() +
+    scale_edge_color_manual(values = c("darkred", "cyan"))
 
 graph2 <- graph_from_data_frame(flare$edges, vertices = flare$vertices)
 
@@ -45,17 +47,18 @@ p2 <- ggraph(lay) +
 p3 <- ggraph(graph2, layout = 'treemap', weight = size) + 
   geom_node_tile(aes(fill = depth), size = 0.25)
 
-p4 <- ggraph(graph, layout = 'circlepack', weight = size) + 
+p4 <- ggraph(graph2, layout = 'circlepack', weight = size) + 
   geom_node_circle(aes(fill = depth), size = 0.25, n = 50) + 
+  scale_fill_gradient(low = "red", high = "yellow") +
   coord_fixed()
 
-p1 + p2 + p3 + p4 + plot_layout(nrow = 1) &
+p1 + p2 + p3 + p4 &
   theme(legend.position = "none")
 
 ```
 
 
-While I am quite well-versed with ggplot (still have to google a lot, but I get from data to output quite fast), it took some time to get familiar with the logic behind ggraph. The good news is: It is similar to ggplot, so the plot is created with a layer-like grammar which converts the raw data in one of these beautiful visualizations.
+While I am with ggplot (still have to google a lot, but I get from data to output quite fast), it took some time to get familiar with the logic behind ggraph. The good news is: It is similar to ggplot, so the plot is created with a layer-like grammar which converts the raw data in one of these beautiful visualizations.
 
 More information at the [package's website](https://www.data-imaginist.com/2017/ggraph-introduction-layouts/).
 
@@ -133,15 +136,15 @@ The data stems from the Global Health Data Exchange [website](http://ghdx.health
 For this example I downloaded a subset containing the percentage of different death causes per country in 2019.
 
 ```{r, echo = FALSE}
-df <- read.csv("data/small_df2019.csv") %>%
+df <- read.csv("data/small_df2019.csv", sep = ";", check.names = FALSE) %>%
   filter(metric == "Percent") %>%
-  select(-X, -metric) %>%
+  select(-metric) %>%
   tidyr::pivot_longer(cols = 2:134, names_to = "cause", values_to = "val")
 ```
 
 ```{r, echo = FALSE}
 df %>%
-  sample_n(10)
+  sample_n(10) %>% gt::gt()
 ```
 
 The dataset contains 133 death causes and which percentage of total deaths they had in 2019 in each one of 213 countries.
@@ -150,28 +153,94 @@ The dataset contains 133 death causes and which percentage of total deaths they 
 
 First, we will try to make a treemap to show each country's profile. For this, we will need some hierarchy. It took some manual work for me to get the hierarchical data from the website (which groups together certain death causes into higher level families).
 
-The file will be on the second sheet of the excel file in this blogpost's [repository]().
+The file will be on the second sheet of the excel file in this blogpost's [repository](https://github.com/richardvogg/r-vogg-blog/tree/main/_posts/2021-05-24-ggraph/data).
 
 ```{r, echo = FALSE}
 library(readxl)
 
-causes <- read_xlsx(paste0(path,"death_causes.xlsx"), sheet = 2)
+causes <- read_xlsx("data/death_causes.xlsx", sheet = 2)
+
+causes %>%
+  sample_n(10) %>% gt::gt()
 ```
 
+We will join the two datasets and filter out a country of interest.
 
 ```{r}
-
-library(igraph)
-library(ggraph)
-
 country <- "Chile"
 
+graph_data <- df %>%
+  filter(location == country) %>%
+  inner_join(causes, by = c("cause" = "Cause"))
+    
+```
+
+In the introduction, we were dealing with networks, here we are dealing with hierarchical data, but the idea is the same: We will create edges between higher level and lower level features. In our case we have three levels and thus will create connections between Level 3 and Level 2 and then between Level 2 and Level 1.
+
+Exactly as in our mini example, the edges data.frame will have two columns (`from` and `to`).
+
+```{r}
+edges <- graph_data %>%
+    distinct(from = CauseL3, to = CauseL2) %>%
+    rbind(graph_data %>% 
+            distinct(from = CauseL2,
+                     to = cause))
+```
+
+Similarly, we will do for the vertices. In theory, the vertices would just require the names of all causes from the three levels. We cannot have vertices with a value of 0 (unless we would remove them from the edges), so I am setting those to a very small value. 
+
+
+In this code I am adding a few extra columns which will help to create a better visual:
+
+* I am adding the parent names (from the higher levels) as I will need those for coloring later. 
+* And I will add a new column called `level`, so that not all the labels are displayed, but just the level 1 labels. This is stored in `new_label` at the end of the code. 
+* I removed all but the top 10 causes of death in a country, to make the plot less cluttered, but this can be easily changed in the last `mutate`.
+
+```{r}
+vertices <- graph_data %>%
+    select(name = cause, val = val, parent = CauseL2, parent2 = CauseL3) %>%
+    mutate(val = pmax(val, 0.000001), level = 1) %>%
+    rbind(graph_data %>% 
+            distinct(name = CauseL2, parent = CauseL3, parent2 = NA) %>% 
+            mutate(val = 0, level = 2)) %>%
+    rbind(graph_data %>% 
+            distinct(name = CauseL3, parent = NA, parent2 = NA) %>% 
+            mutate(val = 0, level = 3)) %>%
+    mutate(rank = rank(-val, ties.method = "first"),
+      new_label = ifelse(level==1 & rank <= 10, name, NA)) %>%
+    distinct(name, val, level, new_label, parent, parent2)
+```
+
+Let's have a look at the data of the vertices:
+
+```{r, echo = FALSE}
+set.seed(20)
+
+vertices %>%
+  sample_n(10) %>% gt::gt()
+```
+
+Good! We are ready to take a look at our graph. Some of the causes have very long names, so I use `str_wrap` from {stringr} to cut them into several lines. You can also replace that part by `new_label` and all label will appear as they are.
+
+```{r}
+graph <- graph_from_data_frame(edges, vertices = vertices)
+  
+ggraph(graph, 'treemap', weight = val) + 
+    geom_node_tile(aes(fill = parent2)) +
+    geom_node_text(aes(label = stringr::str_wrap(new_label,15), size = val)) +
+    guides(size = FALSE) +
+    labs(title = paste("Most frequent death causes in", country))
+```
+
+Let's put all of the above in a function and call it `get_country_profile`.
+
+```{r class.source = 'fold-hide'}
 
 get_country_profile <- function(country) {
   
   graph_data <- df %>%
     inner_join(causes, by = c("cause" = "Cause")) %>%
-    filter(location == country, metric == "Percent")
+    filter(location == country)
   
   edges <- graph_data %>%
     distinct(from = CauseL3, to = CauseL2) %>%
@@ -203,15 +272,68 @@ get_country_profile <- function(country) {
 
 }
 
-get_country_profile("Chile")
+
+p1 <- get_country_profile("Afghanistan")
+p2 <- get_country_profile("Germany")
+p3 <- get_country_profile("Chile")
+p4 <- get_country_profile("Nigeria")
+p5 <- get_country_profile("Japan")
+p6 <- get_country_profile("Yemen")
+p7 <- get_country_profile("New Zealand")
+p8 <- get_country_profile("United States of America")
+
+
+library(patchwork)
+
+
+p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + guide_area() +
+  plot_layout(guides = "collect") &
+  theme(legend.title = element_blank())
 
 ```
 
 ### Creating a network
 
-We will additionally need the package {widyr}.
+If you feel that doing the manual step of creating the dataframes for edges and vertices is too much, you might be happy to hear that you can create great networks without doing that step manually.
+
+For this we will additionally need the package {widyr}.
 
 ```{r}
 library(widyr)
 ```
 
+This package allows for pairwise comparisons between countries.
+
+```{r}
+
+all_sim <- df %>%
+  pairwise_similarity(location, cause, val, upper = FALSE) %>%
+  filter(similarity > 0.95)
+```
+
+```{r, echo = FALSE}
+all_sim %>%
+  sample_n(10) %>% gt::gt()
+```
+
+```{r}
+net <- all_sim %>%
+  graph_from_data_frame()
+```
+
+```{r}
+net %>%
+  ggraph(layout="fr") +
+  geom_edge_link(aes(edge_alpha = similarity)) +
+  #geom_node_point() +
+  geom_node_text(aes(label=name), size = 2, col = "red",
+                 check_overlap = TRUE)
+```
+
+This was just to show how quickly you can generate a plot using {widyr} and {ggraph}. This probably has too much information in it, but we can already see some interesting trends and connections between states which share different health issues.
+
+## Final remark
+
+I hope this post has sparked some curiosity in you to use the ggraph package. Although the data structure with edges and vertices is somewhat new, it is all about getting used to this format and soon you will create better and better visuals. And remember: You do not have to learn everything on the first day or with the first visual. Repeat and add small pieces of knowledge to your toolbox every time you come across interesting data.
+
+Again, check out the [website](https://www.data-imaginist.com/2017/ggraph-introduction-layouts/) of the package for many more examples.
