@@ -68,7 +68,7 @@ p1 + p2 + p3 + p4 &
 ```
 
 
-While I am with ggplot (still have to google a lot, but I get from data to output quite fast), it took some time to get familiar with the logic behind ggraph. The good news is: It is similar to ggplot, so the plot is created with a layer-like grammar which converts the raw data in one of these beautiful visualizations.
+While I am quite familiar with ggplot (still have to google a lot, but I know what I have to do to get from data to a desired output), it took some time to understand the logic behind ggraph. The good news is: It is similar to ggplot, so the plot is created with a layer-like grammar which converts the raw data in one of these beautiful visualizations.
 
 More information at the [package's website](https://www.data-imaginist.com/2017/ggraph-introduction-layouts/).
 
@@ -85,12 +85,12 @@ library(dplyr)
 
 ## Mini example
 
-The data for ggplot graphs is a data.frame or a tibble. For ggraph, we are working with networks and therefore need two components:
+The data for ggplot graphs is a dataframe or a tibble. For ggraph, we are working with networks and therefore need two components:
 
 * Vertices / Nodes
 * Edges
 
-The edges define the connections between the nodes. And if we do not pass along any information with the nodes, it is enough to define a data.frame with edges.
+The edges define the connections between the nodes. And if we do not pass along any information with the nodes, it is enough to define a dataframe with edges.
 
 Let's take a look at a mini example:
 
