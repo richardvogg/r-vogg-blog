@@ -9,7 +9,17 @@ date: 05-24-2021
 output:
   distill::distill_article:
     self_contained: false
-    code_folding: show
+    toc: true
+    toc-float: false
+    code-folding: false
+twitter:
+  site: "@richard_vogg"
+  creator: "@richard_vogg"
+categories:
+  - ggraph
+  - widyr
+  - network
+  - treemap
 ---
 
 
@@ -161,7 +171,7 @@ library(readxl)
 causes <- read_xlsx("data/death_causes.xlsx", sheet = 2)
 
 causes %>%
-  sample_n(10) %>% gt::gt()
+  sample_n(6) %>% gt::gt()
 ```
 
 We will join the two datasets and filter out a country of interest.
@@ -217,7 +227,7 @@ Let's have a look at the data of the vertices:
 set.seed(20)
 
 vertices %>%
-  sample_n(10) %>% gt::gt()
+  sample_n(6) %>% gt::gt()
 ```
 
 Good! We are ready to take a look at our graph. Some of the causes have very long names, so I use `str_wrap` from {stringr} to cut them into several lines. You can also replace that part by `new_label` and all label will appear as they are.
@@ -229,7 +239,8 @@ ggraph(graph, 'treemap', weight = val) +
     geom_node_tile(aes(fill = parent2)) +
     geom_node_text(aes(label = stringr::str_wrap(new_label,15), size = val)) +
     guides(size = FALSE) +
-    labs(title = paste("Most frequent death causes in", country))
+    labs(title = paste("Most frequent death causes in", country)) +
+    theme(legend.position = "bottom")
 ```
 
 Let's put all of the above in a function and call it `get_country_profile`.
@@ -258,7 +269,7 @@ get_country_profile <- function(country) {
             distinct(name = CauseL3, parent = country, parent2 = NA) %>% 
             mutate(val = 0, level = 2)) %>%
     mutate(rank = rank(-val, ties.method = "first"),
-      new_label = ifelse(level==4 & rank <= 10, name, NA)) %>%
+      new_label = ifelse(level==4 & rank <= 3, name, NA)) %>%
     distinct(name, val, level, new_label, parent, parent2)
   
   graph <- graph_from_data_frame(edges, vertices = vertices)
@@ -268,7 +279,7 @@ get_country_profile <- function(country) {
     geom_node_text(aes(label = stringr::str_wrap(new_label,15), size = val)) +
     guides(size = FALSE) +
     harrypotter::scale_fill_hp_d(option = "HarryPotter") +
-    labs(title = paste("Most frequent death causes in", country))
+    labs(title = country)
 
 }
 
@@ -286,9 +297,10 @@ p8 <- get_country_profile("United States of America")
 library(patchwork)
 
 
-p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + guide_area() +
+p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + plot_spacer() +
   plot_layout(guides = "collect") &
-  theme(legend.title = element_blank())
+  theme(legend.title = element_blank(),
+        legend.position = "bottom")
 
 ```
 

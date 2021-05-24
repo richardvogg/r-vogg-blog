@@ -107,12 +107,14 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
 <meta property="twitter:card" content="summary"/>
 <meta property="twitter:title" content="R-Vogg-Blog: First steps with ggraph"/>
 <meta property="twitter:description" content="The {ggraph} packages allows to visualize networks and hierarchical data in beautiful ways. In this post I would like to show in which format your data has to be so that ggraph does what you want it to do."/>
+<meta property="twitter:site" content="@richard_vogg"/>
+<meta property="twitter:creator" content="@richard_vogg"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["First steps with ggraph"]},{"type":"character","attributes":{},"value":["The {ggraph} packages allows to visualize networks and hierarchical data in beautiful ways. In this post I would like to show in which format your data has to be so that ggraph does what you want it to do."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["05-24-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["show"]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","twitter","categories"]}},"value":[{"type":"character","attributes":{},"value":["First steps with ggraph"]},{"type":"character","attributes":{},"value":["The {ggraph} packages allows to visualize networks and hierarchical data in beautiful ways. In this post I would like to show in which format your data has to be so that ggraph does what you want it to do."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Richard Vogg"]},{"type":"character","attributes":{},"value":["https://github.com/richardvogg"]}]}]},{"type":"character","attributes":{},"value":["05-24-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc-float","code-folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["site","creator"]}},"value":[{"type":"character","attributes":{},"value":["@richard_vogg"]},{"type":"character","attributes":{},"value":["@richard_vogg"]}]},{"type":"character","attributes":{},"value":["ggraph","widyr","network","treemap"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2354,6 +2356,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="d-title">
 <h1>First steps with ggraph</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:ggraph" class="dt-tag">ggraph</a>
+  <a href="../../index.html#category:widyr" class="dt-tag">widyr</a>
+  <a href="../../index.html#category:network" class="dt-tag">network</a>
+  <a href="../../index.html#category:treemap" class="dt-tag">treemap</a>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>The {ggraph} packages allows to visualize networks and hierarchical data in beautiful ways. In this post I would like to show in which format your data has to be so that ggraph does what you want it to do.</p></p>
 </div>
@@ -2365,6 +2373,21 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#ggraph">ggraph</a></li>
+<li><a href="#packages">Packages</a></li>
+<li><a href="#mini-example">Mini example</a></li>
+<li><a href="#real-world-examples">Real-world examples</a><ul>
+<li><a href="#making-a-treemap">Making a treemap</a></li>
+<li><a href="#creating-a-network">Creating a network</a></li>
+</ul></li>
+<li><a href="#final-remark">Final remark</a></li>
+</ul>
+</nav>
+</div>
 <h2 id="ggraph">ggraph</h2>
 <p>I recently tried out {ggraph} by Thomas Lin Pedersen and think it is a great tool to add to one’s data visualization toolbox. This package allows to create networks and all kinds of cool plots with hierarchical data.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2860,7 +2883,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jvyvqulufo .gt_table {
+#sudjvyvqul .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2885,7 +2908,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-left-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_heading {
+#sudjvyvqul .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2897,7 +2920,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_title {
+#sudjvyvqul .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2907,7 +2930,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-bottom-width: 0;
 }
 
-#jvyvqulufo .gt_subtitle {
+#sudjvyvqul .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2917,13 +2940,13 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-width: 0;
 }
 
-#jvyvqulufo .gt_bottom_border {
+#sudjvyvqul .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_col_headings {
+#sudjvyvqul .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2938,7 +2961,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_col_heading {
+#sudjvyvqul .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2958,7 +2981,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   overflow-x: hidden;
 }
 
-#jvyvqulufo .gt_column_spanner_outer {
+#sudjvyvqul .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2970,15 +2993,15 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 4px;
 }
 
-#jvyvqulufo .gt_column_spanner_outer:first-child {
+#sudjvyvqul .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jvyvqulufo .gt_column_spanner_outer:last-child {
+#sudjvyvqul .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jvyvqulufo .gt_column_spanner {
+#sudjvyvqul .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2990,7 +3013,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   width: 100%;
 }
 
-#jvyvqulufo .gt_group_heading {
+#sudjvyvqul .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3012,7 +3035,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   vertical-align: middle;
 }
 
-#jvyvqulufo .gt_empty_group_heading {
+#sudjvyvqul .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3027,15 +3050,15 @@ d-appendix d-footnote-list a.footnote-backlink {
   vertical-align: middle;
 }
 
-#jvyvqulufo .gt_from_md > :first-child {
+#sudjvyvqul .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jvyvqulufo .gt_from_md > :last-child {
+#sudjvyvqul .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jvyvqulufo .gt_row {
+#sudjvyvqul .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3054,7 +3077,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   overflow-x: hidden;
 }
 
-#jvyvqulufo .gt_stub {
+#sudjvyvqul .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3066,7 +3089,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-left: 12px;
 }
 
-#jvyvqulufo .gt_summary_row {
+#sudjvyvqul .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3076,7 +3099,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 5px;
 }
 
-#jvyvqulufo .gt_first_summary_row {
+#sudjvyvqul .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3086,7 +3109,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_grand_summary_row {
+#sudjvyvqul .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3096,7 +3119,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 5px;
 }
 
-#jvyvqulufo .gt_first_grand_summary_row {
+#sudjvyvqul .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3106,11 +3129,11 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_striped {
+#sudjvyvqul .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jvyvqulufo .gt_table_body {
+#sudjvyvqul .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3119,7 +3142,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-bottom-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_footnotes {
+#sudjvyvqul .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3133,13 +3156,13 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_footnote {
+#sudjvyvqul .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#jvyvqulufo .gt_sourcenotes {
+#sudjvyvqul .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3153,46 +3176,46 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#jvyvqulufo .gt_sourcenote {
+#sudjvyvqul .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#jvyvqulufo .gt_left {
+#sudjvyvqul .gt_left {
   text-align: left;
 }
 
-#jvyvqulufo .gt_center {
+#sudjvyvqul .gt_center {
   text-align: center;
 }
 
-#jvyvqulufo .gt_right {
+#sudjvyvqul .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jvyvqulufo .gt_font_normal {
+#sudjvyvqul .gt_font_normal {
   font-weight: normal;
 }
 
-#jvyvqulufo .gt_font_bold {
+#sudjvyvqul .gt_font_bold {
   font-weight: bold;
 }
 
-#jvyvqulufo .gt_font_italic {
+#sudjvyvqul .gt_font_italic {
   font-style: italic;
 }
 
-#jvyvqulufo .gt_super {
+#sudjvyvqul .gt_super {
   font-size: 65%;
 }
 
-#jvyvqulufo .gt_footnote_marks {
+#sudjvyvqul .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="jvyvqulufo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="sudjvyvqul" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -3231,26 +3254,6 @@ d-appendix d-footnote-list a.footnote-backlink {
       <td class="gt_row gt_left">Self-harm</td>
       <td class="gt_row gt_left">Self-harm and interpersonal violence</td>
       <td class="gt_row gt_left">Injuries</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Chagas disease</td>
-      <td class="gt_row gt_left">Neglected tropical diseases and malaria</td>
-      <td class="gt_row gt_left">Communicable, maternal, neonatal, and nutritional diseases</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Fire, heat, and hot substances</td>
-      <td class="gt_row gt_left">Unintentional injuries</td>
-      <td class="gt_row gt_left">Injuries</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Inguinal, femoral, and abdominal hernia</td>
-      <td class="gt_row gt_left">Digestive diseases</td>
-      <td class="gt_row gt_left">Non-communicable diseases</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Prostate cancer</td>
-      <td class="gt_row gt_left">Neoplasms</td>
-      <td class="gt_row gt_left">Non-communicable diseases</td>
     </tr>
   </tbody>
   
@@ -3310,7 +3313,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mnhrtiuqyf .gt_table {
+#icymnhrtiu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -3335,7 +3338,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-left-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_heading {
+#icymnhrtiu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3347,7 +3350,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_title {
+#icymnhrtiu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3357,7 +3360,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-bottom-width: 0;
 }
 
-#mnhrtiuqyf .gt_subtitle {
+#icymnhrtiu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3367,13 +3370,13 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-width: 0;
 }
 
-#mnhrtiuqyf .gt_bottom_border {
+#icymnhrtiu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_col_headings {
+#icymnhrtiu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3388,7 +3391,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_col_heading {
+#icymnhrtiu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3408,7 +3411,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   overflow-x: hidden;
 }
 
-#mnhrtiuqyf .gt_column_spanner_outer {
+#icymnhrtiu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3420,15 +3423,15 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 4px;
 }
 
-#mnhrtiuqyf .gt_column_spanner_outer:first-child {
+#icymnhrtiu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mnhrtiuqyf .gt_column_spanner_outer:last-child {
+#icymnhrtiu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mnhrtiuqyf .gt_column_spanner {
+#icymnhrtiu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3440,7 +3443,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   width: 100%;
 }
 
-#mnhrtiuqyf .gt_group_heading {
+#icymnhrtiu .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3462,7 +3465,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   vertical-align: middle;
 }
 
-#mnhrtiuqyf .gt_empty_group_heading {
+#icymnhrtiu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3477,15 +3480,15 @@ d-appendix d-footnote-list a.footnote-backlink {
   vertical-align: middle;
 }
 
-#mnhrtiuqyf .gt_from_md > :first-child {
+#icymnhrtiu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mnhrtiuqyf .gt_from_md > :last-child {
+#icymnhrtiu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mnhrtiuqyf .gt_row {
+#icymnhrtiu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3504,7 +3507,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   overflow-x: hidden;
 }
 
-#mnhrtiuqyf .gt_stub {
+#icymnhrtiu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3516,7 +3519,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-left: 12px;
 }
 
-#mnhrtiuqyf .gt_summary_row {
+#icymnhrtiu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3526,7 +3529,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 5px;
 }
 
-#mnhrtiuqyf .gt_first_summary_row {
+#icymnhrtiu .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3536,7 +3539,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_grand_summary_row {
+#icymnhrtiu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3546,7 +3549,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 5px;
 }
 
-#mnhrtiuqyf .gt_first_grand_summary_row {
+#icymnhrtiu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3556,11 +3559,11 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_striped {
+#icymnhrtiu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mnhrtiuqyf .gt_table_body {
+#icymnhrtiu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3569,7 +3572,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-bottom-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_footnotes {
+#icymnhrtiu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3583,13 +3586,13 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_footnote {
+#icymnhrtiu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#mnhrtiuqyf .gt_sourcenotes {
+#icymnhrtiu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3603,46 +3606,46 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#mnhrtiuqyf .gt_sourcenote {
+#icymnhrtiu .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#mnhrtiuqyf .gt_left {
+#icymnhrtiu .gt_left {
   text-align: left;
 }
 
-#mnhrtiuqyf .gt_center {
+#icymnhrtiu .gt_center {
   text-align: center;
 }
 
-#mnhrtiuqyf .gt_right {
+#icymnhrtiu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mnhrtiuqyf .gt_font_normal {
+#icymnhrtiu .gt_font_normal {
   font-weight: normal;
 }
 
-#mnhrtiuqyf .gt_font_bold {
+#icymnhrtiu .gt_font_bold {
   font-weight: bold;
 }
 
-#mnhrtiuqyf .gt_font_italic {
+#icymnhrtiu .gt_font_italic {
   font-style: italic;
 }
 
-#mnhrtiuqyf .gt_super {
+#icymnhrtiu .gt_super {
   font-size: 65%;
 }
 
-#mnhrtiuqyf .gt_footnote_marks {
+#icymnhrtiu .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="mnhrtiuqyf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="icymnhrtiu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -3703,38 +3706,6 @@ d-appendix d-footnote-list a.footnote-backlink {
       <td class="gt_row gt_right">1</td>
       <td class="gt_row gt_left">NA</td>
     </tr>
-    <tr>
-      <td class="gt_row gt_left">Nutritional deficiencies</td>
-      <td class="gt_row gt_right">0.000000000</td>
-      <td class="gt_row gt_left">Communicable, maternal, neonatal, and nutritional diseases</td>
-      <td class="gt_row gt_left">NA</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Road injuries</td>
-      <td class="gt_row gt_right">0.020328007</td>
-      <td class="gt_row gt_left">Transport injuries</td>
-      <td class="gt_row gt_left">Injuries</td>
-      <td class="gt_row gt_right">1</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Testicular cancer</td>
-      <td class="gt_row gt_right">0.001122675</td>
-      <td class="gt_row gt_left">Neoplasms</td>
-      <td class="gt_row gt_left">Non-communicable diseases</td>
-      <td class="gt_row gt_right">1</td>
-      <td class="gt_row gt_left">NA</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Stroke</td>
-      <td class="gt_row gt_right">0.093254349</td>
-      <td class="gt_row gt_left">Cardiovascular diseases</td>
-      <td class="gt_row gt_left">Non-communicable diseases</td>
-      <td class="gt_row gt_right">1</td>
-      <td class="gt_row gt_left">Stroke</td>
-    </tr>
   </tbody>
   
   
@@ -3749,7 +3720,8 @@ d-appendix d-footnote-list a.footnote-backlink {
     <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_tile.html'>geom_node_tile</a></span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>parent2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
     <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_text.html'>geom_node_text</a></span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>label <span class='op'>=</span> <span class='fu'>stringr</span><span class='fu'>::</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_wrap.html'>str_wrap</a></span><span class='op'>(</span><span class='va'>new_label</span>,<span class='fl'>15</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='va'>val</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
     <span class='fu'>guides</span><span class='op'>(</span>size <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
-    <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Most frequent death causes in"</span>, <span class='va'>country</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Most frequent death causes in"</span>, <span class='va'>country</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>theme</span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"bottom"</span><span class='op'>)</span>
 </code></pre>
 </div>
 <p><img src="ggraph_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
@@ -3779,7 +3751,7 @@ d-appendix d-footnote-list a.footnote-backlink {
             <span class='fu'><a href='https://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='va'>CauseL3</span>, parent <span class='op'>=</span> <span class='va'>country</span>, parent2 <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
             <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>val <span class='op'>=</span> <span class='fl'>0</span>, level <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
     <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>rank <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rank.html'>rank</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>val</span>, ties.method <span class='op'>=</span> <span class='st'>"first"</span><span class='op'>)</span>,
-      new_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>level</span><span class='op'>==</span><span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>rank</span> <span class='op'>&lt;=</span> <span class='fl'>10</span>, <span class='va'>name</span>, <span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      new_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>level</span><span class='op'>==</span><span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>rank</span> <span class='op'>&lt;=</span> <span class='fl'>3</span>, <span class='va'>name</span>, <span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
     <span class='fu'><a href='https://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>val</span>, <span class='va'>level</span>, <span class='va'>new_label</span>, <span class='va'>parent</span>, <span class='va'>parent2</span><span class='op'>)</span>
   
   <span class='va'>graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html'>graph_from_data_frame</a></span><span class='op'>(</span><span class='va'>edges</span>, vertices <span class='op'>=</span> <span class='va'>vertices</span><span class='op'>)</span>
@@ -3789,7 +3761,7 @@ d-appendix d-footnote-list a.footnote-backlink {
     <span class='fu'><a href='https://ggraph.data-imaginist.com/reference/geom_node_text.html'>geom_node_text</a></span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>label <span class='op'>=</span> <span class='fu'>stringr</span><span class='fu'>::</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_wrap.html'>str_wrap</a></span><span class='op'>(</span><span class='va'>new_label</span>,<span class='fl'>15</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='va'>val</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
     <span class='fu'>guides</span><span class='op'>(</span>size <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
     <span class='fu'>harrypotter</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/harrypotter/man/scale_hp.html'>scale_fill_hp_d</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"HarryPotter"</span><span class='op'>)</span> <span class='op'>+</span>
-    <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Most frequent death causes in"</span>, <span class='va'>country</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='va'>country</span><span class='op'>)</span>
 
 <span class='op'>}</span>
 
@@ -3807,9 +3779,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://patchwork.data-imaginist.com'>patchwork</a></span><span class='op'>)</span>
 
 
-<span class='va'>p1</span> <span class='op'>+</span> <span class='va'>p2</span> <span class='op'>+</span> <span class='va'>p3</span> <span class='op'>+</span> <span class='va'>p4</span> <span class='op'>+</span> <span class='va'>p5</span> <span class='op'>+</span> <span class='va'>p6</span> <span class='op'>+</span> <span class='va'>p7</span> <span class='op'>+</span> <span class='va'>p8</span> <span class='op'>+</span> <span class='fu'><a href='https://patchwork.data-imaginist.com/reference/guide_area.html'>guide_area</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='va'>p1</span> <span class='op'>+</span> <span class='va'>p2</span> <span class='op'>+</span> <span class='va'>p3</span> <span class='op'>+</span> <span class='va'>p4</span> <span class='op'>+</span> <span class='va'>p5</span> <span class='op'>+</span> <span class='va'>p6</span> <span class='op'>+</span> <span class='va'>p7</span> <span class='op'>+</span> <span class='va'>p8</span> <span class='op'>+</span> <span class='fu'><a href='https://patchwork.data-imaginist.com/reference/plot_spacer.html'>plot_spacer</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://patchwork.data-imaginist.com/reference/plot_layout.html'>plot_layout</a></span><span class='op'>(</span>guides <span class='op'>=</span> <span class='st'>"collect"</span><span class='op'>)</span> <span class='op'>&amp;</span>
-  <span class='fu'>theme</span><span class='op'>(</span>legend.title <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>theme</span><span class='op'>(</span>legend.title <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+        legend.position <span class='op'>=</span> <span class='st'>"bottom"</span><span class='op'>)</span>
 </code></pre>
 </div>
 <p><img src="ggraph_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
@@ -3837,7 +3810,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mejprvvpsu .gt_table {
+#sipenmejpr .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -3862,7 +3835,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-left-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_heading {
+#sipenmejpr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3874,7 +3847,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_title {
+#sipenmejpr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3884,7 +3857,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-bottom-width: 0;
 }
 
-#mejprvvpsu .gt_subtitle {
+#sipenmejpr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3894,13 +3867,13 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-width: 0;
 }
 
-#mejprvvpsu .gt_bottom_border {
+#sipenmejpr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_col_headings {
+#sipenmejpr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3915,7 +3888,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_col_heading {
+#sipenmejpr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3935,7 +3908,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   overflow-x: hidden;
 }
 
-#mejprvvpsu .gt_column_spanner_outer {
+#sipenmejpr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3947,15 +3920,15 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 4px;
 }
 
-#mejprvvpsu .gt_column_spanner_outer:first-child {
+#sipenmejpr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mejprvvpsu .gt_column_spanner_outer:last-child {
+#sipenmejpr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mejprvvpsu .gt_column_spanner {
+#sipenmejpr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3967,7 +3940,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   width: 100%;
 }
 
-#mejprvvpsu .gt_group_heading {
+#sipenmejpr .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3989,7 +3962,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   vertical-align: middle;
 }
 
-#mejprvvpsu .gt_empty_group_heading {
+#sipenmejpr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4004,15 +3977,15 @@ d-appendix d-footnote-list a.footnote-backlink {
   vertical-align: middle;
 }
 
-#mejprvvpsu .gt_from_md > :first-child {
+#sipenmejpr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mejprvvpsu .gt_from_md > :last-child {
+#sipenmejpr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mejprvvpsu .gt_row {
+#sipenmejpr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4031,7 +4004,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   overflow-x: hidden;
 }
 
-#mejprvvpsu .gt_stub {
+#sipenmejpr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4043,7 +4016,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-left: 12px;
 }
 
-#mejprvvpsu .gt_summary_row {
+#sipenmejpr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4053,7 +4026,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 5px;
 }
 
-#mejprvvpsu .gt_first_summary_row {
+#sipenmejpr .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4063,7 +4036,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_grand_summary_row {
+#sipenmejpr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4073,7 +4046,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   padding-right: 5px;
 }
 
-#mejprvvpsu .gt_first_grand_summary_row {
+#sipenmejpr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4083,11 +4056,11 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-top-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_striped {
+#sipenmejpr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mejprvvpsu .gt_table_body {
+#sipenmejpr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4096,7 +4069,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-bottom-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_footnotes {
+#sipenmejpr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4110,13 +4083,13 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_footnote {
+#sipenmejpr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#mejprvvpsu .gt_sourcenotes {
+#sipenmejpr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4130,46 +4103,46 @@ d-appendix d-footnote-list a.footnote-backlink {
   border-right-color: #D3D3D3;
 }
 
-#mejprvvpsu .gt_sourcenote {
+#sipenmejpr .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#mejprvvpsu .gt_left {
+#sipenmejpr .gt_left {
   text-align: left;
 }
 
-#mejprvvpsu .gt_center {
+#sipenmejpr .gt_center {
   text-align: center;
 }
 
-#mejprvvpsu .gt_right {
+#sipenmejpr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mejprvvpsu .gt_font_normal {
+#sipenmejpr .gt_font_normal {
   font-weight: normal;
 }
 
-#mejprvvpsu .gt_font_bold {
+#sipenmejpr .gt_font_bold {
   font-weight: bold;
 }
 
-#mejprvvpsu .gt_font_italic {
+#sipenmejpr .gt_font_italic {
   font-style: italic;
 }
 
-#mejprvvpsu .gt_super {
+#sipenmejpr .gt_super {
   font-size: 65%;
 }
 
-#mejprvvpsu .gt_footnote_marks {
+#sipenmejpr .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="mejprvvpsu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="sipenmejpr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -4179,6 +4152,16 @@ d-appendix d-footnote-list a.footnote-backlink {
     </tr>
   </thead>
   <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Kenya</td>
+      <td class="gt_row gt_left">Zimbabwe</td>
+      <td class="gt_row gt_right">0.9597491</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Czechia</td>
+      <td class="gt_row gt_left">High-middle SDI</td>
+      <td class="gt_row gt_right">0.9630934</td>
+    </tr>
     <tr>
       <td class="gt_row gt_left">Iran (Islamic Republic of)</td>
       <td class="gt_row gt_left">Iraq</td>
@@ -4218,16 +4201,6 @@ d-appendix d-footnote-list a.footnote-backlink {
       <td class="gt_row gt_left">Kyrgyzstan</td>
       <td class="gt_row gt_left">Libya</td>
       <td class="gt_row gt_right">0.9519206</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Micronesia (Federated States of)</td>
-      <td class="gt_row gt_left">Samoa</td>
-      <td class="gt_row gt_right">0.9771239</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Vanuatu</td>
-      <td class="gt_row gt_left">Dominican Republic</td>
-      <td class="gt_row gt_right">0.9629175</td>
     </tr>
   </tbody>
   
