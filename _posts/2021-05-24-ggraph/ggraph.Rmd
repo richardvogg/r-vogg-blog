@@ -276,7 +276,7 @@ get_country_profile <- function(country) {
   
   ggraph(graph, 'treemap', weight = val) + 
     geom_node_tile(aes(fill = parent2)) +
-    geom_node_text(aes(label = stringr::str_wrap(new_label,15), size = val)) +
+    #geom_node_text(aes(label = stringr::str_wrap(new_label,15), size = val)) +
     guides(size = FALSE) +
     harrypotter::scale_fill_hp_d(option = "HarryPotter") +
     labs(title = country)
