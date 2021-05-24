@@ -11,7 +11,7 @@ output:
     self_contained: false
     toc: true
     toc-float: false
-    code-folding: false
+    code-folding: show
 twitter:
   site: "@richard_vogg"
   creator: "@richard_vogg"
@@ -243,7 +243,7 @@ ggraph(graph, 'treemap', weight = val) +
     theme(legend.position = "bottom")
 ```
 
-Let's put all of the above in a function and call it `get_country_profile`.
+Let's put all of the above in a function and call it `get_country_profile`. Then we can easily create profiles for several countries and compare them. You can unhide the code if you want to see the final function.
 
 ```{r class.source = 'fold-hide'}
 
