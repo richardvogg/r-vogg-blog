@@ -12,6 +12,7 @@ output:
     toc: true
     toc-float: false
     code-folding: show
+preview: img/examples.png
 twitter:
   site: "@richard_vogg"
   creator: "@richard_vogg"
