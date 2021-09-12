@@ -1,0 +1,284 @@
+---
+title: "Family trees with ggraph"
+description: |
+  Networks can be useful when visualizing family trees. I explored the possibilities of doing this with the {ggraph} package for family information of Lemurs for #TidyTuesday. In this blogpost I describe step by step how to create the visuals.
+author:
+  - name: Richard Vogg
+    url: https://github.com/richardvogg
+date: 09-12-2021
+preview: img/plotDMAD.png
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc-float: false
+twitter:
+  site: "@richard_vogg"
+  creator: "@richard_vogg"
+categories:
+  - ggraph
+  - graphlayouts
+---
+
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+
+sysfonts::font_add_google(name = "Jura", "Jura")
+showtext::showtext_auto()
+library(ggfx)
+```
+
+
+### Inspiration
+
+I recently bought the beautiful book “Data Sketches” by Nadieh Bremer and Shirley Wu, and it has been a joy looking at their awesome projects. First of all, I really like the idea of having one project per month and having someone who pushes you and who “expects the output.” Maybe I would also need something similar for my blog. Currently, I am trying to participate in the weekly #TidyTuesday initiative, and in one of the past weeks, we were looking at lemur data. I planned to show the family tree for several lemur families as a network, inspired by what Nadieh Bremer did for the royal families. Take a moment to [visit the stunning visuals she created](https://www.visualcinnamon.com/portfolio/royal-constellations/).
+
+### Loading packages and data
+
+For creating the family trees we will need `dplyr` for data manipulation, `ggraph` and `igraph` for the networks and `graphlayouts` for the manual positioning of the monkeys. The data can be loaded from the [TidyTuesday repository](https://github.com/rfordatascience/tidytuesday) as seen below.
+
+```{r}
+library(dplyr)
+library(ggraph)
+library(igraph)
+library(graphlayouts)
+
+lemurs <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-08-24/lemur_data.csv')
+
+```
+
+The data contains one row for each lemur. The taxon stands for the different lemur families, DMAD for example for the Aye-aye lemur family. If available, the data contains date of birth (dob), and the ID of mother and father.
+
+```{r, echo = FALSE}
+
+tree <- lemurs %>%
+  distinct(taxon, dlc_id, lemur_name = name, dam_id, dam_dob, 
+           sire_id, sire_dob, sex, dob) %>%
+  filter(taxon == 'DMAD')
+
+knitr::kable(tree %>% slice(20:28))
+```
+
+
+```{r, echo = FALSE}
+
+taxon <- c("CMED", "DMAD", "EALB", "ECOL", "ECOR", "EFLA", "EFUL", "EMAC",
+           "EMON", "ERUB", "ERUF", "ESAN", "EUL", "GMOH", "HGG", "LCAT",
+           "LTAR", "MMUR", "MZAZ", "NCOU", "NPYG", "OGG", "PCOQ", "PPOT",
+           "VAR", "VRUB", "VVV")
+taxon_name <- c("Fat-tailed dwarf lemur", "Aye-aye", "White-fronted brown lemur",
+                "Collared brown lemur", "Crowned lemur", "Blue-eyed black lemur",
+                "Common brown lemur", "Black lemur", "Mongoose lemur",
+                "Red-bellied lemur", "Red-fronted brown lemur",
+                "Sanford’s brown lemur", "hybrid", "Mohol bushbaby",
+                "Eastern lesser bamboo lemur", "Ring-tailed lemur",
+                "Slender loris", "Gray mouse lemur", "Northern giant mouse lemur",
+                "Slow loris", "Pygmy slow loris", "Northern greater galago",
+                "Coquerel’s sifaka", "Potto", "Varecia	hybrid",
+                "Red ruffed lemur", "Black-and-white ruffed lemur")
+
+```
+
+
+### Build the network
+
+First, we will build the edges. We want to have one connection from each father and each mother to their child.
+
+```{r}
+  
+edges <- tree %>%
+  distinct(from = dam_id, to = dlc_id) %>%
+  rbind(tree %>% distinct(from = sire_id, to = dlc_id))
+
+```
+
+```{r, echo = FALSE}
+knitr::kable(edges %>% slice(8:12))
+```
+
+
+Next, we create the vertices. We want to have some information stored in the vertices, namely the name of the lemur, the birthday, and the sex. Every vertex which was mentioned in the edges (i.e. every child, father and mother) has to be present in the vertices data frame. Therefore we will concatenate the rows of children, fathers and mothers. The columns have to have the same names for each group for the concatenation to work.
+
+```{r}
+
+vertices <- tree %>%
+  distinct(name = dlc_id, lemur_name, dob, sex) %>%
+  rbind(tree %>% distinct(name = sire_id, lemur_name = NA, dob = sire_dob, sex = NA)) %>%
+  rbind(tree %>% distinct(name = dam_id, lemur_name = NA, dob = dam_dob, sex = NA))
+
+```
+
+We have to remove duplicate names. And instead of birthday, we will just keep the birth year.
+
+```{r}
+vertices <- vertices %>%
+  group_by(name) %>%
+  summarise(lemur_name = max(lemur_name, na.rm = TRUE),
+            dob = max(dob, na.rm = TRUE),
+            sex = max(sex, na.rm = TRUE)) %>%
+  mutate(year = as.numeric(format(dob, '%Y'))) %>%
+  select(-dob)
+  
+```
+
+```{r, echo = FALSE}
+knitr::kable(vertices %>% slice(1:5))
+```
+
+Now, we can create the graph. `simplify` removes loops and multiple edges, `as.undirected` removes the direction of the connections, which is important for the backbone network we will introduce later.
+
+```{r}
+g <- graph_from_data_frame(edges, vertices = vertices) %>%
+  simplify() %>%
+  as.undirected()
+```
+
+Let's take a look at the network. We color the nodes by sex and add the name of the individual close to each node. We use `check_overlap = TRUE` to remove labels if they overlap with others.
+
+```{r}
+ggraph(g) +
+  geom_edge_link0(edge_width = 0.1, alpha = 0.2)+
+  geom_node_point(aes(col = vertices$sex))+
+  geom_node_text(aes(label = vertices$lemur_name),
+                 size = 5, check_overlap = TRUE, nudge_y = -0.1)
+```
+
+
+Now, we have a network where each child is connected to their parents. However, we are missing the temporal component. I first tried to put the year on one axis and a random value for each individual on the other axis, but it was a mess. This is when I found [this blogpost by David Schoch](mr.schochastics.net/netVizR.html). At the end of the post, David talks about backbone networks. The method described in [this paper](https://jgaa.info/accepted/2015/NocajOrtmannBrandes2015.19.2.pdf) is used to disentangle networks with a lot of (weak) connections between all nodes. This is not our case, but it still came in handy to solve the problem I was trying to solve, namely to add a time component.
+
+The `layout_as_backbone` method from the {graphlayouts} package is giving us coordinates to plot our network manually. We will use the year of birth of each individual on the y-axis and get the corresponding x-axis value from the backbone network.
+
+```{r}
+
+bb <- layout_as_backbone(g)
+  
+ggraph(g, layout = "manual", x = bb$xy[,1], y = year) +
+  geom_edge_link0(edge_width = 0.1, alpha = 0.2)+
+  geom_node_point(aes(col = vertices$sex))+
+  geom_node_text(aes(label = vertices$lemur_name),
+                 size = 5, check_overlap = TRUE, nudge_y = -0.4)
+
+
+```
+
+In the end we can use themes and titles to make the plot prettier. 
+
+
+```{r, echo = FALSE, fig.height = 5, fig.width = 8}
+
+
+ggraph(g, layout = "manual", x = bb$xy[,1], y = year) +
+  with_inner_glow(
+    geom_edge_link0(edge_width = 0.1, alpha = 0.8)
+  ) +
+  geom_node_point(aes(col = vertices$sex)) +
+  geom_node_text(aes(label = vertices$lemur_name), family = "Jura",
+                 size = 5, check_overlap = TRUE, nudge_y = -0.4) +
+labs(title = paste("Family tree of Aye-aye lemurs"),
+         color = "Sex",
+         caption = "Data: Duke Lemur Center") +
+    theme_graph() +
+    theme(axis.text.y = element_text(family = "Jura", size = 12),
+          axis.ticks.y = element_line(),
+          plot.title = element_text(family = "Jura", size = 20),
+          plot.caption = element_text(family = "Jura", size = 15),
+          legend.title = element_text(family = "Jura", size = 15),
+          legend.text = element_text(family = "Jura", size = 12),
+          panel.background = element_rect(fill = "lemonchiffon1", colour = "black", size = 1))
+```
+
+The next step is to put this procedure into a function to be able to repeat it easily for other families. If you want to see the whole code, take a look at [my Github repository](https://github.com/richardvogg/tidy-tuesdays/blob/master/2021/Week%2035%20-%20lemurs/network.R).
+
+```{r, echo = FALSE, fig.height = 5, fig.width = 8}
+make_graph <- function(taxon_short = "OGG") {
+  tree <- lemurs %>%
+    distinct(taxon, dlc_id, lemur_name = name, dam_id, dam_dob, 
+             sire_id, sire_dob, sex, dob) %>%
+    filter(taxon == taxon_short)
+  
+  
+  edges <- tree %>%
+    distinct(from = dam_id, to = dlc_id) %>%
+    rbind(tree %>% distinct(from = sire_id, to = dlc_id))
+  
+  vertices <- tree %>%
+    distinct(name = dlc_id, lemur_name, dob, sex) %>%
+    rbind(tree %>% distinct(name = sire_id, lemur_name = NA, dob = sire_dob, sex = NA)) %>%
+    rbind(tree %>% distinct(name = dam_id, lemur_name = NA, dob = dam_dob, sex = NA)) %>%
+    group_by(name) %>%
+    summarise(lemur_name = max(lemur_name, na.rm = TRUE),
+              dob = max(dob, na.rm = TRUE),
+              sex = max(sex, na.rm = TRUE)) %>%
+    mutate(year = as.numeric(format(dob, '%Y'))) %>%
+    select(-dob)
+  
+  g <- graph_from_data_frame(edges, vertices = vertices)
+  g <- simplify(g)
+  g <- as.undirected(g)
+  
+  return(list(edges = edges, vertices = vertices, g=g))
+}
+
+i <- 9
+
+family <- make_graph(taxon[i])
+  
+bb <- layout_as_backbone(family$g, keep = 0.4)
+
+ggraph(family$g, layout = "manual", x = bb$xy[,1], y = family$vertices$year) +
+  with_inner_glow(
+    geom_edge_link0(edge_width = 0.1, alpha = 0.8)
+  ) +
+  geom_node_point(aes(col = family$vertices$sex)) +
+  geom_node_text(aes(label = family$vertices$lemur_name), family = "Jura",
+                 size = 5, check_overlap = TRUE, nudge_y = -0.4) +
+labs(title = paste("Family tree of", taxon_name[i]),
+         color = "Sex",
+         caption = "Data: Duke Lemur Center") +
+    theme_graph() +
+    theme(axis.text.y = element_text(family = "Jura", size = 12),
+          axis.ticks.y = element_line(),
+          plot.title = element_text(family = "Jura", size = 20),
+          plot.caption = element_text(family = "Jura", size = 15),
+          legend.title = element_text(family = "Jura", size = 15),
+          legend.text = element_text(family = "Jura", size = 12),
+          panel.background = element_rect(fill = "lemonchiffon1", colour = "black", size = 1))
+
+```
+
+```{r, echo = FALSE, fig.height = 5, fig.width = 8}
+i <- 19
+
+family <- make_graph(taxon[i])
+  
+bb <- layout_as_backbone(family$g, keep = 0.4)
+
+ggraph(family$g, layout = "manual", x = bb$xy[,1], y = family$vertices$year) +
+  with_inner_glow(
+    geom_edge_link0(edge_width = 0.1, alpha = 0.8)
+  ) +
+  geom_node_point(aes(col = family$vertices$sex)) +
+  geom_node_text(aes(label = family$vertices$lemur_name), family = "Jura",
+                 size = 5, check_overlap = TRUE, nudge_y = -0.4) +
+labs(title = paste("Family tree of", taxon_name[i]),
+         color = "Sex",
+         caption = "Data: Duke Lemur Center") +
+    theme_graph() +
+    theme(axis.text.y = element_text(family = "Jura", size = 12),
+          axis.ticks.y = element_line(),
+          plot.title = element_text(family = "Jura", size = 20),
+          plot.caption = element_text(family = "Jura", size = 15),
+          legend.title = element_text(family = "Jura", size = 15),
+          legend.text = element_text(family = "Jura", size = 12),
+          panel.background = element_rect(fill = "lemonchiffon1", colour = "black", size = 1))
+```
+
+
+### Closing comments
+* I am not sure if going the extra mile with the backbone network is necessary because we are not using the method's power, just to get the xy-coordinates of the individuals. So if you read this and know that there is an easier way, send me a short message on Twitter or via mail (richard.vogg[at]web.de). Also, in case you want to comment on anything else, of course.
+* In the graphics, we lose all those animals with unknown birth dates. One could think of a way of estimating those to show a complete family tree.
+* What I like most about the data and the original motivation to create these trees are all the creative names that the investigators came up with. If you look closely, you will see some overall topics given to many of the monkeys of one family (e.g. Egyptian gods, minerals, authors, fruits etc).

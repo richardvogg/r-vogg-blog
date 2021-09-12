@@ -22,9 +22,9 @@ Using R makes me happy. Sometimes I learn interesting things that might be inter
 
 ### Contact and Codes
 
-[`r icon::fa("envelope")` richard.vogg@web.de](https://twitter.com/richard_vogg)    
-[`r icon::fa("github")` richardvogg](https://github.com/richardvogg)    
-[`r icon::fa("twitter")` richard_vogg](https://twitter.com/richard_vogg)
+[`r icons::fontawesome("envelope")` richard.vogg@web.de](https://twitter.com/richard_vogg)    
+[`r icons::fontawesome("github")` richardvogg](https://github.com/richardvogg)    
+[`r icons::fontawesome("twitter")` richard_vogg](https://twitter.com/richard_vogg)
 
 ### Why I created this blog
 
