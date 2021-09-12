@@ -168,7 +168,7 @@ ggraph(g, layout = "manual", x = bb$xy[,1], y = year) +
 In the end we can use themes and titles to make the plot prettier. 
 
 
-```{r, echo = FALSE, fig.height = 5, fig.width = 8}
+```{r, echo = FALSE}
 
 
 ggraph(g, layout = "manual", x = bb$xy[,1], y = year) +
@@ -177,23 +177,23 @@ ggraph(g, layout = "manual", x = bb$xy[,1], y = year) +
   ) +
   geom_node_point(aes(col = vertices$sex)) +
   geom_node_text(aes(label = vertices$lemur_name), family = "Jura",
-                 size = 5, check_overlap = TRUE, nudge_y = -0.4) +
+                 size = 4, check_overlap = TRUE, nudge_y = -0.4) +
 labs(title = paste("Family tree of Aye-aye lemurs"),
          color = "Sex",
          caption = "Data: Duke Lemur Center") +
     theme_graph() +
-    theme(axis.text.y = element_text(family = "Jura", size = 12),
+    theme(axis.text.y = element_text(family = "Jura", size = 14),
           axis.ticks.y = element_line(),
           plot.title = element_text(family = "Jura", size = 20),
           plot.caption = element_text(family = "Jura", size = 15),
           legend.title = element_text(family = "Jura", size = 15),
-          legend.text = element_text(family = "Jura", size = 12),
+          legend.text = element_text(family = "Jura", size = 14),
           panel.background = element_rect(fill = "lemonchiffon1", colour = "black", size = 1))
 ```
 
 The next step is to put this procedure into a function to be able to repeat it easily for other families. If you want to see the whole code, take a look at [my Github repository](https://github.com/richardvogg/tidy-tuesdays/blob/master/2021/Week%2035%20-%20lemurs/network.R).
 
-```{r, echo = FALSE, fig.height = 5, fig.width = 8}
+```{r, echo = FALSE}
 make_graph <- function(taxon_short = "OGG") {
   tree <- lemurs %>%
     distinct(taxon, dlc_id, lemur_name = name, dam_id, dam_dob, 
@@ -235,22 +235,22 @@ ggraph(family$g, layout = "manual", x = bb$xy[,1], y = family$vertices$year) +
   ) +
   geom_node_point(aes(col = family$vertices$sex)) +
   geom_node_text(aes(label = family$vertices$lemur_name), family = "Jura",
-                 size = 5, check_overlap = TRUE, nudge_y = -0.4) +
+                 size = 4, check_overlap = TRUE, nudge_y = -0.4) +
 labs(title = paste("Family tree of", taxon_name[i]),
          color = "Sex",
          caption = "Data: Duke Lemur Center") +
     theme_graph() +
-    theme(axis.text.y = element_text(family = "Jura", size = 12),
+    theme(axis.text.y = element_text(family = "Jura", size = 14),
           axis.ticks.y = element_line(),
           plot.title = element_text(family = "Jura", size = 20),
           plot.caption = element_text(family = "Jura", size = 15),
           legend.title = element_text(family = "Jura", size = 15),
-          legend.text = element_text(family = "Jura", size = 12),
+          legend.text = element_text(family = "Jura", size = 14),
           panel.background = element_rect(fill = "lemonchiffon1", colour = "black", size = 1))
 
 ```
 
-```{r, echo = FALSE, fig.height = 5, fig.width = 8}
+```{r, echo = FALSE}
 i <- 19
 
 family <- make_graph(taxon[i])
@@ -263,17 +263,17 @@ ggraph(family$g, layout = "manual", x = bb$xy[,1], y = family$vertices$year) +
   ) +
   geom_node_point(aes(col = family$vertices$sex)) +
   geom_node_text(aes(label = family$vertices$lemur_name), family = "Jura",
-                 size = 5, check_overlap = TRUE, nudge_y = -0.4) +
+                 size = 4, check_overlap = TRUE, nudge_y = -0.4) +
 labs(title = paste("Family tree of", taxon_name[i]),
          color = "Sex",
          caption = "Data: Duke Lemur Center") +
     theme_graph() +
-    theme(axis.text.y = element_text(family = "Jura", size = 12),
+    theme(axis.text.y = element_text(family = "Jura", size = 14),
           axis.ticks.y = element_line(),
           plot.title = element_text(family = "Jura", size = 20),
           plot.caption = element_text(family = "Jura", size = 15),
           legend.title = element_text(family = "Jura", size = 15),
-          legend.text = element_text(family = "Jura", size = 12),
+          legend.text = element_text(family = "Jura", size = 14),
           panel.background = element_rect(fill = "lemonchiffon1", colour = "black", size = 1))
 ```
 

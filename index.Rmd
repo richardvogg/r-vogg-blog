@@ -12,8 +12,9 @@ knitr::opts_chunk$set(warning=FALSE,message=FALSE)
 My name is Richard Vogg. I studied mathematics at TU Kaiserslautern in Germany, where I focused on statistics and obtained a Master's degree.
 
 Afterwards I moved to Valparaíso, Chile for three years and worked as a Senior Business Analyst for an international data analytics company. In late 2020 I moved back to Germany, looking for new interesting data projects.
+I found one: Since May 2021 I am working at the University of Göttingen with Computer Vision and Deep Learning techniques to analyze monkeys in the wild on videos.
 
-```{r, out.width="50%", fig.align='center'}
+```{r, out.width="50%", fig.align='center', echo = FALSE}
 knitr::include_graphics("rvogg.JPG")
 ```
 
