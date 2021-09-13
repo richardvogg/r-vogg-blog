@@ -148,15 +148,15 @@ ggraph(g) +
 ```
 
 
-Now, we have a network where each child is connected to their parents. However, we are missing the temporal component. I first tried to put the year on one axis and a random value for each individual on the other axis, but it was a mess. This is when I found [this blogpost by David Schoch](mr.schochastics.net/netVizR.html). At the end of the post, David talks about backbone networks. The method described in [this paper](https://jgaa.info/accepted/2015/NocajOrtmannBrandes2015.19.2.pdf) is used to disentangle networks with a lot of (weak) connections between all nodes. This is not our case, but it still came in handy to solve the problem I was trying to solve, namely to add a time component.
+Now, we have a network where each child is connected to their parents. However, we are missing the temporal component. I first tried to put the year on one axis and a random value for each individual on the other axis, but it was a mess. This is when I found [this blogpost by David Schoch](mr.schochastics.net/netVizR.html). At the end of the post, David talks about backbone networks. The method described in [this paper](https://jgaa.info/accepted/2015/NocajOrtmannBrandes2015.19.2.pdf) is used to disentangle networks with a lot of (weak) connections between all nodes. This is not our case, but it still came in handy to solve the problem I was trying to solve, namely to add a time component. Actually, David responded to the first version of this blog post and told me that there was even a better way for this usecase than using a backbone:
 
-The `layout_as_backbone` method from the {graphlayouts} package is giving us coordinates to plot our network manually. We will use the year of birth of each individual on the y-axis and get the corresponding x-axis value from the backbone network.
+The `layout_with_constrained_stress` method from the {graphlayouts} package is giving us coordinates to plot our network manually. We will use the year of birth of each individual on the y-axis and get the corresponding x-axis value from the layout function.
 
 ```{r}
 
-bb <- layout_as_backbone(g)
+bb <- layout_with_constrained_stress(g, coord = vertices$year, fixdim = "y")
   
-ggraph(g, layout = "manual", x = bb$xy[,1], y = year) +
+ggraph(g, layout = "manual", x = bb[,1], y = bb[,2]) +
   geom_edge_link0(edge_width = 0.1, alpha = 0.2)+
   geom_node_point(aes(col = vertices$sex))+
   geom_node_text(aes(label = vertices$lemur_name),
@@ -171,7 +171,7 @@ In the end we can use themes and titles to make the plot prettier.
 ```{r, echo = FALSE}
 
 
-ggraph(g, layout = "manual", x = bb$xy[,1], y = year) +
+ggraph(g, layout = "manual", x = bb[,1], y = bb[,2]) +
   with_inner_glow(
     geom_edge_link0(edge_width = 0.1, alpha = 0.8)
   ) +
@@ -223,13 +223,13 @@ make_graph <- function(taxon_short = "OGG") {
   return(list(edges = edges, vertices = vertices, g=g))
 }
 
-i <- 9
+i <- 10
 
 family <- make_graph(taxon[i])
   
-bb <- layout_as_backbone(family$g, keep = 0.4)
-
-ggraph(family$g, layout = "manual", x = bb$xy[,1], y = family$vertices$year) +
+bb <- layout_with_constrained_stress(family$g, coord = family$vertices$year, fixdim = "y")
+  
+ggraph(family$g, layout = "manual", x = bb[,1], y = bb[,2]) +
   with_inner_glow(
     geom_edge_link0(edge_width = 0.1, alpha = 0.8)
   ) +
@@ -255,9 +255,9 @@ i <- 19
 
 family <- make_graph(taxon[i])
   
-bb <- layout_as_backbone(family$g, keep = 0.4)
-
-ggraph(family$g, layout = "manual", x = bb$xy[,1], y = family$vertices$year) +
+bb <- layout_with_constrained_stress(family$g, coord = family$vertices$year, fixdim = "y")
+  
+ggraph(family$g, layout = "manual", x = bb[,1], y = bb[,2]) +
   with_inner_glow(
     geom_edge_link0(edge_width = 0.1, alpha = 0.8)
   ) +
