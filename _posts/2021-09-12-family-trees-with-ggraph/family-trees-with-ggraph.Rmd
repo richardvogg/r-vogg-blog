@@ -6,6 +6,7 @@ author:
   - name: Richard Vogg
     url: https://github.com/richardvogg
 date: 09-12-2021
+base_url: https://r-vogg-blog.netlify.app
 preview: img/plotDMAD.png
 output:
   distill::distill_article:
